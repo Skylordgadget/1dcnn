@@ -97,7 +97,9 @@ module neuron (
         if (rst) begin
             neuron_data_out <= {DATA_WIDTH{1'b0}};
         end else begin
-            neuron_data_out <= mult_sum[NUM_INPUTS-1] + neuron_bias;
+            if (neuron_ready_in) begin
+                neuron_data_out <= mult_sum[NUM_INPUTS-1] + neuron_bias;
+            end
         end
     end
 

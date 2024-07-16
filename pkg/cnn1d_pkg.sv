@@ -3,7 +3,7 @@
 package cnn1d_pkg;
     localparam LPM_PIPE_WIDTH = 4;
     localparam DATA_WIDTH = 12; // width of the all the fixed-point data in the system
-    localparam FRACTION = 6; // position of the decimal point from the right 
+    localparam FRACTION = 0; // position of the decimal point from the right 
     localparam SUPPORTED_PRECISION = 10;
     /* FRACTION Example
 
