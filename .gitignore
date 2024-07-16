@@ -6,3 +6,4 @@
 ./test/transcript
 ./test/vsim.wlf
 ./test/wlftmtc6r6
+./test/220pack.vhd
