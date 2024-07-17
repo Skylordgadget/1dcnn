@@ -38,6 +38,10 @@ module neuron (
     output logic                    neuron_valid_out;
     output logic [DATA_WIDTH-1:0]   neuron_data_out;
 
+    logic weighted_sum_ready;
+    logic weighted_sum_valid;
+    logic [DATA_WIDTH-1:0] weighted_sum_data;
+
     logic [LPM_OUT_WIDTH-1:0] mult_out [0:NUM_INPUTS-1];
     logic [DATA_WIDTH-1:0] mult_sum [0:NUM_INPUTS-1];
     logic [DATA_WIDTH-1:0] z;
@@ -72,7 +76,7 @@ module neuron (
         end
     end
 
-    assign neuron_valid_out = neuron_valid_in_pipe[NEURON_PIPE_WIDTH-1];
+    assign weighted_sum_valid = neuron_valid_in_pipe[NEURON_PIPE_WIDTH-1];
 
     generate
         if (NUM_INPUTS > 1) begin
@@ -95,14 +99,30 @@ module neuron (
 
     always_ff @(posedge clk) begin
         if (rst) begin
-            neuron_data_out <= {DATA_WIDTH{1'b0}};
+            weighted_sum_data <= {DATA_WIDTH{1'b0}};
         end else begin
             if (neuron_ready_in) begin
-                neuron_data_out <= mult_sum[NUM_INPUTS-1] + neuron_bias;
+                weighted_sum_data <= mult_sum[NUM_INPUTS-1] + neuron_bias;
             end
         end
     end
 
-    assign neuron_ready_in = rst ? 1'b0 : ~neuron_valid_out | neuron_ready_out;
+    assign neuron_ready_in = rst ? 1'b0 : ~weighted_sum_valid | weighted_sum_ready;
+
+    // built-in activation function
+    // TODO enable/disable activation with parameter
+    // TODO register ready signal after/before the activation 
+    relu activation (
+        .clk    (clk),
+        .rst    (rst),
+
+        .relu_ready_in (weighted_sum_ready),
+        .relu_valid_in (weighted_sum_valid),
+        .relu_data_in (weighted_sum_data),
+
+        .relu_ready_out (neuron_ready_out),
+        .relu_valid_out (neuron_valid_out),
+        .relu_data_out (neuron_data_out)
+    );
 
 endmodule
