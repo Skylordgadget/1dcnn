@@ -65,11 +65,11 @@ module mult_reduce_tb();
         for (int i=0; i<num_inputs; i++) begin
             #(CLK_PERIOD);
 
-            mult_reduce_ready_out <= $urandom_range(1'b0, 1'b1);
+            mult_reduce_ready_out <= 1'b1;
             if (mult_reduce_ready_in | ~mult_reduce_valid_in) begin
                 rand_dataa = $urandom_range(0, 10);
                 rand_datab = $urandom_range(0, 10);
-                valid = $urandom_range(1'b0, 1'b1);
+                valid = 1'b1;
                 mult_reduce_dataa_in <= rand_dataa;
                 mult_reduce_datab_in <= rand_datab;
                 

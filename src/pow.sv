@@ -63,12 +63,12 @@ module pow (
     input logic                     clk;
     input logic                     rst;
 
-    // axi4s lite input interface
+    // axi input interface
     output logic                    pow_ready_in;
     input logic [DATA_WIDTH-1:0]    pow_data_in;
     input logic                     pow_valid_in;
 
-    // axi4s lite output interface
+    // axi output interface
     input logic                     pow_ready_out;
     output logic [DATA_WIDTH-1:0]   pow_data_out;
     output logic                    pow_valid_out;
