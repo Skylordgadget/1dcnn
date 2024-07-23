@@ -48,18 +48,19 @@ module exp (
 
     logic [DATA_WIDTH-1:0] div_sum [0:NUM_DIVIDES-1];
 
+    // factorials LUT
     always_ff @(posedge clk) begin
         if (rst) begin
-            factorial[0] <= FACTORIAL_1;
-            factorial[1] <= FACTORIAL_2;
-            factorial[2] <= FACTORIAL_3;
-            factorial[3] <= FACTORIAL_4;
-            factorial[4] <= FACTORIAL_5;
-            factorial[5] <= FACTORIAL_6;
-            factorial[6] <= FACTORIAL_7;
-            factorial[7] <= FACTORIAL_8;
-            factorial[8] <= FACTORIAL_9;
-            factorial[9] <= FACTORIAL_10;
+            factorial[0] <= FACTORIAL_1; // 1!
+            factorial[1] <= FACTORIAL_2; // 2!
+            factorial[2] <= FACTORIAL_3; // 3!
+            factorial[3] <= FACTORIAL_4; // 4!
+            factorial[4] <= FACTORIAL_5; // 5!
+            factorial[5] <= FACTORIAL_6; // 6!
+            factorial[6] <= FACTORIAL_7; // 7!
+            factorial[7] <= FACTORIAL_8; // 8!
+            factorial[8] <= FACTORIAL_9; // 9!
+            factorial[9] <= FACTORIAL_10; // 10!
         end 
     end
 
@@ -117,33 +118,6 @@ module exp (
     endgenerate
 
     assign exp_data_out = {1'b1, {FRACTION{1'b0}}} + exp_data_in + div_sum[NUM_DIVIDES-1];
-
-    // pow #(
-    //     .POW(2)
-    // ) power_of (
-    //     .clk    (clk),
-    //     .rst    (rst),
-
-    //     .pow_ready_in   (pow_ready_in),
-    //     .pow_valid_in   (1'b1),
-    //     .pow_data_in    (exp_data_in),
-        
-    //     .pow_ready_out  (1'b1),
-    //     .pow_valid_out  (pow_valid_out),
-    //     .pow_data_out   (pow_data_out)
-    // );
-
-    // div #(
-    //     .DATA_WIDTH (DATA_WIDTH),
-    //     .PIPE_WIDTH (LPM_PIPE_WIDTH)
-    // ) divider (
-    //     .clken      (pow_valid_out),
-    //     .clock      (clk),
-    //     .denom      (factorial[1]),
-    //     .numer      (pow_data_out),
-    //     .quotient   (exp_data_out),
-    //     .remain     ()
-    // );
 
 
 endmodule

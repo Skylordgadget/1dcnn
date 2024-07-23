@@ -1,3 +1,7 @@
+// synthesis translate_off
+`include "./../pkg/cnn1d_pkg.sv"
+// synthesis translate_on
+
 // megafunction wizard: %RAM: 1-PORT%
 // GENERATION: STANDARD
 // VERSION: WM1.0
@@ -48,14 +52,19 @@ module sp_ram #(
 	data,
 	rden,
 	wren,
-	q);
+	q
+);
+	import cnn1d_pkg::*;
 
-	input	[7:0]  address;
+	localparam ADDRESS_WIDTH = clog2(DEPTH); 
+	localparam BYTE_ENABLE = ADDRESS_WIDTH / 8;
+
+	input	[ADDRESS_WIDTH-1:0]  address;
 	input	  clock;
-	input	[11:0]  data;
+	input	[WIDTH-1:0]  data;
 	input	  rden;
 	input	  wren;
-	output	[11:0]  q;
+	output	[WIDTH-1:0]  q;
 `ifndef ALTERA_RESERVED_QIS
 // synopsys translate_off
 `endif
@@ -65,8 +74,8 @@ module sp_ram #(
 // synopsys translate_on
 `endif
 
-	wire [11:0] sub_wire0;
-	wire [11:0] q = sub_wire0[11:0];
+	wire [WIDTH-1:0] sub_wire0;
+	wire [WIDTH-1:0] q = sub_wire0[WIDTH-1:0];
 
 	altsyncram	altsyncram_component (
 				.address_a (address),
@@ -105,9 +114,9 @@ module sp_ram #(
 		altsyncram_component.outdata_reg_a = "CLOCK0",
 		altsyncram_component.power_up_uninitialized = "FALSE",
 		altsyncram_component.read_during_write_mode_port_a = "NEW_DATA_NO_NBE_READ",
-		altsyncram_component.widthad_a = 8,
+		altsyncram_component.widthad_a = ADDRESS_WIDTH,
 		altsyncram_component.width_a = WIDTH,
-		altsyncram_component.width_byteena_a = 1;
+		altsyncram_component.width_byteena_a = BYTE_ENABLE;
 
 
 endmodule

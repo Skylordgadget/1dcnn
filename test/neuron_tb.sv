@@ -96,7 +96,7 @@ module neuron_tb();
                 
                 $display("received: %d, calculated: %d", receiver_neuron_output, neuron_data_out);
                 if (receiver_neuron_output != neuron_data_out)
-                    $display("You are an abject failure");
+                    $display("discrepency found");
             end
             
         end
