@@ -95,6 +95,7 @@ module mult_reduce (
             count <= {ELEMENT_COUNTER_WIDTH{1'b0}};
             mult_reduce_valid_out <= 1'b0;
             mult_reduce_ready_in <= 1'b1;
+            mult_reduce_result_out <= {MULT_OUT_WIDTH{1'b0}};
         end else begin
             /* when there is a handshake at the output, deassert valid to prevent
             duplicates and invalid data being clocked out */

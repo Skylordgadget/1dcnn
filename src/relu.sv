@@ -17,6 +17,8 @@ module relu (
 );
     import cnn1d_pkg::*;
     
+    parameter DATA_WIDTH = 12;
+
     input logic clk;
     input logic rst;
 
