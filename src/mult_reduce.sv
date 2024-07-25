@@ -109,7 +109,7 @@ module mult_reduce (
                 if (count < NUM_ELEMENTS-1) begin
                     // accumulate and increment the counter
                     accumulator <= accumulator + mult_out;
-                    count <= count + 1;
+                    count <= count + 1'b1;
                 end else begin
                     // reset the accumulator
                     accumulator <= {MULT_OUT_WIDTH{1'b0}};

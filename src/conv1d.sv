@@ -85,38 +85,40 @@ module conv1d (
     logic                       relu_valid_out;
     logic [DATA_WIDTH-1:0]      relu_data_out; 
 
-    generate 
-        genvar i;
-        for (i=0; i<FILTER_SIZE; i++) begin
-            always_ff @(posedge clk) begin
-                if (rst) begin
-                    /* initialise the kernal to all zeros
-                    when the first beat of valid data enters the kernel the 
-                    convolution process begins (causal padding) 
-                    e.g., 
-                    KERNEL_WIDTH = 5;
 
-                    valid = 1;
-                    kernel = [0, 0, 0, 0, first_data_beat];
-                    ...
-                    valid = 1;
-                    kernel = [0, 0, 0, first_data_beat, second_data_beat];
-                    */
+	integer i, j;
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            /* initialise the kernal to all zeros
+            when the first beat of valid data enters the kernel the 
+            convolution process begins (causal padding) 
+            e.g., 
+            KERNEL_WIDTH = 5;
 
-                    conv1d_kernel[i] <= {DATA_WIDTH{1'b0}};
-                    p2s_valid_in <= 1'b0;
-                end else begin
-                    if (conv1d_ready_in) begin
-                        p2s_valid_in <= conv1d_valid_in; 
-                        if (conv1d_valid_in) begin
-                            // shift the input data along the kernel only when ready is high
-                            conv1d_kernel <= {conv1d_data_in,conv1d_kernel[0:FILTER_SIZE-2]}; 
-                        end
-                    end 
-                end
+            valid = 1;
+            kernel = [0, 0, 0, 0, first_data_beat];
+            ...
+            valid = 1;
+            kernel = [0, 0, 0, first_data_beat, second_data_beat];
+            */
+            p2s_valid_in <= 1'b0;
+            for (i=0; i<FILTER_SIZE; i++) begin
+                conv1d_kernel[i] <= {DATA_WIDTH{1'b0}};
             end
+        end else begin
+            if (conv1d_ready_in) begin
+                p2s_valid_in <= conv1d_valid_in;
+                if (conv1d_valid_in) begin
+                    // shift the input data along the kernel only when ready is high
+                    for (j=FILTER_SIZE-1; j>0; j--) begin
+                        conv1d_kernel[j] <= conv1d_kernel[j-1];
+                        conv1d_kernel[0] <= conv1d_data_in;
+                    end
+                end
+            end 
         end
-    endgenerate
+    end
+
 
     /* parallel to serial converter
     a p2s is required as the core is designed to use a single multipler 
