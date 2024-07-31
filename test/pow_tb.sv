@@ -6,7 +6,11 @@ module pow_tb();
     import cnn1d_pkg::*;
     
     localparam CLK_PERIOD = 10;
-    
+    localparam POW = 3; // pow_data_out = pow_data_in ** POW
+    localparam DATA_WIDTH = 32;
+    localparam LPM_PIPE_WIDTH = 4;
+    localparam FRACTION = 24;
+
     logic clk;
     logic rst;
 
@@ -27,7 +31,10 @@ module pow_tb();
     always #(CLK_PERIOD/2) clk = ~clk;
 
     pow #(
-        .POW    (3)    
+        .POW            (POW),
+        .DATA_WIDTH     (DATA_WIDTH),
+        .LPM_PIPE_WIDTH (LPM_PIPE_WIDTH),
+        .FRACTION       (FRACTION)
     ) pow (
         .clk    (clk),
         .rst    (rst),
@@ -43,7 +50,7 @@ module pow_tb();
 
 
     initial begin
-        pow_data_in = 12'd0;
+        pow_data_in = {DATA_WIDTH{1'b0}};
         pow_ready_out = 0;
         pow_valid_in = 0;
         rst = 1'b1;
@@ -55,7 +62,7 @@ module pow_tb();
             if (!rst) begin
                 if (pow_ready_in) begin
                     pow_valid_in <= $urandom_range(1'b0, 1'b1);
-                    rand_num = $urandom_range(12'd0, 12'd4);
+                    rand_num = $urandom_range(0, 4);
                     pow_data_in <= rand_num;
                     pow_data_in_buf <= {pow_data_in, pow_data_in_buf[0:pow.POW_PIPE_WIDTH-2]};
 

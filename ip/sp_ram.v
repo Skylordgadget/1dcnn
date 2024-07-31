@@ -1,7 +1,3 @@
-// synthesis translate_off
-`include "./../pkg/cnn1d_pkg.sv"
-// synthesis translate_on
-
 // megafunction wizard: %RAM: 1-PORT%
 // GENERATION: STANDARD
 // VERSION: WM1.0
@@ -41,12 +37,7 @@
 // synopsys translate_off
 `timescale 1 ps / 1 ps
 // synopsys translate_on
-module sp_ram #(
-	parameter WIDTH = 12,
-	parameter DEPTH = 256,
-	parameter INIT_FILE = ""
-)
-(
+module sp_ram (
 	address,
 	clock,
 	data,
@@ -54,9 +45,11 @@ module sp_ram #(
 	wren,
 	q
 );
-	import cnn1d_pkg::*;
-
-	localparam ADDRESS_WIDTH = clog2(DEPTH); 
+	parameter WIDTH = 12;
+	parameter DEPTH = 256;
+	parameter INIT_FILE = "";
+	parameter ADDRESS_WIDTH = 8;
+	
 	localparam BYTE_ENABLE = ADDRESS_WIDTH / 8;
 
 	input	[ADDRESS_WIDTH-1:0]  address;

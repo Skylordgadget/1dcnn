@@ -11,16 +11,39 @@ module exp (
     exp_valid_in,
     exp_data_in,
 
-    debug_denom,
-
     exp_ready_out,
     exp_valid_out,
     exp_data_out
 );
     import cnn1d_pkg::*;
 
+    parameter DATA_WIDTH = 32;
     parameter PRECISION = 4;
+    parameter LPM_PIPE_WIDTH = 4;
+    parameter FRACTION = 24;
+
+    localparam NUM_FRACTION_LSBS = FRACTION;
+    localparam NUM_FRACTION_MSBS = (DATA_WIDTH-FRACTION);
+    /* FRACTION Example
+
+        localparam DATA_WIDTH = 12;
+        localparam FRACTION = 9;
+
+        some_data = 12'b001000000000 = 0b001.000000000 = 0d1.0
+
+    */
+    
+    // capture the entire possible width of a multiplier output (no truncation)
+    localparam LPM_OUT_WIDTH = DATA_WIDTH * 2; 
+
+    // where the MSB will be when computing a multiplication
+    // from the MSB -: DATA_WIDTH to correctly truncate the data
+    localparam LPM_OUT_MSB = (LPM_OUT_WIDTH - 1) - (DATA_WIDTH - FRACTION); 
+    
     localparam NUM_DIVIDES = PRECISION - 2;
+
+    // PIPE_WIDTH = LARGEST POWER + DIVIDE + SUM
+    localparam PIPE_WIDTH = ((PRECISION-1) * LPM_PIPE_WIDTH) + LPM_PIPE_WIDTH + (NUM_DIVIDES-1);
 
     input logic clk;
     input logic rst;
@@ -29,13 +52,11 @@ module exp (
     input logic exp_valid_in;
     input logic [DATA_WIDTH-1:0] exp_data_in;
 
-    input logic [DATA_WIDTH-1:0] debug_denom;
-
     input logic exp_ready_out;
     output logic exp_valid_out;
     output logic [DATA_WIDTH-1:0] exp_data_out;
-
-    logic [LPM_OUT_WIDTH-1:0] div_out;
+ 
+    logic [PIPE_WIDTH-1:0] valid_pipe;
 
     logic [DATA_WIDTH-1:0] factorial [0:SUPPORTED_PRECISION-1];
 
@@ -64,6 +85,17 @@ module exp (
         end 
     end
 
+    assign exp_ready_in = exp_valid_out & exp_ready_out;
+
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            valid_pipe <= {PIPE_WIDTH{1'b0}};
+        end else begin
+            if (exp_ready_in) begin
+                valid_pipe <= {valid_pipe[PIPE_WIDTH-2:0], exp_valid_in};
+            end
+        end
+    end
 
     generate 
         if (NUM_DIVIDES > 0) begin
@@ -71,10 +103,13 @@ module exp (
             for (i=0; i<NUM_DIVIDES; i++) begin: DIV
 
                 pow #(
-                    .POW(i+2)
+                    .POW            (i+2),
+                    .DATA_WIDTH     (DATA_WIDTH),
+                    .LPM_PIPE_WIDTH (LPM_PIPE_WIDTH),
+                    .FRACTION       (FRACTION)
                 ) power_of (
-                    .clk    (clk),
-                    .rst    (rst),
+                    .clk            (clk),
+                    .rst            (rst),
 
                     .pow_ready_in   (pow_ready_in[i]),
                     .pow_valid_in   (1'b1),
@@ -117,6 +152,8 @@ module exp (
         end
     endgenerate
 
+
+    assign exp_valid_out = valid_pipe[PIPE_WIDTH-1];
     assign exp_data_out = {1'b1, {FRACTION{1'b0}}} + exp_data_in + div_sum[NUM_DIVIDES-1];
 
 

@@ -7,3 +7,4 @@ test/transcript
 test/vsim.wlf
 test/220pack.vhd
 test/wlft*
+.VSCodeCounter

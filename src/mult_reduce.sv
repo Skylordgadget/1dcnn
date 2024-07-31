@@ -12,6 +12,7 @@
 //                  reducing with log2 adders.                                //
 //  TODO:           - Remove the need for an extra beat when resetting the    //
 //                    accumulator                                             //
+//                  - Replace the accumulator with accum.sv                   //
 //                                                                            //
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -78,7 +79,7 @@ module mult_reduce (
     // multiplier
     mult #( 
         .DATA_WIDTH (DATA_WIDTH),
-        .PIPE_WIDTH (LPM_PIPE_WIDTH)
+        .PIPE_WIDTH (PIPE_WIDTH)
     ) multiplier (
         .clken  (mult_reduce_ready_in), // only clock data when ready is high
         .clock  (clk),

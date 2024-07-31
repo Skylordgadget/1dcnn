@@ -43,7 +43,8 @@ module div (
 	denom,
 	numer,
 	quotient,
-	remain);
+	remain
+);
 
 	parameter DATA_WIDTH = 12;
 	parameter PIPE_WIDTH = 2;

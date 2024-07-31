@@ -40,6 +40,27 @@ module pow (
     import cnn1d_pkg::*;
 
     parameter POW = 2; // pow_data_out = pow_data_in ** POW
+    parameter DATA_WIDTH = 32;
+    parameter LPM_PIPE_WIDTH = 4;
+    parameter FRACTION = 24;
+
+    localparam NUM_FRACTION_LSBS = FRACTION;
+    localparam NUM_FRACTION_MSBS = (DATA_WIDTH-FRACTION);
+    /* FRACTION Example
+
+        localparam DATA_WIDTH = 12;
+        localparam FRACTION = 9;
+
+        some_data = 12'b001000000000 = 0b001.000000000 = 0d1.0
+
+    */
+    
+    // capture the entire possible width of a multiplier output (no truncation)
+    localparam LPM_OUT_WIDTH = DATA_WIDTH * 2; 
+
+    // where the MSB will be when computing a multiplication
+    // from the MSB -: DATA_WIDTH to correctly truncate the data
+    localparam LPM_OUT_MSB = (LPM_OUT_WIDTH - 1) - (DATA_WIDTH - FRACTION); 
     
     /* one multipier is used for pow_data_in * pow_data_in
     extra multipliers are used for any subsequent multiplication */

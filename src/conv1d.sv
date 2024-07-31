@@ -11,6 +11,7 @@
 //                  It applies causal padding.                                //
 //  TODO:           - Add options for padding, stride and number of           //
 //                    multipliers                                             //
+//                  - Decouple activation function from core                  //
 //                                                                            //
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -41,9 +42,27 @@ module conv1d (
     parameter DATA_WIDTH = 12; // width of the incoming data
     parameter FILTER_SIZE = 5; 
     parameter PIPE_WIDTH = 4;
+    parameter FRACTION = 0;
+
+    localparam NUM_FRACTION_LSBS = FRACTION;
+    localparam NUM_FRACTION_MSBS = (DATA_WIDTH-FRACTION);
+    /* FRACTION Example
+
+        localparam DATA_WIDTH = 12;
+        localparam FRACTION = 9;
+
+        some_data = 12'b001000000000 = 0b001.000000000 = 0d1.0
+
+    */
+    
+    // capture the entire possible width of a multiplier output (no truncation)
+    localparam LPM_OUT_WIDTH = DATA_WIDTH * 2; 
+
+    // where the MSB will be when computing a multiplication
+    // from the MSB -: DATA_WIDTH to correctly truncate the data
+    localparam LPM_OUT_MSB = (LPM_OUT_WIDTH - 1) - (DATA_WIDTH - FRACTION); 
 
     localparam KERNEL_WIDTH = clog2(FILTER_SIZE);
-    localparam MULT_OUT_WIDTH = (DATA_WIDTH * 2); 
 
     // clock and reset interface
     input logic                     clk;
@@ -75,7 +94,7 @@ module conv1d (
     
     logic                       mult_reduce_ready_out;
     logic                       mult_reduce_valid_out;
-    logic [MULT_OUT_WIDTH-1:0]  mult_reduce_result_out;
+    logic [LPM_OUT_WIDTH-1:0]   mult_reduce_result_out;
     
     logic                       relu_ready_in;
     logic                       relu_valid_in;
@@ -184,6 +203,7 @@ module conv1d (
     assign relu_data_in = mult_reduce_result_out[LPM_OUT_MSB-:DATA_WIDTH] + conv1d_bias;
 
     // activation function (ReLU)
+    // TODO remove this from conv1d.sv
     relu #(
         .DATA_WIDTH (DATA_WIDTH)
     ) activation (

@@ -2,12 +2,12 @@
 //                                                                            //
 //  Filename:       p2s.sv                                                    //
 //  Author:         Harry Kneale-Roby                                         //
-//  Description:    Basic parallel to serial converter.                       //
+//  Description:    Basic parallel to serial converter with an AXI interface. //
 //                                                                            //
 //                  This parallel to serial converter takes NUM_ELEMENTS      //
-//                  that arrive in parallel that are of width DATA_WIDTH and  // 
-//                  outputs them sequentially according to the AXI protocol   //
-//                  using a simple state machine.                             //           
+//                  that arrive in parallel and that are of width DATA_WIDTH  //
+//                  and outputs them sequentially according to the AXI        //
+//                  protocol using a simple state machine.                    //           
 //  TODO:           - Add the option for pipeline registers--at the moment    //
 //                    the lack of pipeline registers forces idle beats        //
 //                                                                            //

@@ -1,3 +1,19 @@
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+//  Filename:       neuron.sv                                                 //
+//  Author:         Harry Kneale-Roby                                         //
+//  Description:    Basic implementation of a neuron with an AXI interface.   //
+//                                                                            //
+//                  The neuron takes NUM_INPUTS and multiplies each with      //
+//                  their respective weight from 'neuron_weights'. The result //
+//                  from each multiplication is accumulated and 'neuron_bias' //
+//                  is applied. The current implementation uses a single      //
+//                  multiplier to save resources.                             //
+//  TODO:           - Add options for number of multipliers                   //
+//                  - Decouple activation function from core                  //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+
 // synthesis translate_off
 `include "./../pkg/cnn1d_pkg.sv"
 `include "./../ip/mult.v"
@@ -20,110 +36,167 @@ module neuron (
 );
     import cnn1d_pkg::*;
 
-    parameter NUM_INPUTS = 1;
+    parameter DATA_WIDTH = 12; // width of the incoming data
+    parameter NUM_INPUTS = 1; 
+    parameter PIPE_WIDTH = 4;
+    parameter FRACTION = 24;
 
-    localparam NEURON_PIPE_WIDTH = LPM_PIPE_WIDTH + NUM_INPUTS;
+    localparam NUM_FRACTION_LSBS = FRACTION;
+    localparam NUM_FRACTION_MSBS = (DATA_WIDTH-FRACTION);
+    /* FRACTION Example
 
-    input logic clk;
-    input logic rst;
+        localparam DATA_WIDTH = 12;
+        localparam FRACTION = 9;
 
+        some_data = 12'b001000000000 = 0b001.000000000 = 0d1.0
+
+    */
+    
+    // capture the entire possible width of a multiplier output (no truncation)
+    localparam LPM_OUT_WIDTH = DATA_WIDTH * 2; 
+
+    // where the MSB will be when computing a multiplication
+    // from the MSB -: DATA_WIDTH to correctly truncate the data
+    localparam LPM_OUT_MSB = (LPM_OUT_WIDTH - 1) - (DATA_WIDTH - FRACTION); 
+    
+    localparam INPUT_WIDTH = clog2(NUM_INPUTS);
+    localparam MULT_OUT_WIDTH = (DATA_WIDTH * 2); 
+
+    // clock and reset interface
+    input logic                     clk;
+    input logic                     rst;
+
+    // axi input interface
     output logic                    neuron_ready_in;
     input logic                     neuron_valid_in;
-
     input logic [DATA_WIDTH-1:0]    neuron_data_in      [0:NUM_INPUTS-1];
+
+    // static input registers
     input logic [DATA_WIDTH-1:0]    neuron_weights      [0:NUM_INPUTS-1];
     input logic [DATA_WIDTH-1:0]    neuron_bias;
 
+    // axi output interface
     input logic                     neuron_ready_out;
     output logic                    neuron_valid_out;
     output logic [DATA_WIDTH-1:0]   neuron_data_out;
 
-    logic weighted_sum_ready;
-    logic weighted_sum_valid;
-    logic [DATA_WIDTH-1:0] weighted_sum_data;
+    // private signals
+    logic                       p2s_ready_out;
+    logic                       p2s_valid_out;
+    logic [DATA_WIDTH-1:0]      p2s_serial_out;
 
-    logic [LPM_OUT_WIDTH-1:0] mult_out [0:NUM_INPUTS-1];
-    logic [DATA_WIDTH-1:0] mult_sum [0:NUM_INPUTS-1];
-    logic [DATA_WIDTH-1:0] z;
+    logic [INPUT_WIDTH-1:0]     weight_select;
 
-    logic [NEURON_PIPE_WIDTH-1:0]  neuron_valid_in_pipe;
+    logic                       mult_reduce_ready_out;
+    logic                       mult_reduce_valid_out;
+    logic [MULT_OUT_WIDTH-1:0]  mult_reduce_result_out;
+    
+    logic                       relu_ready_in;
+    logic                       relu_valid_in;
+    logic [DATA_WIDTH-1:0]      relu_data_in;
 
-    generate
-        genvar i;
-        for (i=0; i<NUM_INPUTS; i++) begin: MULT
-            mult #( 
-                .DATA_WIDTH (DATA_WIDTH),
-                .PIPE_WIDTH (LPM_PIPE_WIDTH)
-            ) multiplier (
-                .clken  (neuron_ready_in),
-                .clock  (clk),
-                .dataa  (neuron_data_in[i]),
-                .datab  (neuron_weights[i]),
-                .result (mult_out[i])
-            );
-        end
-    endgenerate
+    logic                       relu_ready_out;
+    logic                       relu_valid_out;
+    logic [DATA_WIDTH-1:0]      relu_data_out; 
 
-    // neuron_valid_in pipeline
+    /* parallel to serial converter
+    a p2s is required as the core is designed to use a single multipler 
+    TODO when the core supports multiple multipliers this will need to scale
+    the number of sequential outputs based on the number of multipliers*/
+    p2s #(
+        .DATA_WIDTH (DATA_WIDTH),
+        .NUM_ELEMENTS (NUM_INPUTS)
+    ) parallel_to_serial (
+        .clk            (clk),
+        .rst            (rst),
+
+        .p2s_ready_in   (neuron_ready_in),
+        .p2s_valid_in   (neuron_valid_in),
+        .p2s_parallel_in(neuron_data_in),
+
+        .p2s_ready_out  (p2s_ready_out),
+        .p2s_valid_out  (p2s_valid_out),
+        .p2s_serial_out (p2s_serial_out)
+    );
+
+    // simple counter to select the weights from the neuron_weights register
     always_ff @(posedge clk) begin
         if (rst) begin
-            neuron_valid_in_pipe <= {NEURON_PIPE_WIDTH{1'b0}};
+            weight_select <= {INPUT_WIDTH{1'b0}};
         end else begin
-            if (neuron_ready_in) begin
-                // shift the input valid along the pipe only when ready is high
-                neuron_valid_in_pipe <= {neuron_valid_in_pipe[NEURON_PIPE_WIDTH-2:0],neuron_valid_in}; 
-            end
-        end
-    end
-
-    assign weighted_sum_valid = neuron_valid_in_pipe[NEURON_PIPE_WIDTH-1];
-
-    generate
-        if (NUM_INPUTS > 1) begin
-            genvar j;
-            for (j=1; j<NUM_INPUTS; j++) begin: SUM_REDUCE
-                always_ff @(posedge clk) begin
-                    if (neuron_ready_in) begin
-                        if (j==1) begin 
-                            mult_sum[j] <= mult_out[j-1][LPM_OUT_MSB-:DATA_WIDTH] + mult_out[j][LPM_OUT_MSB-:DATA_WIDTH];
-                        end else begin
-                            mult_sum[j] <= mult_sum[j-1] + mult_out[j][LPM_OUT_MSB-:DATA_WIDTH];
-                        end 
-                    end
+            if (p2s_ready_out && p2s_valid_out) begin
+                if (weight_select < NUM_INPUTS-1) begin
+                    weight_select <= weight_select + 1'b1;
+                end else begin
+                    weight_select <= {INPUT_WIDTH{1'b0}};
                 end
             end
-        end else begin
-            assign mult_sum[NUM_INPUTS-1] = mult_out[0][LPM_OUT_MSB-:DATA_WIDTH];
-        end
-    endgenerate
-
-    always_ff @(posedge clk) begin
-        if (rst) begin
-            weighted_sum_data <= {DATA_WIDTH{1'b0}};
-        end else begin
-            if (neuron_ready_in) begin
-                weighted_sum_data <= mult_sum[NUM_INPUTS-1] + neuron_bias;
-            end
         end
     end
 
-    assign neuron_ready_in = rst ? 1'b0 : ~weighted_sum_valid | weighted_sum_ready;
+    /* multiply reduce (multiply accumulate)
+    takes the inputs, multiplies them with their respective weight and adds the 
+    result to an accumulator. The accumulator is reset when all the inputs have
+    been processed */
+    mult_reduce #(
+        .DATA_WIDTH (DATA_WIDTH),
+        .NUM_ELEMENTS (NUM_INPUTS),
+        .PIPE_WIDTH (PIPE_WIDTH)
+    ) multiply_reduce (
+        .clk                    (clk),
+        .rst                    (rst),
 
-    // built-in activation function
-    // TODO enable/disable activation with parameter
-    // TODO register ready signal after/before the activation 
-    relu activation (
+        .mult_reduce_ready_in   (p2s_ready_out),
+        .mult_reduce_valid_in   (p2s_valid_out),
+        .mult_reduce_dataa_in   (p2s_serial_out),
+        .mult_reduce_datab_in   (neuron_weights[weight_select]),
+
+        .mult_reduce_ready_out  (mult_reduce_ready_out),
+        .mult_reduce_valid_out  (mult_reduce_valid_out),
+        .mult_reduce_result_out (mult_reduce_result_out)
+    );
+    
+    assign mult_reduce_ready_out = relu_ready_in;
+    assign relu_valid_in = mult_reduce_valid_out;
+    // part select the multiplier output
+    assign relu_data_in = mult_reduce_result_out[LPM_OUT_MSB-:DATA_WIDTH] + neuron_bias;
+
+    // activation function (ReLU)
+    // TODO remove this from neuron.sv
+    relu #(
+        .DATA_WIDTH (DATA_WIDTH)
+    ) activation (
         .clk    (clk),
         .rst    (rst),
 
-        .relu_ready_in (weighted_sum_ready),
-        .relu_valid_in (weighted_sum_valid),
-        .relu_data_in (weighted_sum_data),
+        .relu_ready_in   (relu_ready_in),
+        .relu_valid_in   (relu_valid_in),
+        .relu_data_in    (relu_data_in),
+        
+        .relu_ready_out  (relu_ready_out),
+        .relu_valid_out  (relu_valid_out),
+        .relu_data_out   (relu_data_out)
+     );
 
-        .relu_ready_out (neuron_ready_out),
-        .relu_valid_out (neuron_valid_out),
-        .relu_data_out (neuron_data_out)
-    );
+    assign relu_ready_out = ~neuron_valid_out | neuron_ready_out;
+
+    // AXI logic to ensure the data is captured by the output
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            neuron_valid_out <= 1'b0;
+            neuron_data_out <= {DATA_WIDTH{1'b0}};
+        end else begin
+            if (relu_valid_out && relu_ready_out) begin
+                neuron_data_out <= relu_data_out;
+                neuron_valid_out <= 1'b1;
+            end 
+
+            if (neuron_valid_out && neuron_ready_out) begin
+                neuron_valid_out <= 1'b0;
+            end
+        end
+    end
+
 
     
 

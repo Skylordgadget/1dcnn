@@ -42,7 +42,8 @@ module mult (
 	clock,
 	dataa,
 	datab,
-	result);
+	result
+);
 
 	parameter DATA_WIDTH = 12;
 	parameter PIPE_WIDTH = 2;

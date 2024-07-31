@@ -43,7 +43,8 @@ module mult_accum (
 	dataa,
 	datab,
 	ena0,
-	result);
+	result
+);
 
 	parameter DATA_WIDTH = 12;
 	parameter PIPE_WIDTH = 2;

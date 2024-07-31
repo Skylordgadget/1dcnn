@@ -1,30 +1,10 @@
+// synopsys translate_off
 `timescale 1ns / 1ns
+// synopsys translate_on
 
 package cnn1d_pkg;
-    localparam LPM_PIPE_WIDTH = 4;
-    localparam DATA_WIDTH = 12; // width of the all the fixed-point data in the system
-    localparam FRACTION = 0; // position of the decimal point from the right 
-    localparam SUPPORTED_PRECISION = 10;
-
-    localparam NUM_FRACTION_LSBS = FRACTION;
-    localparam NUM_FRACTION_MSBS = (DATA_WIDTH-FRACTION);
-    /* FRACTION Example
-
-        localparam DATA_WIDTH = 12;
-        localparam FRACTION = 9;
-
-        some_data = 12'b001000000000 = 0b001.000000000 = 0d1.0
-
-    */
-    
-    // capture the entire possible width of a multiplier output (no truncation)
-    localparam LPM_OUT_WIDTH = DATA_WIDTH * 2; 
-
-    // where the MSB will be when computing a multiplication
-    // from the MSB -: DATA_WIDTH to correctly truncate the data
-    localparam LPM_OUT_MSB = (LPM_OUT_WIDTH - 1) - (DATA_WIDTH - FRACTION); 
-
     // simple clog2 for computing the minimum number of bits required for certain registers
+    
     function integer clog2;
         input [31:0] value;
         integer i;
@@ -40,7 +20,7 @@ package cnn1d_pkg;
 
 
     // precomputed factorials for exp module
-    
+    localparam SUPPORTED_PRECISION = 10;
     
     localparam FACTORIAL_1 = 1;
     localparam FACTORIAL_2 = 2;

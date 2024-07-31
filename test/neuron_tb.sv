@@ -6,7 +6,10 @@ module neuron_tb();
     import cnn1d_pkg::*;
     
     localparam CLK_PERIOD = 10;
-    localparam NUM_INPUTS = 1;
+    localparam DATA_WIDTH = 32;
+    localparam NUM_INPUTS = 10;
+    localparam PIPE_WIDTH = 4;
+    localparam FRACTION   = 24;
 
     logic clk;
     logic rst;
@@ -25,7 +28,10 @@ module neuron_tb();
     always #(CLK_PERIOD/2) clk = ~clk;
 
     neuron #(
-        .NUM_INPUTS (NUM_INPUTS)
+        .DATA_WIDTH (DATA_WIDTH),
+        .NUM_INPUTS (NUM_INPUTS),
+        .PIPE_WIDTH (PIPE_WIDTH),
+        .FRACTION   (FRACTION)
     ) neuron (
         .clk    (clk),
         .rst    (rst),
@@ -67,7 +73,7 @@ module neuron_tb();
             
             neuron_ready_out <= $urandom_range(1'b0, 1'b1);
 
-            if (neuron_ready_in) begin
+            if (neuron_ready_in | ~neuron_valid_in) begin
                 sender_neuron_output = 0;
                 for (int j = 0; j < NUM_INPUTS; j++) begin
                     rand_num[j] = $urandom_range(12'd0, 12'd4);
@@ -82,6 +88,7 @@ module neuron_tb();
                 neuron_valid_in <= valid;
             end
         end
+        $stop;
     end
 
     //int unsigned cnt;
@@ -94,9 +101,10 @@ module neuron_tb();
                 
                 mbx.get(receiver_neuron_output);
                 
-                $display("received: %d, calculated: %d", receiver_neuron_output, neuron_data_out);
-                if (receiver_neuron_output != neuron_data_out)
-                    $display("discrepency found");
+                if (receiver_neuron_output != neuron_data_out) begin
+                    $display(" discrepency between received: %d, and calculated: %d", receiver_neuron_output, neuron_data_out);
+                    $stop;
+                end  
             end
             
         end
