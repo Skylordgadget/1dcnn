@@ -157,7 +157,7 @@ module neuron_layer (
                 .rst                (rst),
 
                 .neuron_ready_in    (neuron_ready_in[nrn]),
-                .neuron_valid_in    (neuron_layer_valid_in),
+                .neuron_valid_in    (neuron_layer_valid_in & weight_select_done_d2),
                 .neuron_data_in     (neuron_layer_data_in),
 
                 .neuron_weights     (weights[nrn]),

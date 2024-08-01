@@ -77,6 +77,7 @@ module conv1d_layer (
     assign bias_address = filter_select;
 
     assign conv1d_layer_ready_in = (&conv1d_ready_in) & filter_select_done_d2;
+    assign conv1d_valid_in = conv1d_layer_valid_in & filter_select_done_d2;
 
     sp_ram #(
         .WIDTH      (WEIGHTS_RAM_WIDTH),
@@ -157,7 +158,7 @@ module conv1d_layer (
                 .rst                (rst),
 
                 .conv1d_ready_in    (conv1d_ready_in[conv]),
-                .conv1d_valid_in    (conv1d_layer_valid_in),
+                .conv1d_valid_in    (conv1d_valid_in),
                 .conv1d_data_in     (conv1d_layer_data_in),
 
                 .conv1d_weights     (weights[conv]),

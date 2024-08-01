@@ -1,4 +1,6 @@
 // synthesis translate_off
+`timescale 1ns / 1ns
+
 `include "./../pkg/cnn1d_pkg.sv"
 `include "./../ip/div.v"
 // synthesis translate_on
@@ -42,8 +44,10 @@ module exp (
     
     localparam NUM_DIVIDES = PRECISION - 2;
 
-    // PIPE_WIDTH = LARGEST POWER + DIVIDE + SUM
-    localparam PIPE_WIDTH = ((PRECISION-1) * LPM_PIPE_WIDTH) + LPM_PIPE_WIDTH + (NUM_DIVIDES-1);
+    // total propagation delay of the module
+    localparam EXP_DELAY = ((PRECISION-1) * LPM_PIPE_WIDTH) + LPM_PIPE_WIDTH + (NUM_DIVIDES-1);
+
+    localparam DELAY_COUNTER_WIDTH = clog2(EXP_DELAY);
 
     input logic clk;
     input logic rst;
@@ -55,19 +59,102 @@ module exp (
     input logic exp_ready_out;
     output logic exp_valid_out;
     output logic [DATA_WIDTH-1:0] exp_data_out;
- 
-    logic [PIPE_WIDTH-1:0] valid_pipe;
 
     logic [DATA_WIDTH-1:0] factorial [0:SUPPORTED_PRECISION-1];
 
-
     logic [NUM_DIVIDES-1:0] pow_ready_in;
-    logic [NUM_DIVIDES-1:0] pow_valid_out;
-    logic [DATA_WIDTH-1:0] pow_data_out [0:NUM_DIVIDES-1];
 
+    logic [NUM_DIVIDES-1:0] pow_valid_out;
+    logic [NUM_DIVIDES-1:0] pow_ready_out;
+    logic [DATA_WIDTH-1:0]  pow_data_out [0:NUM_DIVIDES-1];
+
+    logic [NUM_DIVIDES-1:0] div_valid_out;
     logic [DATA_WIDTH-1:0] div_data_out [0:NUM_DIVIDES-1];
 
     logic [DATA_WIDTH-1:0] div_sum [0:NUM_DIVIDES-1];
+
+    logic [DATA_WIDTH-1:0] exp_data_in_reg;
+    logic [DELAY_COUNTER_WIDTH-1:0] count; 
+
+    // state machine states
+    typedef enum { 
+        FLUSH,
+        RUNNING,
+        IDLE
+    } state_t;
+
+    state_t state, next_state;
+
+    /* while the system is idle, allow inputs
+    TODO it *is* possible to eliminate the need for an idle state */
+    assign exp_ready_in = (state == IDLE) & (&pow_ready_in);
+    
+    // clock in next_state
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            state <= IDLE;
+        end else begin
+            state <= next_state;
+        end
+    end 
+
+    // determine next_state
+    always_comb begin
+        next_state = state;
+        case (state)
+            IDLE: begin /* if the incoming data is valid then transition to 
+                running (valid && ready) */
+                if (exp_valid_in) begin
+                    next_state = RUNNING;
+                end
+            end
+            RUNNING: begin /* while running, if the count finishes and the 
+                downstream module is ready then transition to flush */
+                if ((count == EXP_DELAY-1) && exp_ready_out) begin
+                    next_state = FLUSH;
+                end
+            end 
+            FLUSH: begin /* if the downstream module is still ready 
+            transition to idle */
+                if (exp_ready_out) begin
+                    next_state = IDLE;
+                end
+            end
+        endcase
+    end
+
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            count <= {DELAY_COUNTER_WIDTH{1'b0}};
+            exp_valid_out <= 1'b0;
+            exp_data_in_reg <= {DATA_WIDTH{1'b0}};
+        end else begin
+            case (state)
+                IDLE: begin
+                    if (exp_valid_in) begin
+                        // capture the next available valid parallel data
+                        exp_data_in_reg <= exp_data_in;
+                    end
+                end
+                RUNNING: begin
+                    if (exp_ready_out) begin
+                        // outgoing data is always valid while running
+                        exp_valid_out <= 1'b0;
+                        count <= count + 1'b1;
+                    end 
+                end
+                FLUSH: begin
+                    if (exp_ready_out) begin
+                        // only send valid low when next ready
+                        exp_valid_out <= 1'b1;
+                        // flush the counter
+                        count <= {DELAY_COUNTER_WIDTH{1'b0}};
+                    end
+                end
+            endcase 
+        end
+    end
+
 
     // factorials LUT
     always_ff @(posedge clk) begin
@@ -83,18 +170,6 @@ module exp (
             factorial[8] <= FACTORIAL_9; // 9!
             factorial[9] <= FACTORIAL_10; // 10!
         end 
-    end
-
-    assign exp_ready_in = exp_valid_out & exp_ready_out;
-
-    always_ff @(posedge clk) begin
-        if (rst) begin
-            valid_pipe <= {PIPE_WIDTH{1'b0}};
-        end else begin
-            if (exp_ready_in) begin
-                valid_pipe <= {valid_pipe[PIPE_WIDTH-2:0], exp_valid_in};
-            end
-        end
     end
 
     generate 
@@ -113,26 +188,34 @@ module exp (
 
                     .pow_ready_in   (pow_ready_in[i]),
                     .pow_valid_in   (1'b1),
-                    .pow_data_in    (exp_data_in),
+                    .pow_data_in    (exp_data_in_reg),
                     
-                    .pow_ready_out  (1'b1),
+                    .pow_ready_out  (pow_ready_out[i]),
                     .pow_valid_out  (pow_valid_out[i]),
                     .pow_data_out   (pow_data_out[i])
                 );
 
-                div #(
+                divide #(
                     .DATA_WIDTH (DATA_WIDTH),
-                    .PIPE_WIDTH (LPM_PIPE_WIDTH)
+                    .LPM_PIPE_WIDTH (LPM_PIPE_WIDTH)
                 ) divider (
-                    .clken      (pow_valid_out[i]),
-                    .clock      (clk),
-                    .denom      (factorial[i+1]),
-                    .numer      (pow_data_out[i]),
-                    .quotient   (div_data_out[i]),
-                    .remain     () // unconnected
+                    .clk      (clk),
+                    .rst      (rst),
+
+                    .divide_ready_in (pow_ready_out[i]),
+                    .divide_valid_in (pow_valid_out[i]),
+                    .divide_numer_in (pow_data_out[i]),
+                    .divide_denom_in (factorial[i+1]),
+
+                    .divide_ready_out (exp_ready_out),
+                    .divide_valid_out (div_valid_out[i]),
+                    .divide_quotient_out (div_data_out[i]),
+                    .divide_remain_out () // unconnected
                 );
             end
         end
+
+
 
         if (NUM_DIVIDES > 1) begin
             genvar j;
@@ -152,9 +235,7 @@ module exp (
         end
     endgenerate
 
-
-    assign exp_valid_out = valid_pipe[PIPE_WIDTH-1];
-    assign exp_data_out = {1'b1, {FRACTION{1'b0}}} + exp_data_in + div_sum[NUM_DIVIDES-1];
+    assign exp_data_out = {1'b1, {FRACTION{1'b0}}} + exp_data_in_reg + div_sum[NUM_DIVIDES-1];
 
 
 endmodule

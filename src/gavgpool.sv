@@ -35,6 +35,8 @@ module gavgpool (
     localparam COUNTER_WIDTH = clog2(POOL_SIZE);
     // ensure data is not lost when the whole pool is summed
     localparam ACCUMULATOR_WIDTH = DATA_WIDTH + COUNTER_WIDTH;
+    localparam BIT_SEL = (ACCUMULATOR_WIDTH > 32) ? 32 : ACCUMULATOR_WIDTH;
+    localparam PAD = (ACCUMULATOR_WIDTH > 32) ? ACCUMULATOR_WIDTH-32 : 0;   
     
     // clock and reset interface
     input logic                     clk;
@@ -98,7 +100,7 @@ module gavgpool (
     ) divider (
         .clken      (accum_ready_out),
         .clock      (clk),
-        .denom      (POOL_SIZE[ACCUMULATOR_WIDTH-1:0]), // avoid Quartus crying ;(
+        .denom      ({{PAD{1'b0}},POOL_SIZE[BIT_SEL-1:0]}), 
         .numer      (accum_data_out),
         .quotient   (div_data_out),
         .remain     () // unconnected
