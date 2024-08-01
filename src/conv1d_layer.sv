@@ -72,6 +72,7 @@ module conv1d_layer (
     logic filter_select_done, filter_select_done_d1, filter_select_done_d2;
 
     logic [NUM_FILTERS-1:0] conv1d_ready_in;
+    logic                   conv1d_valid_in;
 
     assign weight_address = filter_select;
     assign bias_address = filter_select;
@@ -147,7 +148,7 @@ module conv1d_layer (
 
     generate
         genvar conv;
-        for (conv=0; conv<NUM_FILTERS; conv++) begin
+        for (conv=0; conv<NUM_FILTERS; conv++) begin: CONVOLUTION_1D
             conv1d #(
                 .DATA_WIDTH         (DATA_WIDTH),
                 .FILTER_SIZE        (FILTER_SIZE),

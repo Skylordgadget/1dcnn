@@ -7,8 +7,9 @@ module gavgpool_tb();
     
     localparam CLK_PERIOD = 10;
     localparam DATA_WIDTH = 12;
-    localparam POOL_SIZE = 250;
+    localparam POOL_SIZE = 256;
     localparam PIPE_WIDTH = 4;
+    localparam CLOG2_POOL_SIZE = clog2(POOL_SIZE);
 
     logic clk;
     logic rst;
@@ -89,8 +90,8 @@ module gavgpool_tb();
                     mbx.get(mbx_received);
                     sum = sum + mbx_received;
                 end
-                if (!((sum/POOL_SIZE) == gavgpool_data_out)) begin
-                    $display("discrepency between calculated value: %d, and received value: %d", sum, gavgpool_data_out);
+                if (!((sum >> CLOG2_POOL_SIZE) == gavgpool_data_out)) begin
+                    $display("discrepency between calculated value: %d, and received value: %d (sum: %d)", (sum >> CLOG2_POOL_SIZE), gavgpool_data_out, sum);
                     $stop;
                 end
 

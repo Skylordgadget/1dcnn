@@ -23,7 +23,7 @@ module cnn1d (
     parameter FILTER_SIZE = 5;
     parameter PIPE_WIDTH = 4;
     parameter FRACTION = 24; // position of the decimal point from the right 
-    parameter POOL_SIZE = 250;
+    parameter POOL_SIZE = 256;
     parameter NEURON_WEIGHTS_INIT_FILE = "";
     parameter NEURON_BIASES_INIT_FILE = "";
     parameter NUM_NEURONS = 2;

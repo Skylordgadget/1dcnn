@@ -9,11 +9,11 @@ module cnn1d_tb();
     localparam DATA_WIDTH = 32;
     localparam CONV_WEIGHTS_INIT_FILE = "./MATLAB_weights_and_biases/conv1d_weights.hex";
     localparam CONV_BIASES_INIT_FILE = "./MATLAB_weights_and_biases/conv1d_biases.hex";
-    localparam NUM_FILTERS = 32;
+    localparam NUM_FILTERS = 8;
     localparam FILTER_SIZE = 5;
     localparam PIPE_WIDTH = 4;
     localparam FRACTION = 24; // position of the decimal point from the right 
-    localparam POOL_SIZE = 250;
+    localparam POOL_SIZE = 256;
     localparam NEURON_WEIGHTS_INIT_FILE = "./MATLAB_weights_and_biases/fc_weights.hex";
     localparam NEURON_BIASES_INIT_FILE = "./MATLAB_weights_and_biases/fc_biases.hex";
     localparam NUM_NEURONS = 2;
@@ -61,7 +61,7 @@ module cnn1d_tb();
     logic [DATA_WIDTH-1:0] hex;
 
     initial begin
-        fd = $fopen("./worn_cutting_tool_samples.hex", "r");
+        fd = $fopen("./new_cutting_tool_samples.hex", "r");
         cnn_ready_out = 1'b0;
         cnn_valid_in = 1'b0;
         cnn_data_in = {DATA_WIDTH{1'b0}};

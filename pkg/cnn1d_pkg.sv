@@ -2,6 +2,8 @@
 `timescale 1ns / 1ns
 // synopsys translate_on
 
+localparam ADC_WIDTH = 12;
+
 package cnn1d_pkg;
     // simple clog2 for computing the minimum number of bits required for certain registers
     

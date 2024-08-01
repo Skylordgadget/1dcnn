@@ -34,7 +34,7 @@ module gavgpool_layer (
     generate
         genvar pool;
 
-        for (pool=0; pool<NUM_POOLS; pool++) begin
+        for (pool=0; pool<NUM_POOLS; pool++) begin: GLOBAL_AVERAGE_POOLING
             gavgpool #(
                 .DATA_WIDTH     (DATA_WIDTH),
                 .POOL_SIZE      (POOL_SIZE),
