@@ -1,3 +1,17 @@
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+//  Filename:       accum.sv                                                  //
+//  Author:         Harry Kneale-Roby                                         //
+//  Description:    Accumulator with AXI interface.                           //
+//                                                                            //
+//                  Accumulator = Accumulator + Data In                       //
+//                  The accumulator is reset when the number of valid         //
+//                  accum_data_in beats reaches POOL_SIZE. Only valid beats   //
+//                  are summed to avoid poisoning the pool.                   //
+//  TODO:           - Add a pipeline stage to remove dead beats               //
+//                                                                            //
+////////////////////////////////////////////////////////////////////////////////
+
 // synthesis translate_off
 `include "./../pkg/cnn1d_pkg.sv"
 // synthesis translate_on
@@ -20,19 +34,24 @@ module accum (
     parameter POOL_SIZE = 10;
 
     localparam COUNTER_WIDTH = clog2(POOL_SIZE);
+    // accumulator bit width is extended by the counter width to avoid overflows
     localparam ACCUMULATOR_WIDTH =  DATA_WIDTH + COUNTER_WIDTH;
-
+    
+    // clock and reset interface
     input logic                             clk;
     input logic                             rst;
-
+    
+    // axi input interface
     output logic                            accum_ready_in;
     input logic                             accum_valid_in;
     input logic [DATA_WIDTH-1:0]            accum_data_in;
 
+    // axi output interface
     input logic                             accum_ready_out;
     output logic                            accum_valid_out;
     output logic [ACCUMULATOR_WIDTH-1:0]    accum_data_out;
 
+    // private signals
     logic [ACCUMULATOR_WIDTH-1:0] accumulator;
     logic [COUNTER_WIDTH-1:0] count;
 

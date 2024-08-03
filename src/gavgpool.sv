@@ -5,7 +5,7 @@
 //  Description:    Basic global average pooling with AXI interface.          //
 //                                                                            //
 //                  Takes a sequential stream of data of length POOL_SIZE,    //
-//                  sums it and divides it by POOL_SIZE.                      // 
+//                  sums it and right-shifts it by ceil(log2(POOL_SIZE)).     // 
 //                                                                            //
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -79,37 +79,13 @@ module gavgpool (
         .accum_data_out     (accum_data_out)
     );
 
-    
-
-    // valid pipeline
-    // always_ff @(posedge clk) begin
-    //     if (rst) begin
-    //         div_valid_pipe <= {PIPE_WIDTH{1'b0}};
-    //     end else begin
-    //         if (accum_ready_out) begin
-    //             div_valid_pipe <= {div_valid_pipe[PIPE_WIDTH-2:0], accum_valid_out};
-    //         end
-    //     end
-    // end
-
-    //assign gavgpool_valid_out = div_valid_pipe[PIPE_WIDTH-1];
-
-
-    // divider--TAKES TOO MANY LEs
-    // div #(
-    //     .DATA_WIDTH (ACCUMULATOR_WIDTH),
-    //     .PIPE_WIDTH (PIPE_WIDTH)
-    // ) divider (
-    //     .clken      (accum_ready_out),
-    //     .clock      (clk),
-    //     .denom      ({{PAD{1'b0}},POOL_SIZE[BIT_SEL-1:0]}), 
-    //     .numer      (accum_data_out),
-    //     .quotient   (div_data_out),
-    //     .remain     () // unconnected
-    // );
-
+    // standard AXI ready logic 
     assign accum_ready_out = ~gavgpool_valid_out | gavgpool_ready_out;
+    
+    // right shift the accumulator data
     assign accum_data_out_shift = accum_data_out >> CLOG2_POOL_SIZE;
+
+    // AXI logic to ensure the data is captured by the output
     always_ff @(posedge clk) begin
         if (rst) begin
             gavgpool_data_out <= {DATA_WIDTH{1'b0}};
@@ -125,10 +101,5 @@ module gavgpool (
             end 
         end
     end 
-
-
-    // truncate data back down to the width of the input
-    // assign gavgpool_data_out = div_data_out[DATA_WIDTH-1:0];
-
 
 endmodule

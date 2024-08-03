@@ -1,8 +1,15 @@
+// exp is really slow and expensive, uses the taylor series approximation!!
+// this doesn't work yet!!
+// TODO: get this working, the problem is that there needs to either be a delay
+// to prevent data getting in while exp_data_in gets through POW or a pipeline
+// to delay the data that gets through POW the earliest. Delaying is logically
+// complex and using a pipeline uses lots of registers; it is also complex to 
+// precalculate pipeline widths
+
 // synthesis translate_off
 `timescale 1ns / 1ns
 
 `include "./../pkg/cnn1d_pkg.sv"
-`include "./../ip/div.v"
 // synthesis translate_on
 
 module exp (

@@ -36,10 +36,10 @@ module neuron (
 );
     import cnn1d_pkg::*;
 
-    parameter DATA_WIDTH = 12; // width of the incoming data
-    parameter NUM_INPUTS = 1; 
-    parameter PIPE_WIDTH = 4;
-    parameter FRACTION = 24;
+    parameter DATA_WIDTH    = 12; // width of the incoming data
+    parameter NUM_INPUTS    = 1; 
+    parameter PIPE_WIDTH    = 4;
+    parameter FRACTION      = 24;
 
     localparam NUM_FRACTION_LSBS = FRACTION;
     localparam NUM_FRACTION_MSBS = (DATA_WIDTH-FRACTION);
@@ -196,8 +196,5 @@ module neuron (
             end
         end
     end
-
-
-    
 
 endmodule

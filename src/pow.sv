@@ -20,6 +20,8 @@
 //                                                                            //
 ////////////////////////////////////////////////////////////////////////////////
 
+// this module is unused as of 03/08/2024
+
 // synthesis translate_off
 `include "./../pkg/cnn1d_pkg.sv"
 `include "./../ip/mult.v"
