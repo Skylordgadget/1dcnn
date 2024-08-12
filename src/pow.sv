@@ -46,8 +46,8 @@ module pow (
     parameter LPM_PIPE_WIDTH = 4;
     parameter FRACTION = 24;
 
-    localparam NUM_FRACTION_LSBS = FRACTION;
-    localparam NUM_FRACTION_MSBS = (DATA_WIDTH-FRACTION);
+    localparam FRACTIONAL_BITS = FRACTION;
+    localparam INTEGER_BITS = (DATA_WIDTH-FRACTION);
     /* FRACTION Example
 
         localparam DATA_WIDTH = 12;
