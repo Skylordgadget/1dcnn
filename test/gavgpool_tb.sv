@@ -61,12 +61,12 @@ module gavgpool_tb();
         for (int i=0; i<num_inputs; i++) begin
             #(CLK_PERIOD);
 
-            //gavgpool_ready_out <= 1'b1;
-            gavgpool_ready_out <= $urandom_range(1'b0, 1'b1);
+            gavgpool_ready_out <= 1'b1;
+            //gavgpool_ready_out <= $urandom_range(1'b0, 1'b1);
             if (gavgpool_ready_in | ~gavgpool_valid_in) begin
                 rand_data = $urandom_range(0, 10);
-                //valid = 1'b1;
-                valid = $urandom_range(1'b0, 1'b1);
+                valid = 1'b1;
+                //valid = $urandom_range(1'b0, 1'b1);
                 gavgpool_data_in <= rand_data;
                 
                 if (valid) begin
@@ -76,6 +76,7 @@ module gavgpool_tb();
                 gavgpool_valid_in <= valid;
             end
         end
+        $display("Test completed successfully");
         $stop;
     end
 

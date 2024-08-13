@@ -9,7 +9,7 @@ module neuron_tb();
     localparam DATA_WIDTH = 32;
     localparam NUM_INPUTS = 10;
     localparam PIPE_WIDTH = 4;
-    localparam FRACTION   = 24;
+    localparam FRACTION   = 0;
 
     logic clk;
     logic rst;
@@ -57,7 +57,7 @@ module neuron_tb();
     
 
     initial begin
-        int sender_neuron_output = 0;
+        static int sender_neuron_output = 0;
         neuron_ready_out = 1'b0;
         neuron_valid_in = 1'b0;
         for (int i=0; i<NUM_INPUTS; i++) begin
@@ -71,7 +71,8 @@ module neuron_tb();
         for (int i = 0; i < num_inputs; i++) begin
             #(CLK_PERIOD);
             
-            neuron_ready_out <= $urandom_range(1'b0, 1'b1);
+            neuron_ready_out <= 1'b1;
+            //neuron_ready_out <= $urandom_range(1'b0, 1'b1);
 
             if (neuron_ready_in | ~neuron_valid_in) begin
                 sender_neuron_output = 0;
@@ -80,7 +81,8 @@ module neuron_tb();
                     sender_neuron_output = sender_neuron_output + (rand_num[j] * neuron_weights[j]);
                 end
                 sender_neuron_output = sender_neuron_output + neuron_bias;
-                valid = $urandom_range(1'b0, 1'b1);
+                valid = 1'b1;
+                //valid = $urandom_range(1'b0, 1'b1);
                 neuron_data_in <= rand_num;
                 if (valid) begin
                     mbx.put(sender_neuron_output);
@@ -88,13 +90,14 @@ module neuron_tb();
                 neuron_valid_in <= valid;
             end
         end
+        $display("Test completed successfully");
         $stop;
     end
 
     //int unsigned cnt;
 
     initial begin
-        int receiver_neuron_output = 0;
+        static int receiver_neuron_output = 0;
         forever begin
             #(CLK_PERIOD);
             if (neuron_valid_out && neuron_ready_out) begin

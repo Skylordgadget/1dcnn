@@ -95,15 +95,6 @@ module conv1d (
     logic                       mult_reduce_ready_out;
     logic                       mult_reduce_valid_out;
     logic [LPM_OUT_WIDTH-1:0]   mult_reduce_result_out;
-    
-    logic                       relu_ready_in;
-    logic                       relu_valid_in;
-    logic [DATA_WIDTH-1:0]      relu_data_in;
-
-    logic                       relu_ready_out;
-    logic                       relu_valid_out;
-    logic [DATA_WIDTH-1:0]      relu_data_out; 
-
 
 	integer i, j;
     always_ff @(posedge clk) begin
@@ -195,48 +186,21 @@ module conv1d (
         .mult_reduce_valid_out  (mult_reduce_valid_out),
         .mult_reduce_result_out (mult_reduce_result_out)
     );
-    
 
-    assign mult_reduce_ready_out = relu_ready_in;
-    assign relu_valid_in = mult_reduce_valid_out;
-    // part select the multiplier output
-    assign relu_data_in = mult_reduce_result_out[LPM_OUT_MSB-:DATA_WIDTH] + conv1d_bias;
-
-    // activation function (ReLU)
-    // TODO remove this from conv1d.sv
-    relu #(
-        .DATA_WIDTH (DATA_WIDTH)
-    ) activation (
-        .clk    (clk),
-        .rst    (rst),
-
-        .relu_ready_in   (relu_ready_in),
-        .relu_valid_in   (relu_valid_in),
-        .relu_data_in    (relu_data_in),
-        
-        .relu_ready_out  (relu_ready_out),
-        .relu_valid_out  (relu_valid_out),
-        .relu_data_out   (relu_data_out)
-     );
-
-    assign relu_ready_out = ~conv1d_valid_out | conv1d_ready_out;
-
-    // AXI logic to ensure the data is captured by the output
+    // register the output
     always_ff @(posedge clk) begin
         if (rst) begin
             conv1d_valid_out <= 1'b0;
             conv1d_data_out <= {DATA_WIDTH{1'b0}};
         end else begin
-            if (relu_valid_out && relu_ready_out) begin
-                conv1d_data_out <= relu_data_out;
-                conv1d_valid_out <= 1'b1;
-            end 
-
-            if (conv1d_valid_out && conv1d_ready_out) begin
-                conv1d_valid_out <= 1'b0;
+            if (mult_reduce_ready_out) begin
+                // part select the multiplier output and apply the bias
+                conv1d_valid_out <= mult_reduce_valid_out;
+                conv1d_data_out <= mult_reduce_result_out[LPM_OUT_MSB-:DATA_WIDTH] + conv1d_bias;
             end
         end
-    end
+    end 
 
+    assign mult_reduce_ready_out = ~conv1d_valid_out | conv1d_ready_out;
 
 endmodule

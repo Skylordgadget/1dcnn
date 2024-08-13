@@ -74,27 +74,21 @@ module gavgpool (
         .accum_data_out     (accum_data_out)
     );
 
-    // standard AXI ready logic 
-    assign accum_ready_out = ~gavgpool_valid_out | gavgpool_ready_out;
-    
     // right shift the accumulator data
     assign accum_data_out_shift = signed'(accum_data_out) >>> CLOG2_POOL_SIZE;
 
-    // AXI logic to ensure the data is captured by the output
     always_ff @(posedge clk) begin
         if (rst) begin
             gavgpool_data_out <= {DATA_WIDTH{1'b0}};
             gavgpool_valid_out <= 1'b0;
         end else begin
-            if (accum_valid_out && accum_ready_out) begin
+            if (accum_ready_out) begin
                 gavgpool_data_out <= accum_data_out_shift[DATA_WIDTH-1:0];
-                gavgpool_valid_out <= 1'b1;
+                gavgpool_valid_out <= accum_valid_out;
             end
-            
-            if (gavgpool_valid_out && gavgpool_ready_out) begin
-                gavgpool_valid_out <= 1'b0;
-            end 
         end
-    end 
+    end
+    // standard AXI ready logic 
+    assign accum_ready_out = ~gavgpool_valid_out | gavgpool_ready_out;
 
 endmodule

@@ -3,9 +3,8 @@
 This is a WIP SystemVerilog project for developing a scalable, parameterised and piplined set of modules to constrct a 1-D convolutional neural network able to be synthesised in hardware on the Intel MAX 10 series of FPGAs.
 
 ## File Structure
-
-### 1dcnn 
 ```
+1dcnn 
 ├───ip
 ├───matlab
 ├───pkg

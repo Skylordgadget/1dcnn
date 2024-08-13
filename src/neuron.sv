@@ -10,7 +10,6 @@
 //                  is applied. The current implementation uses a single      //
 //                  multiplier to save resources.                             //
 //  TODO:           - Add options for number of multipliers                   //
-//                  - Decouple activation function from core                  //
 //                                                                            //
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -90,14 +89,6 @@ module neuron (
     logic                       mult_reduce_ready_out;
     logic                       mult_reduce_valid_out;
     logic [MULT_OUT_WIDTH-1:0]  mult_reduce_result_out;
-    
-    logic                       relu_ready_in;
-    logic                       relu_valid_in;
-    logic [DATA_WIDTH-1:0]      relu_data_in;
-
-    logic                       relu_ready_out;
-    logic                       relu_valid_out;
-    logic [DATA_WIDTH-1:0]      relu_data_out; 
 
     /* parallel to serial converter
     a p2s is required as the core is designed to use a single multipler 
@@ -156,45 +147,20 @@ module neuron (
         .mult_reduce_result_out (mult_reduce_result_out)
     );
     
-    assign mult_reduce_ready_out = relu_ready_in;
-    assign relu_valid_in = mult_reduce_valid_out;
-    // part select the multiplier output
-    assign relu_data_in = mult_reduce_result_out[LPM_OUT_MSB-:DATA_WIDTH] + neuron_bias;
-
-    // activation function (ReLU)
-    // TODO remove this from neuron.sv
-    relu #(
-        .DATA_WIDTH (DATA_WIDTH)
-    ) activation (
-        .clk    (clk),
-        .rst    (rst),
-
-        .relu_ready_in   (relu_ready_in),
-        .relu_valid_in   (relu_valid_in),
-        .relu_data_in    (relu_data_in),
-        
-        .relu_ready_out  (relu_ready_out),
-        .relu_valid_out  (relu_valid_out),
-        .relu_data_out   (relu_data_out)
-     );
-
-    assign relu_ready_out = ~neuron_valid_out | neuron_ready_out;
-
-    // AXI logic to ensure the data is captured by the output
+    // register the output
     always_ff @(posedge clk) begin
         if (rst) begin
             neuron_valid_out <= 1'b0;
             neuron_data_out <= {DATA_WIDTH{1'b0}};
         end else begin
-            if (relu_valid_out && relu_ready_out) begin
-                neuron_data_out <= relu_data_out;
-                neuron_valid_out <= 1'b1;
-            end 
-
-            if (neuron_valid_out && neuron_ready_out) begin
-                neuron_valid_out <= 1'b0;
+            if (mult_reduce_ready_out) begin
+                // part select the multiplier output and apply the bias
+                neuron_valid_out <= mult_reduce_valid_out;
+                neuron_data_out <= mult_reduce_result_out[LPM_OUT_MSB-:DATA_WIDTH] + neuron_bias;
             end
         end
     end
+
+    assign mult_reduce_ready_out = neuron_ready_out | ~neuron_valid_out;
 
 endmodule

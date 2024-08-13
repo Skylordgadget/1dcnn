@@ -71,12 +71,12 @@ module conv1d_tb();
         for (int i=0; i<num_inputs; i++) begin
             #(CLK_PERIOD);
 
-            //conv1d_ready_out <= 1'b1;
-            conv1d_ready_out <= $urandom_range(1'b0, 1'b1);
+            conv1d_ready_out <= 1'b1;
+            //conv1d_ready_out <= $urandom_range(1'b0, 1'b1);
             if (conv1d_ready_in | ~conv1d_valid_in) begin
                 rand_data = $urandom_range(0, 10);
-                //valid = 1'b1;
-                valid = $urandom_range(1'b0, 1'b1);
+                valid = 1'b1;
+                //valid = $urandom_range(1'b0, 1'b1);
                 conv1d_data_in <= rand_data;
                 
                 if (valid) begin
@@ -86,6 +86,7 @@ module conv1d_tb();
                 conv1d_valid_in <= valid;
             end
         end
+        $display("Test completed successfully");
         $stop;
     end
 

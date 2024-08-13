@@ -18,7 +18,6 @@
 
 // synthesis translate_off
 `include "./../pkg/cnn1d_pkg.sv"
-`include "./../ip/mult_accum.v"
 // synthesis translate_on
 
 module mult_reduce (
