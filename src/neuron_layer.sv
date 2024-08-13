@@ -76,7 +76,7 @@ module neuron_layer (
 
     // axi input interface
     output logic                    neuron_layer_ready_in;
-    input logic                     neuron_layer_valid_in;
+    input logic [NEURON_INPUTS-1:0] neuron_layer_valid_in;
     input logic [DATA_WIDTH-1:0]    neuron_layer_data_in    [0:NEURON_INPUTS-1];
 
     // axi output interface
@@ -189,7 +189,7 @@ module neuron_layer (
                 .rst                (rst),
 
                 .neuron_ready_in    (neuron_ready_in[nrn]),
-                .neuron_valid_in    (neuron_layer_valid_in & weight_select_done_d2),
+                .neuron_valid_in    (neuron_layer_valid_in[nrn] & weight_select_done_d2),
                 .neuron_data_in     (neuron_layer_data_in),
 
                 .neuron_weights     (weights[nrn]),

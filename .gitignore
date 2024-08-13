@@ -1,3 +1,4 @@
 .VSCodeCounter
 test/modelsim/*
-!test/README.md
+!test/modelsim/README.md
+test/weights/*.ver

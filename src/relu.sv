@@ -11,7 +11,6 @@
 `include "./../pkg/cnn1d_pkg.sv"
 // synthesis translate_on
 
-// really super simple ReLU activation function
 module relu (
     clk,
     rst,

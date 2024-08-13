@@ -50,7 +50,7 @@ module sp_ram (
 	parameter INIT_FILE = "";
 	parameter ADDRESS_WIDTH = 8;
 	
-	localparam BYTE_ENABLE = ADDRESS_WIDTH / 8;
+	localparam BYTE_ENABLE = (ADDRESS_WIDTH + 7) / 8;
 
 	input	[ADDRESS_WIDTH-1:0]  address;
 	input	  clock;

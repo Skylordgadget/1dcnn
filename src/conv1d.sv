@@ -11,7 +11,6 @@
 //                  It applies causal padding.                                //
 //  TODO:           - Add options for padding, stride and number of           //
 //                    multipliers                                             //
-//                  - Decouple activation function from core                  //
 //                                                                            //
 ////////////////////////////////////////////////////////////////////////////////
 
