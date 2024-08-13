@@ -11,7 +11,6 @@
 
 // synthesis translate_off
 `include "./../pkg/cnn1d_pkg.sv"
-`include "./../ip/div.v"
 // synthesis translate_on
 
 module gavgpool (
@@ -58,10 +57,6 @@ module gavgpool (
     logic                           accum_valid_out;
     logic [ACCUMULATOR_WIDTH-1:0]   accum_data_out, accum_data_out_shift;
 
-    logic [PIPE_WIDTH-1:0]          div_valid_pipe;
-
-    logic [ACCUMULATOR_WIDTH-1:0]   div_data_out;
-
     // accumulator
     accum #(
         .DATA_WIDTH         (DATA_WIDTH), 
@@ -83,7 +78,7 @@ module gavgpool (
     assign accum_ready_out = ~gavgpool_valid_out | gavgpool_ready_out;
     
     // right shift the accumulator data
-    assign accum_data_out_shift = accum_data_out >> CLOG2_POOL_SIZE;
+    assign accum_data_out_shift = signed'(accum_data_out) >>> CLOG2_POOL_SIZE;
 
     // AXI logic to ensure the data is captured by the output
     always_ff @(posedge clk) begin

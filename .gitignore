@@ -1,11 +1,3 @@
-test/cnn1d.cr.mti
-test/cnn1d.mpf
-test/work
-test/exp_tb
-test/pow_tb.sv.bak
-test/transcript
-test/vsim.wlf
-test/220pack.vhd
-test/wlft*
 .VSCodeCounter
-test/transcript-harry_laptop
+test/modelsim/*
+!test/README.md
