@@ -18,15 +18,15 @@ module adc2v (
 
     parameter DATA_WIDTH = 32;
     // position of the decimal point from the right 
-    parameter FRACTION  = 20; 
+    parameter FRACTION  = 24; 
     parameter PIPE_WIDTH = 4;
+
+    parameter ADC_REF = 2500;
+    parameter SCALE_FACTOR = 32'h000aaaab;
+    parameter BIAS = 32'hfffffb1e;
 
     localparam FRACTIONAL_BITS = FRACTION;
     localparam INTEGER_BITS = (DATA_WIDTH-FRACTION);
-
-    // Fun magic numbers :-) (this is bad but I will fix this later) -Harry
-    localparam MAGIC_CONVERSION = 32'h0009c400;
-    localparam BIAS = 12'hb1e;
 
     /* FRACTION Example
 
@@ -44,7 +44,7 @@ module adc2v (
     // from the MSB -: DATA_WIDTH to correctly truncate the data
     localparam LPM_OUT_MSB = (LPM_OUT_WIDTH - 1) - (DATA_WIDTH - FRACTION); 
 
-    localparam TOTAL_PIPE_WIDTH = PIPE_WIDTH + 1;
+    localparam TOTAL_PIPE_WIDTH = (PIPE_WIDTH * 2) + 1;
 
     input logic clk;
     input logic rst;
@@ -58,7 +58,7 @@ module adc2v (
     output logic [DATA_WIDTH-1:0]   voltage_data_out;
 
     logic [TOTAL_PIPE_WIDTH-1:0] valid_pipe;
-    logic [LPM_OUT_WIDTH-1:0] mult_out, bias;
+    logic [LPM_OUT_WIDTH-1:0] mult_out, unbiased, voltage;
 
     always_ff @(posedge clk) begin
         if (rst) begin
@@ -74,26 +74,36 @@ module adc2v (
     mult #( 
         .DATA_WIDTH (DATA_WIDTH),
         .PIPE_WIDTH (PIPE_WIDTH)
-    ) multiplier (
+    ) voltage_multiplier (
         .clken  (adc_ready_in), // only clock data when ready is high
         .clock  (clk),
         .dataa  ({{(DATA_WIDTH-ADC_WIDTH){1'b0}}, adc_data_in}),
-        .datab  (MAGIC_CONVERSION),
+        .datab  (ADC_REF),
         .result (mult_out)
     );
 
-
     always_ff @(posedge clk) begin
         if (rst) begin
-            bias <= {LPM_OUT_WIDTH{1'b0}};
+            unbiased <= {LPM_OUT_WIDTH{1'b0}};
         end else begin
             if (adc_ready_in) begin
-                bias <= mult_out + {{DATA_WIDTH{1'b1}}, BIAS, {FRACTION{1'b0}}};
+                unbiased <= (mult_out >> ADC_WIDTH) + BIAS;
             end
         end
     end
+
+    mult #( 
+        .DATA_WIDTH (DATA_WIDTH),
+        .PIPE_WIDTH (PIPE_WIDTH)
+    ) scale_multiplier (
+        .clken  (adc_ready_in), // only clock data when ready is high
+        .clock  (clk),
+        .dataa  (unbiased[DATA_WIDTH-1:0]),
+        .datab  (SCALE_FACTOR),
+        .result (voltage)
+    );
  
-    assign voltage_data_out = bias[DATA_WIDTH-1:0];
+    assign voltage_data_out = voltage[DATA_WIDTH-1:0];
     assign voltage_valid_out = valid_pipe[TOTAL_PIPE_WIDTH-1];
     assign adc_ready_in = ~voltage_valid_out | voltage_ready_out;
 

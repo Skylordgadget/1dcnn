@@ -5,6 +5,8 @@
 package cnn1d_pkg;
     localparam ADC_WIDTH = 12;
     localparam MAX_ADC_VALUE = 2**12;
+    localparam M10_DEV_KIT_BUTTONS = 4;
+    localparam M10_DEV_KIT_LEDS = 5;
 
     // simple clog2 for computing the minimum number of bits required for certain registers    
     function integer clog2;
@@ -20,6 +22,7 @@ package cnn1d_pkg;
         end
     endfunction
 
+    localparam ADC_WIDTH_CLOG2 = clog2(ADC_WIDTH);
 
     // precomputed factorials for exp module
     localparam SUPPORTED_PRECISION = 10;

@@ -26,7 +26,7 @@ module adc2v_tb();
 
     adc2v #(
         .DATA_WIDTH     (DATA_WIDTH),
-        .FRACTION      (FRACTION),
+        .FRACTION       (FRACTION),
         .PIPE_WIDTH     (PIPE_WIDTH)
     ) adc2v (
         .clk    (clk),
@@ -41,11 +41,13 @@ module adc2v_tb();
         .voltage_data_out   (voltage_data_out )
     );
 
-    int num_inputs = 1000;
+    int fd;
+    string line;
     bit valid;
-    logic [ADC_WIDTH-1:0] adc;
+    logic [DATA_WIDTH-1:0] hex;
 
     initial begin
+        fd = $fopen("../samples/newDataLerp.hex", "r");
         voltage_ready_out = 1'b0;
         adc_valid_in = 1'b0;
         adc_data_in = {DATA_WIDTH{1'b0}};
@@ -54,7 +56,7 @@ module adc2v_tb();
         rst = 1'b0;
         
 
-        for (int i=0; i<num_inputs; i++) begin
+        while (!$feof(fd)) begin
             #(CLK_PERIOD);
 
             //voltage_ready_out <= $urandom_range(1'b0, 1'b1);
@@ -62,11 +64,13 @@ module adc2v_tb();
             if (adc_ready_in | ~adc_valid_in) begin
                 //valid = $urandom_range(1'b0, 1'b1);
                 valid = 1'b1;
-                adc = $urandom_range(0,4095);
-                adc_data_in <= adc;
+                $fgets(line, fd);
+                hex = line.atohex();
+                adc_data_in <= hex;
                 adc_valid_in <= valid;
             end
         end
+        $fclose(fd);
         $stop;
     end
 

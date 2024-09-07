@@ -2,3 +2,5 @@
 test/modelsim/*
 !test/modelsim/README.md
 test/weights/*.ver
+samples/*Lerp*
+test/samples/*Lerp*
