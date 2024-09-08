@@ -23,6 +23,7 @@ package cnn1d_pkg;
     endfunction
 
     localparam ADC_WIDTH_CLOG2 = clog2(ADC_WIDTH);
+	 localparam ADC_CHANNEL_WIDTH = 5;
 
     // precomputed factorials for exp module
     localparam SUPPORTED_PRECISION = 10;
