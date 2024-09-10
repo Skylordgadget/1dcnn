@@ -131,7 +131,7 @@ module cnn_vibration_monitor_10M50 (
 		end
 	end    
 
-    assign led = {cnn_condition, button};
+    assign led = {~cnn_condition, button};
 
 /// CONVOLUTIONAL NEURAL NETWORK ///////////////////////////////////////////////
 
