@@ -5,6 +5,7 @@
   <columns>
    <connections preferredWidth="111" />
    <irq preferredWidth="34" />
+   <name preferredWidth="185" />
   </columns>
  </systemtable>
  <library expandedCategories="Library,Project" />

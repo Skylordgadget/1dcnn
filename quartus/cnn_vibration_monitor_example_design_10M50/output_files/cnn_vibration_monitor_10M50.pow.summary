@@ -1,0 +1,12 @@
+Power Analyzer Status : Successful - Mon Oct 14 12:22:23 2024
+Quartus Prime Version : 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+Revision Name : cnn_vibration_monitor_10M50
+Top-level Entity Name : cnn_vibration_monitor_10M50
+Family : MAX 10
+Device : 10M50DAF484C6GES
+Power Models : Final
+Total Thermal Power Dissipation : 241.97 mW
+Core Dynamic Thermal Power Dissipation : 136.02 mW
+Core Static Thermal Power Dissipation : 96.81 mW
+I/O Thermal Power Dissipation : 9.13 mW
+Power Estimation Confidence : Low: user provided insufficient toggle rate data

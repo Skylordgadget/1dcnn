@@ -1,0 +1,18 @@
+Fitter Status : Successful - Sun Oct 27 13:52:31 2024
+Quartus Prime Version : 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+Revision Name : cnn_vibration_monior_10M08
+Top-level Entity Name : cnn_vibration_monitor_10M08
+Family : MAX 10
+Device : 10M08SAE144I7G
+Timing Models : Final
+Total logic elements : 2,862 / 8,064 ( 35 % )
+    Total combinational functions : 1,468 / 8,064 ( 18 % )
+    Dedicated logic registers : 2,757 / 8,064 ( 34 % )
+Total registers : 2757
+Total pins : 4 / 101 ( 4 % )
+Total virtual pins : 0
+Total memory bits : 576 / 387,072 ( < 1 % )
+Embedded Multiplier 9-bit elements : 46 / 48 ( 96 % )
+Total PLLs : 1 / 1 ( 100 % )
+UFM blocks : 0 / 1 ( 0 % )
+ADC blocks : 1 / 1 ( 100 % )

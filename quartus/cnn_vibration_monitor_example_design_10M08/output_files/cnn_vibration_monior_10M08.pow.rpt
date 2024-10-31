@@ -1,0 +1,369 @@
+Power Analyzer report for cnn_vibration_monior_10M08
+Sun Oct 27 13:52:38 2024
+Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Parallel Compilation
+  3. Power Analyzer Summary
+  4. Power Analyzer Settings
+  5. Operating Conditions Used
+  6. Thermal Power Dissipation by Block
+  7. Thermal Power Dissipation by Block Type
+  8. Thermal Power Dissipation by Hierarchy
+  9. Core Dynamic Thermal Power Dissipation by Clock Domain
+ 10. Current Drawn from Voltage Supplies Summary
+ 11. VCCIO Supply Current Drawn by I/O Bank
+ 12. VCCIO Supply Current Drawn by Voltage
+ 13. Confidence Metric Details
+ 14. Signal Activities
+ 15. Power Analyzer Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2024  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 10          ;
+;                            ;             ;
+; Average used               ; 2.59        ;
+; Maximum used               ; 10          ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-10        ;  17.7%      ;
++----------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------+
+; Power Analyzer Summary                                                                    ;
++----------------------------------------+--------------------------------------------------+
+; Power Analyzer Status                  ; Successful - Sun Oct 27 13:52:38 2024            ;
+; Quartus Prime Version                  ; 23.1std.1 Build 993 05/14/2024 SC Lite Edition   ;
+; Revision Name                          ; cnn_vibration_monior_10M08                       ;
+; Top-level Entity Name                  ; cnn_vibration_monitor_10M08                      ;
+; Family                                 ; MAX 10                                           ;
+; Device                                 ; 10M08SAE144I7G                                   ;
+; Power Models                           ; Final                                            ;
+; Total Thermal Power Dissipation        ; 306.57 mW                                        ;
+; Core Dynamic Thermal Power Dissipation ; 178.42 mW                                        ;
+; Core Static Thermal Power Dissipation  ; 121.53 mW                                        ;
+; I/O Thermal Power Dissipation          ; 6.62 mW                                          ;
+; Power Estimation Confidence            ; Low: user provided insufficient toggle rate data ;
++----------------------------------------+--------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Power Analyzer Settings                                                                                                  ;
++------------------------------------------------------------------+---------------------------------------+---------------+
+; Option                                                           ; Setting                               ; Default Value ;
++------------------------------------------------------------------+---------------------------------------+---------------+
+; Use smart compilation                                            ; Off                                   ; Off           ;
+; Enable parallel Assembler and Timing Analyzer during compilation ; On                                    ; On            ;
+; Enable compact report table                                      ; Off                                   ; Off           ;
+; Default Power Input I/O Toggle Rate                              ; 12.5%                                 ; 12.5%         ;
+; Preset Cooling Solution                                          ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW ;               ;
+; Board thermal model                                              ; None (CONSERVATIVE)                   ;               ;
+; Default Power Toggle Rate                                        ; 12.5%                                 ; 12.5%         ;
+; Use vectorless estimation                                        ; On                                    ; On            ;
+; Use Input Files                                                  ; Off                                   ; Off           ;
+; Filter Glitches in VCD File Reader                               ; On                                    ; On            ;
+; Power Analyzer Report Signal Activity                            ; Off                                   ; Off           ;
+; Power Analyzer Report Power Dissipation                          ; Off                                   ; Off           ;
+; Device Power Characteristics                                     ; TYPICAL                               ; TYPICAL       ;
+; Automatically Compute Junction Temperature                       ; On                                    ; On            ;
+; Specified Junction Temperature                                   ; 25                                    ; 25            ;
+; Ambient Temperature                                              ; 25                                    ; 25            ;
+; Use Custom Cooling Solution                                      ; Off                                   ; Off           ;
+; Board Temperature                                                ; 25                                    ; 25            ;
++------------------------------------------------------------------+---------------------------------------+---------------+
+
+
++--------------------------------------------------------------------------+
+; Operating Conditions Used                                                ;
++---------------------------------------------+----------------------------+
+; Setting                                     ; Value                      ;
++---------------------------------------------+----------------------------+
+; Device power characteristics                ; Typical                    ;
+;                                             ;                            ;
+; Voltages                                    ;                            ;
+;     VCCA                                    ; 3.00 V                     ;
+;     VCC_ONE                                 ; 3.00 V                     ;
+;     2.5 V I/O Standard                      ; 2.5 V                      ;
+;     2.5 V Schmitt Trigger I/O Standard      ; 2.5 V                      ;
+;                                             ;                            ;
+; Auto computed junction temperature          ; 30.6 degrees Celsius       ;
+;     Ambient temperature                     ; 25.0 degrees Celsius       ;
+;     Junction-to-Case thermal resistance     ; 10.90 degrees Celsius/Watt ;
+;     Case-to-Heat Sink thermal resistance    ; 0.10 degrees Celsius/Watt  ;
+;     Heat Sink-to-Ambient thermal resistance ; 7.20 degrees Celsius/Watt  ;
+;                                             ;                            ;
+; Board model used                            ; None                       ;
++---------------------------------------------+----------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Thermal Power Dissipation by Block                                                                                                           ;
++------------+------------+---------------------+-----------------------------+--------------------------------+-------------------------------+
+; Block Name ; Block Type ; Total Thermal Power ; Block Thermal Dynamic Power ; Block Thermal Static Power (1) ; Routing Thermal Dynamic Power ;
++------------+------------+---------------------+-----------------------------+--------------------------------+-------------------------------+
+(1) The "Thermal Power Dissipation by Block" Table has been hidden. To show this table, please select the "Write power dissipation by block to report file" option under "PowerPlay Power Analyzer Settings".
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Thermal Power Dissipation by Block Type                                                                                                                                                                                   ;
++----------------------------+-----------------------------------+-----------------------------+--------------------------------+-------------------------------+-----------------------------------------------------------+
+; Block Type                 ; Total Thermal Power by Block Type ; Block Thermal Dynamic Power ; Block Thermal Static Power (1) ; Routing Thermal Dynamic Power ; Block Average Toggle Rate (millions of transitions / sec) ;
++----------------------------+-----------------------------------+-----------------------------+--------------------------------+-------------------------------+-----------------------------------------------------------+
+; PLL                        ; 14.59 mW                          ; 14.59 mW                    ; --                             ; 0.00 mW                       ;   55.000                                                  ;
+; M9K                        ; 22.25 mW                          ; 18.09 mW                    ; --                             ; 4.15 mW                       ;   50.000                                                  ;
+; Embedded multiplier block  ; 3.50 mW                           ; 3.50 mW                     ; --                             ; 0.00 mW                       ;   22.937                                                  ;
+; Embedded multiplier output ; 1.76 mW                           ; 0.00 mW                     ; --                             ; 1.76 mW                       ;   12.500                                                  ;
+; Combinational cell         ; 7.50 mW                           ; 5.00 mW                     ; --                             ; 2.49 mW                       ;   15.353                                                  ;
+; Clock control block        ; 7.11 mW                           ; 0.00 mW                     ; --                             ; 7.11 mW                       ;  200.000                                                  ;
+; Register cell              ; 19.38 mW                          ; 13.06 mW                    ; --                             ; 6.32 mW                       ;   15.638                                                  ;
+; I/O                        ; 0.99 mW                           ; 0.91 mW                     ; 0.08 mW                        ; 0.00 mW                       ;    6.875                                                  ;
+; Voltage Regulator          ; 103.11 mW                         ; 102.34 mW                   ; 0.77 mW                        ; --                            ; --                                                        ;
++----------------------------+-----------------------------------+-----------------------------+--------------------------------+-------------------------------+-----------------------------------------------------------+
+(1) The "Block Thermal Static Power" for all block types except Pins and the Voltage Regulator, if one exists, is part of the "Core Static Thermal Power Dissipation" value found on the PowerPlay Power Analyzer-->Summary report panel. The "Core Static Thermal Power Dissipation" also contains the thermal static power dissipated by the routing.
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Thermal Power Dissipation by Hierarchy                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          ;
++-------------------------------------------------------------------------------+--------------------------------------+---------------------------------+-----------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Compilation Hierarchy Node                                                    ; Total Thermal Power by Hierarchy (1) ; Block Thermal Dynamic Power (1) ; Block Thermal Static Power (1)(2) ; Routing Thermal Dynamic Power (1) ; Full Hierarchy Name                                                                                                                                                                                                                                                                                            ;
++-------------------------------------------------------------------------------+--------------------------------------+---------------------------------+-----------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; |cnn_vibration_monitor_10M08                                                  ; 180.17 mW (104.83 mW)                ; 157.50 mW (103.82 mW)           ; 0.84 mW (0.84 mW)                 ; 21.83 mW (0.16 mW)                ; |cnn_vibration_monitor_10M08                                                                                                                                                                                                                                                                                   ;
+;     |hard_block:auto_generated_inst                                           ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|hard_block:auto_generated_inst                                                                                                                                                                                                                                                    ;
+;     |m08_cnn1d:cnn1d                                                          ; 53.03 mW (0.09 mW)                   ; 38.64 mW (0.07 mW)              ; --                                ; 14.39 mW (0.02 mW)                ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d                                                                                                                                                                                                                                                                   ;
+;         |adc2v:adc2v                                                          ; 2.55 mW (0.36 mW)                    ; 1.68 mW (0.23 mW)               ; --                                ; 0.87 mW (0.13 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|adc2v:adc2v                                                                                                                                                                                                                                                       ;
+;             |mult:scale_multiplier                                            ; 1.10 mW (0.00 mW)                    ; 0.77 mW (0.00 mW)               ; --                                ; 0.33 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|adc2v:adc2v|mult:scale_multiplier                                                                                                                                                                                                                                 ;
+;                 |lpm_mult:lpm_mult_component                                  ; 1.10 mW (0.00 mW)                    ; 0.77 mW (0.00 mW)               ; --                                ; 0.33 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|adc2v:adc2v|mult:scale_multiplier|lpm_mult:lpm_mult_component                                                                                                                                                                                                     ;
+;                     |mult_0ms:auto_generated                                  ; 1.10 mW (1.10 mW)                    ; 0.77 mW (0.77 mW)               ; --                                ; 0.33 mW (0.33 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|adc2v:adc2v|mult:scale_multiplier|lpm_mult:lpm_mult_component|mult_0ms:auto_generated                                                                                                                                                                             ;
+;             |mult:voltage_multiplier                                          ; 1.08 mW (0.00 mW)                    ; 0.67 mW (0.00 mW)               ; --                                ; 0.41 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|adc2v:adc2v|mult:voltage_multiplier                                                                                                                                                                                                                               ;
+;                 |lpm_mult:lpm_mult_component                                  ; 1.08 mW (0.00 mW)                    ; 0.67 mW (0.00 mW)               ; --                                ; 0.41 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|adc2v:adc2v|mult:voltage_multiplier|lpm_mult:lpm_mult_component                                                                                                                                                                                                   ;
+;                     |mult_0ms:auto_generated                                  ; 1.08 mW (1.08 mW)                    ; 0.67 mW (0.67 mW)               ; --                                ; 0.41 mW (0.41 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|adc2v:adc2v|mult:voltage_multiplier|lpm_mult:lpm_mult_component|mult_0ms:auto_generated                                                                                                                                                                           ;
+;         |conv1d_layer:conv1d_layer                                            ; 28.81 mW (3.88 mW)                   ; 21.31 mW (3.32 mW)              ; --                                ; 7.51 mW (0.55 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer                                                                                                                                                                                                                                         ;
+;             |conv1d:CONVOLUTION_1D[0].conv1d                                  ; 6.79 mW (1.97 mW)                    ; 3.91 mW (0.71 mW)               ; --                                ; 2.88 mW (1.26 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d                                                                                                                                                                                                         ;
+;                 |mult_reduce:multiply_reduce                                  ; 3.26 mW (0.85 mW)                    ; 2.30 mW (0.49 mW)               ; --                                ; 0.96 mW (0.36 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|mult_reduce:multiply_reduce                                                                                                                                                                             ;
+;                     |mult:multiplier                                          ; 2.41 mW (0.00 mW)                    ; 1.82 mW (0.00 mW)               ; --                                ; 0.60 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|mult_reduce:multiply_reduce|mult:multiplier                                                                                                                                                             ;
+;                         |lpm_mult:lpm_mult_component                          ; 2.41 mW (0.00 mW)                    ; 1.82 mW (0.00 mW)               ; --                                ; 0.60 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|mult_reduce:multiply_reduce|mult:multiplier|lpm_mult:lpm_mult_component                                                                                                                                 ;
+;                             |mult_0ms:auto_generated                          ; 2.41 mW (2.41 mW)                    ; 1.82 mW (1.82 mW)               ; --                                ; 0.60 mW (0.60 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|mult_reduce:multiply_reduce|mult:multiplier|lpm_mult:lpm_mult_component|mult_0ms:auto_generated                                                                                                         ;
+;                 |p2s:parallel_to_serial                                       ; 1.55 mW (1.55 mW)                    ; 0.90 mW (0.90 mW)               ; --                                ; 0.66 mW (0.66 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|p2s:parallel_to_serial                                                                                                                                                                                  ;
+;             |conv1d:CONVOLUTION_1D[1].conv1d                                  ; 3.90 mW (1.16 mW)                    ; 2.64 mW (0.70 mW)               ; --                                ; 1.25 mW (0.46 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[1].conv1d                                                                                                                                                                                                         ;
+;                 |mult_reduce:multiply_reduce                                  ; 2.74 mW (0.57 mW)                    ; 1.94 mW (0.40 mW)               ; --                                ; 0.80 mW (0.17 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[1].conv1d|mult_reduce:multiply_reduce                                                                                                                                                                             ;
+;                     |mult:multiplier                                          ; 2.17 mW (0.00 mW)                    ; 1.55 mW (0.00 mW)               ; --                                ; 0.63 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[1].conv1d|mult_reduce:multiply_reduce|mult:multiplier                                                                                                                                                             ;
+;                         |lpm_mult:lpm_mult_component                          ; 2.17 mW (0.00 mW)                    ; 1.55 mW (0.00 mW)               ; --                                ; 0.63 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[1].conv1d|mult_reduce:multiply_reduce|mult:multiplier|lpm_mult:lpm_mult_component                                                                                                                                 ;
+;                             |mult_0ms:auto_generated                          ; 2.17 mW (2.17 mW)                    ; 1.55 mW (1.55 mW)               ; --                                ; 0.63 mW (0.63 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[1].conv1d|mult_reduce:multiply_reduce|mult:multiplier|lpm_mult:lpm_mult_component|mult_0ms:auto_generated                                                                                                         ;
+;             |sp_ram:conv1d_biases                                             ; 3.68 mW (0.00 mW)                    ; 2.86 mW (0.00 mW)               ; --                                ; 0.82 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|sp_ram:conv1d_biases                                                                                                                                                                                                                    ;
+;                 |altsyncram:altsyncram_component                              ; 3.68 mW (0.00 mW)                    ; 2.86 mW (0.00 mW)               ; --                                ; 0.82 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|sp_ram:conv1d_biases|altsyncram:altsyncram_component                                                                                                                                                                                    ;
+;                     |altsyncram_t9l1:auto_generated                           ; 3.68 mW (3.68 mW)                    ; 2.86 mW (2.86 mW)               ; --                                ; 0.82 mW (0.82 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|sp_ram:conv1d_biases|altsyncram:altsyncram_component|altsyncram_t9l1:auto_generated                                                                                                                                                     ;
+;             |sp_ram:conv1d_weights                                            ; 10.57 mW (0.00 mW)                   ; 8.57 mW (0.00 mW)               ; --                                ; 2.00 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|sp_ram:conv1d_weights                                                                                                                                                                                                                   ;
+;                 |altsyncram:altsyncram_component                              ; 10.57 mW (0.00 mW)                   ; 8.57 mW (0.00 mW)               ; --                                ; 2.00 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|sp_ram:conv1d_weights|altsyncram:altsyncram_component                                                                                                                                                                                   ;
+;                     |altsyncram_jfl1:auto_generated                           ; 10.57 mW (10.57 mW)                  ; 8.57 mW (8.57 mW)               ; --                                ; 2.00 mW (2.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|sp_ram:conv1d_weights|altsyncram:altsyncram_component|altsyncram_jfl1:auto_generated                                                                                                                                                    ;
+;         |gavgpool_layer:gavgpool_layer                                        ; 1.42 mW (0.00 mW)                    ; 0.99 mW (0.00 mW)               ; --                                ; 0.42 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|gavgpool_layer:gavgpool_layer                                                                                                                                                                                                                                     ;
+;             |gavgpool:GLOBAL_AVERAGE_POOLING[0].gavgpool                      ; 0.74 mW (0.23 mW)                    ; 0.55 mW (0.17 mW)               ; --                                ; 0.19 mW (0.06 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|gavgpool_layer:gavgpool_layer|gavgpool:GLOBAL_AVERAGE_POOLING[0].gavgpool                                                                                                                                                                                         ;
+;                 |accum:accumulator                                            ; 0.51 mW (0.51 mW)                    ; 0.38 mW (0.38 mW)               ; --                                ; 0.14 mW (0.14 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|gavgpool_layer:gavgpool_layer|gavgpool:GLOBAL_AVERAGE_POOLING[0].gavgpool|accum:accumulator                                                                                                                                                                       ;
+;             |gavgpool:GLOBAL_AVERAGE_POOLING[1].gavgpool                      ; 0.68 mW (0.22 mW)                    ; 0.44 mW (0.15 mW)               ; --                                ; 0.23 mW (0.06 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|gavgpool_layer:gavgpool_layer|gavgpool:GLOBAL_AVERAGE_POOLING[1].gavgpool                                                                                                                                                                                         ;
+;                 |accum:accumulator                                            ; 0.46 mW (0.46 mW)                    ; 0.29 mW (0.29 mW)               ; --                                ; 0.17 mW (0.17 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|gavgpool_layer:gavgpool_layer|gavgpool:GLOBAL_AVERAGE_POOLING[1].gavgpool|accum:accumulator                                                                                                                                                                       ;
+;         |neuron_layer:neuron_layer                                            ; 19.51 mW (2.86 mW)                   ; 14.17 mW (1.90 mW)              ; --                                ; 5.34 mW (0.96 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer                                                                                                                                                                                                                                         ;
+;             |neuron:NEURONS[0].neuron                                         ; 4.92 mW (1.00 mW)                    ; 3.14 mW (0.57 mW)               ; --                                ; 1.78 mW (0.43 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer|neuron:NEURONS[0].neuron                                                                                                                                                                                                                ;
+;                 |mult_reduce:multiply_reduce                                  ; 2.97 mW (0.82 mW)                    ; 2.08 mW (0.52 mW)               ; --                                ; 0.89 mW (0.31 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer|neuron:NEURONS[0].neuron|mult_reduce:multiply_reduce                                                                                                                                                                                    ;
+;                     |mult:multiplier                                          ; 2.15 mW (0.00 mW)                    ; 1.56 mW (0.00 mW)               ; --                                ; 0.58 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer|neuron:NEURONS[0].neuron|mult_reduce:multiply_reduce|mult:multiplier                                                                                                                                                                    ;
+;                         |lpm_mult:lpm_mult_component                          ; 2.15 mW (0.00 mW)                    ; 1.56 mW (0.00 mW)               ; --                                ; 0.58 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer|neuron:NEURONS[0].neuron|mult_reduce:multiply_reduce|mult:multiplier|lpm_mult:lpm_mult_component                                                                                                                                        ;
+;                             |mult_0ms:auto_generated                          ; 2.15 mW (2.15 mW)                    ; 1.56 mW (1.56 mW)               ; --                                ; 0.58 mW (0.58 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer|neuron:NEURONS[0].neuron|mult_reduce:multiply_reduce|mult:multiplier|lpm_mult:lpm_mult_component|mult_0ms:auto_generated                                                                                                                ;
+;                 |p2s:parallel_to_serial                                       ; 0.95 mW (0.95 mW)                    ; 0.48 mW (0.48 mW)               ; --                                ; 0.47 mW (0.47 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer|neuron:NEURONS[0].neuron|p2s:parallel_to_serial                                                                                                                                                                                         ;
+;             |neuron:NEURONS[1].neuron                                         ; 3.73 mW (0.94 mW)                    ; 2.47 mW (0.51 mW)               ; --                                ; 1.26 mW (0.43 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer|neuron:NEURONS[1].neuron                                                                                                                                                                                                                ;
+;                 |mult_reduce:multiply_reduce                                  ; 2.79 mW (0.70 mW)                    ; 1.96 mW (0.43 mW)               ; --                                ; 0.83 mW (0.27 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer|neuron:NEURONS[1].neuron|mult_reduce:multiply_reduce                                                                                                                                                                                    ;
+;                     |mult:multiplier                                          ; 2.09 mW (0.00 mW)                    ; 1.53 mW (0.00 mW)               ; --                                ; 0.56 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer|neuron:NEURONS[1].neuron|mult_reduce:multiply_reduce|mult:multiplier                                                                                                                                                                    ;
+;                         |lpm_mult:lpm_mult_component                          ; 2.09 mW (0.00 mW)                    ; 1.53 mW (0.00 mW)               ; --                                ; 0.56 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer|neuron:NEURONS[1].neuron|mult_reduce:multiply_reduce|mult:multiplier|lpm_mult:lpm_mult_component                                                                                                                                        ;
+;                             |mult_0ms:auto_generated                          ; 2.09 mW (2.09 mW)                    ; 1.53 mW (1.53 mW)               ; --                                ; 0.56 mW (0.56 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer|neuron:NEURONS[1].neuron|mult_reduce:multiply_reduce|mult:multiplier|lpm_mult:lpm_mult_component|mult_0ms:auto_generated                                                                                                                ;
+;             |sp_ram:neuron_biases                                             ; 4.38 mW (0.00 mW)                    ; 3.81 mW (0.00 mW)               ; --                                ; 0.57 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer|sp_ram:neuron_biases                                                                                                                                                                                                                    ;
+;                 |altsyncram:altsyncram_component                              ; 4.38 mW (0.00 mW)                    ; 3.81 mW (0.00 mW)               ; --                                ; 0.57 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer|sp_ram:neuron_biases|altsyncram:altsyncram_component                                                                                                                                                                                    ;
+;                     |altsyncram_vtk1:auto_generated                           ; 4.38 mW (4.38 mW)                    ; 3.81 mW (3.81 mW)               ; --                                ; 0.57 mW (0.57 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer|sp_ram:neuron_biases|altsyncram:altsyncram_component|altsyncram_vtk1:auto_generated                                                                                                                                                     ;
+;             |sp_ram:neuron_weights                                            ; 3.61 mW (0.00 mW)                    ; 2.86 mW (0.00 mW)               ; --                                ; 0.76 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer|sp_ram:neuron_weights                                                                                                                                                                                                                   ;
+;                 |altsyncram:altsyncram_component                              ; 3.61 mW (0.00 mW)                    ; 2.86 mW (0.00 mW)               ; --                                ; 0.76 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer|sp_ram:neuron_weights|altsyncram:altsyncram_component                                                                                                                                                                                   ;
+;                     |altsyncram_42l1:auto_generated                           ; 3.61 mW (3.61 mW)                    ; 2.86 mW (2.86 mW)               ; --                                ; 0.76 mW (0.76 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|neuron_layer:neuron_layer|sp_ram:neuron_weights|altsyncram:altsyncram_component|altsyncram_42l1:auto_generated                                                                                                                                                    ;
+;         |activation_layer:relu_layer                                          ; 0.40 mW (0.00 mW)                    ; 0.28 mW (0.00 mW)               ; --                                ; 0.12 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|activation_layer:relu_layer                                                                                                                                                                                                                                       ;
+;             |relu:RELU[0].relu                                                ; 0.22 mW (0.22 mW)                    ; 0.15 mW (0.15 mW)               ; --                                ; 0.07 mW (0.07 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|activation_layer:relu_layer|relu:RELU[0].relu                                                                                                                                                                                                                     ;
+;             |relu:RELU[1].relu                                                ; 0.19 mW (0.19 mW)                    ; 0.13 mW (0.13 mW)               ; --                                ; 0.05 mW (0.05 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|activation_layer:relu_layer|relu:RELU[1].relu                                                                                                                                                                                                                     ;
+;         |subsample:subsample                                                  ; 0.26 mW (0.26 mW)                    ; 0.14 mW (0.14 mW)               ; --                                ; 0.11 mW (0.11 mW)                 ; |cnn_vibration_monitor_10M08|m08_cnn1d:cnn1d|subsample:subsample                                                                                                                                                                                                                                               ;
+;     |adc:u0                                                                   ; 22.32 mW (0.00 mW)                   ; 15.04 mW (0.00 mW)              ; --                                ; 7.27 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0                                                                                                                                                                                                                                                                            ;
+;         |adc_altpll_0:altpll_0                                                ; 21.70 mW (0.00 mW)                   ; 14.59 mW (0.00 mW)              ; --                                ; 7.11 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0|adc_altpll_0:altpll_0                                                                                                                                                                                                                                                      ;
+;             |adc_altpll_0_altpll_6b92:sd1                                     ; 21.70 mW (21.70 mW)                  ; 14.59 mW (14.59 mW)             ; --                                ; 7.11 mW (7.11 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0|adc_altpll_0:altpll_0|adc_altpll_0_altpll_6b92:sd1                                                                                                                                                                                                                         ;
+;             |adc_altpll_0_stdsync_sv6:stdsync2                                ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0|adc_altpll_0:altpll_0|adc_altpll_0_stdsync_sv6:stdsync2                                                                                                                                                                                                                    ;
+;         |adc_modular_adc_0:modular_adc_0                                      ; 0.62 mW (0.00 mW)                    ; 0.46 mW (0.00 mW)               ; --                                ; 0.16 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0|adc_modular_adc_0:modular_adc_0                                                                                                                                                                                                                                            ;
+;             |altera_modular_adc_control:control_internal                      ; 0.62 mW (0.00 mW)                    ; 0.46 mW (0.00 mW)               ; --                                ; 0.16 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0|adc_modular_adc_0:modular_adc_0|altera_modular_adc_control:control_internal                                                                                                                                                                                                ;
+;                 |fiftyfivenm_adcblock_top_wrapper:adc_inst                    ; 0.01 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.01 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0|adc_modular_adc_0:modular_adc_0|altera_modular_adc_control:control_internal|fiftyfivenm_adcblock_top_wrapper:adc_inst                                                                                                                                                      ;
+;                     |fiftyfivenm_adcblock_primitive_wrapper:adcblock_instance ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0|adc_modular_adc_0:modular_adc_0|altera_modular_adc_control:control_internal|fiftyfivenm_adcblock_top_wrapper:adc_inst|fiftyfivenm_adcblock_primitive_wrapper:adcblock_instance                                                                                             ;
+;                     |chsel_code_converter_sw_to_hw:decoder                    ; 0.01 mW (0.01 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.01 mW (0.01 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0|adc_modular_adc_0:modular_adc_0|altera_modular_adc_control:control_internal|fiftyfivenm_adcblock_top_wrapper:adc_inst|chsel_code_converter_sw_to_hw:decoder                                                                                                                ;
+;                 |altera_modular_adc_control_fsm:u_control_fsm                 ; 0.61 mW (0.57 mW)                    ; 0.46 mW (0.41 mW)               ; --                                ; 0.16 mW (0.16 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0|adc_modular_adc_0:modular_adc_0|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm                                                                                                                                                   ;
+;                     |altera_modular_adc_control_avrg_fifo:ts_avrg_fifo        ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0|adc_modular_adc_0:modular_adc_0|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_modular_adc_control_avrg_fifo:ts_avrg_fifo                                                                                                 ;
+;                         |scfifo:scfifo_component                              ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0|adc_modular_adc_0:modular_adc_0|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_modular_adc_control_avrg_fifo:ts_avrg_fifo|scfifo:scfifo_component                                                                         ;
+;                             |scfifo_do61:auto_generated                       ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0|adc_modular_adc_0:modular_adc_0|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_modular_adc_control_avrg_fifo:ts_avrg_fifo|scfifo:scfifo_component|scfifo_do61:auto_generated                                              ;
+;                                 |a_dpfifo_3k41:dpfifo                         ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0|adc_modular_adc_0:modular_adc_0|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_modular_adc_control_avrg_fifo:ts_avrg_fifo|scfifo:scfifo_component|scfifo_do61:auto_generated|a_dpfifo_3k41:dpfifo                         ;
+;                                     |a_fefifo_c6e:fifo_state                  ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0|adc_modular_adc_0:modular_adc_0|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_modular_adc_control_avrg_fifo:ts_avrg_fifo|scfifo:scfifo_component|scfifo_do61:auto_generated|a_dpfifo_3k41:dpfifo|a_fefifo_c6e:fifo_state ;
+;                     |altera_std_synchronizer:u_clk_dft_synchronizer           ; 0.04 mW (0.04 mW)                    ; 0.04 mW (0.04 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0|adc_modular_adc_0:modular_adc_0|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_std_synchronizer:u_clk_dft_synchronizer                                                                                                    ;
+;                     |altera_std_synchronizer:u_eoc_synchronizer               ; 0.01 mW (0.01 mW)                    ; 0.01 mW (0.01 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0|adc_modular_adc_0:modular_adc_0|altera_modular_adc_control:control_internal|altera_modular_adc_control_fsm:u_control_fsm|altera_std_synchronizer:u_eoc_synchronizer                                                                                                        ;
+;         |altera_reset_controller:rst_controller                               ; 0.00 mW (0.00 mW)                    ; 0.00 mW (0.00 mW)               ; --                                ; 0.00 mW (0.00 mW)                 ; |cnn_vibration_monitor_10M08|adc:u0|altera_reset_controller:rst_controller                                                                                                                                                                                                                                     ;
++-------------------------------------------------------------------------------+--------------------------------------+---------------------------------+-----------------------------------+-----------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+(1) Value in parentheses is the power consumed at that level of hierarchy. Value not in parentheses is the power consumed at that level of hierarchy plus the power consumed by all levels of hierarchy below it.
+
+(2) The "Block Thermal Static Power" for all levels of hierarchy except the top-level hierarchy is part of the "Core Static Thermal Power Dissipation" value found on the PowerPlay Power Analyzer-->Summary report panel. The "Core Static Thermal Power Dissipation" also contains the thermal static power dissipated by the routing.
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Core Dynamic Thermal Power Dissipation by Clock Domain                                                                        ;
++----------------------------------------------------------------------------+-----------------------+--------------------------+
+; Clock Domain                                                               ; Clock Frequency (MHz) ; Total Core Dynamic Power ;
++----------------------------------------------------------------------------+-----------------------+--------------------------+
+; adc:u0|adc_altpll_0:altpll_0|adc_altpll_0_altpll_6b92:sd1|wire_pll7_clk[0] ; 10.00                 ; 14.59                    ;
+; adc:u0|adc_altpll_0:altpll_0|adc_altpll_0_altpll_6b92:sd1|wire_pll7_clk[1] ; 100.00                ; 57.95                    ;
+; clk50                                                                      ; 50.00                 ; 0.00                     ;
+; No clock domain                                                            ; 0.00                  ; 3.54                     ;
++----------------------------------------------------------------------------+-----------------------+--------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------+
+; Current Drawn from Voltage Supplies Summary                                                                                        ;
++----------------+-------------------------+---------------------------+--------------------------+----------------------------------+
+; Voltage Supply ; Total Current Drawn (1) ; Dynamic Current Drawn (1) ; Static Current Drawn (1) ; Minimum Power Supply Current (2) ;
++----------------+-------------------------+---------------------------+--------------------------+----------------------------------+
+; VCCIO          ; 2.64 mA                 ; 0.34 mA                   ; 2.30 mA                  ; 2.64 mA                          ;
+; VCCA           ; 5.66 mA                 ; 2.63 mA                   ; 3.03 mA                  ; 5.66 mA                          ;
+; VCC_ONE        ; 94.34 mA                ; 56.86 mA                  ; 37.48 mA                 ; 94.34 mA                         ;
++----------------+-------------------------+---------------------------+--------------------------+----------------------------------+
+(1) Currents reported in columns "Total Current Drawn", "Dynamic Current Drawn", and "Static Current Drawn" are sufficient for user operation of the device.  
+(2) Currents reported in column "Minimum Power Supply Current" are sufficient for power-up, configuration, and user operation of the device.
+
+
++-----------------------------------------------------------------------------------------------+
+; VCCIO Supply Current Drawn by I/O Bank                                                        ;
++----------+---------------+---------------------+-----------------------+----------------------+
+; I/O Bank ; VCCIO Voltage ; Total Current Drawn ; Dynamic Current Drawn ; Static Current Drawn ;
++----------+---------------+---------------------+-----------------------+----------------------+
+; 1A       ; 2.5V          ; 0.27 mA             ; 0.00 mA               ; 0.27 mA              ;
+; 1B       ; 2.5V          ; 0.26 mA             ; 0.00 mA               ; 0.26 mA              ;
+; 2        ; 2.5V          ; 0.30 mA             ; 0.05 mA               ; 0.25 mA              ;
+; 3        ; 2.5V          ; 0.25 mA             ; 0.00 mA               ; 0.25 mA              ;
+; 4        ; 2.5V          ; 0.25 mA             ; 0.00 mA               ; 0.25 mA              ;
+; 5        ; 2.5V          ; 0.25 mA             ; 0.00 mA               ; 0.25 mA              ;
+; 6        ; 2.5V          ; 0.25 mA             ; 0.00 mA               ; 0.25 mA              ;
+; 7        ; 2.5V          ; 0.25 mA             ; 0.00 mA               ; 0.25 mA              ;
+; 8        ; 2.5V          ; 0.56 mA             ; 0.29 mA               ; 0.27 mA              ;
++----------+---------------+---------------------+-----------------------+----------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------+
+; VCCIO Supply Current Drawn by Voltage                                                                                             ;
++---------------+-------------------------+---------------------------+--------------------------+----------------------------------+
+; VCCIO Voltage ; Total Current Drawn (1) ; Dynamic Current Drawn (1) ; Static Current Drawn (1) ; Minimum Power Supply Current (2) ;
++---------------+-------------------------+---------------------------+--------------------------+----------------------------------+
+; 2.5V          ; 2.64 mA                 ; 0.34 mA                   ; 2.30 mA                  ; 2.64 mA                          ;
++---------------+-------------------------+---------------------------+--------------------------+----------------------------------+
+(1) Currents reported in columns "Total Current Drawn", "Dynamic Current Drawn", and "Static Current Drawn" are sufficient for user operation of the device.  
+(2) Currents reported in column "Minimum Power Supply Current" are sufficient for power-up, configuration, and user operation of the device.
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Confidence Metric Details                                                                                                                          ;
++----------------------------------------------------------------------------------------+--------------+------------+---------------+---------------+
+; Data Source                                                                            ; Total        ; Pin        ; Registered    ; Combinational ;
++----------------------------------------------------------------------------------------+--------------+------------+---------------+---------------+
+; Simulation (from file)                                                                 ;              ;            ;               ;               ;
+;     -- Number of signals with Toggle Rate from Simulation                              ; 0 (0.0%)     ; 0 (0.0%)   ; 0 (0.0%)      ; 0 (0.0%)      ;
+;     -- Number of signals with Static Probability from Simulation                       ; 0 (0.0%)     ; 0 (0.0%)   ; 0 (0.0%)      ; 0 (0.0%)      ;
+;                                                                                        ;              ;            ;               ;               ;
+; Node, entity or clock assignment                                                       ;              ;            ;               ;               ;
+;     -- Number of signals with Toggle Rate from Node, entity or clock assignment        ; 4 (0.1%)     ; 1 (5.0%)   ; 0 (0.0%)      ; 3 (0.1%)      ;
+;     -- Number of signals with Static Probability from Node, entity or clock assignment ; 4 (0.1%)     ; 1 (5.0%)   ; 0 (0.0%)      ; 3 (0.1%)      ;
+;                                                                                        ;              ;            ;               ;               ;
+; Vectorless estimation                                                                  ;              ;            ;               ;               ;
+;     -- Number of signals with Toggle Rate from Vectorless estimation                   ; 7611 (99.8%) ; 4 (20.0%)  ; 3701 (100.0%) ; 3906 (99.9%)  ;
+;     -- Number of signals with Zero toggle rate, from Vectorless estimation             ; 405 (5.3%)   ; 1 (5.0%)   ; 268 (7.2%)    ; 136 (3.5%)    ;
+;     -- Number of signals with Static Probability from Vectorless estimation            ; 7611 (99.8%) ; 4 (20.0%)  ; 3701 (100.0%) ; 3906 (99.9%)  ;
+;                                                                                        ;              ;            ;               ;               ;
+; Default assignment                                                                     ;              ;            ;               ;               ;
+;     -- Number of signals with Toggle Rate from Default assignment                      ; 0 (0.0%)     ; 0 (0.0%)   ; 0 (0.0%)      ; 0 (0.0%)      ;
+;     -- Number of signals with Static Probability from Default assignment               ; 15 (0.2%)    ; 15 (75.0%) ; 0 (0.0%)      ; 0 (0.0%)      ;
+;                                                                                        ;              ;            ;               ;               ;
+; Assumed 0                                                                              ;              ;            ;               ;               ;
+;     -- Number of signals with Toggle Rate assumed 0                                    ; 15 (0.2%)    ; 15 (75.0%) ; 0 (0.0%)      ; 0 (0.0%)      ;
++----------------------------------------------------------------------------------------+--------------+------------+---------------+---------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------+
+; Signal Activities                                                                                                                           ;
++--------+------+---------------------------------------------+-------------------------+--------------------+--------------------------------+
+; Signal ; Type ; Toggle Rate (millions of transitions / sec) ; Toggle Rate Data Source ; Static Probability ; Static Probability Data Source ;
++--------+------+---------------------------------------------+-------------------------+--------------------+--------------------------------+
+(1) The "Signal Activity" Table has been hidden. To show this table, please select the "Write signal activities to report file" option under "PowerPlay Power Analyzer Settings".
+
+
++-------------------------+
+; Power Analyzer Messages ;
++-------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Power Analyzer
+    Info: Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+    Info: Processing started: Sun Oct 27 13:52:36 2024
+Info: Command: quartus_pow --read_settings_files=off --write_settings_files=off cnn_vibration_monior_10M08 -c cnn_vibration_monior_10M08
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (21077): Low junction temperature is -40 degrees C
+Info (21077): High junction temperature is 100 degrees C
+Info (332164): Evaluating HDL-embedded SDC commands
+    Info (332165): Entity altera_std_synchronizer
+        Info (332166): set_false_path -to [get_keepers {*altera_std_synchronizer:*|din_s1}]
+Info (332104): Reading SDC File: 'cnn_vibration_monior_10M08.sdc'
+Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
+Warning (332174): Ignored filter at cnn_vibration_monior_10M08.sdc(3): led could not be matched with a port File: C:/Users/harry/OneDrive - University of Bath/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/cnn_vibration_monior_10M08.sdc Line: 3
+Warning (332049): Ignored set_false_path at cnn_vibration_monior_10M08.sdc(3): Argument <to> is an empty collection File: C:/Users/harry/OneDrive - University of Bath/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/cnn_vibration_monior_10M08.sdc Line: 3
+    Info (332050): set_false_path -from {m10_cnn1d:cnn1d|cnn_condition} -to [get_ports {led}] File: C:/Users/harry/OneDrive - University of Bath/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/cnn_vibration_monior_10M08.sdc Line: 3
+Info (332110): Deriving PLL clocks
+    Info (332110): create_generated_clock -source {u0|altpll_0|sd1|pll7|inclk[0]} -divide_by 5 -duty_cycle 50.00 -name {u0|altpll_0|sd1|pll7|clk[0]} {u0|altpll_0|sd1|pll7|clk[0]}
+    Info (332110): create_generated_clock -source {u0|altpll_0|sd1|pll7|inclk[0]} -multiply_by 2 -duty_cycle 50.00 -name {u0|altpll_0|sd1|pll7|clk[1]} {u0|altpll_0|sd1|pll7|clk[1]}
+Info (332104): Reading SDC File: 'c:/users/harry/onedrive - university of bath/vibeai/1dcnn/quartus/cnn_vibration_monitor_example_design_10m08/db/ip/adc/submodules/altera_modular_adc_control.sdc'
+Info (332104): Reading SDC File: 'c:/users/harry/onedrive - university of bath/vibeai/1dcnn/quartus/cnn_vibration_monitor_example_design_10m08/db/ip/adc/submodules/altera_reset_controller.sdc'
+Info (332097): The following timing edges are non-unate.  The Timing Analyzer will assume pos-unate behavior for these edges in the clock network.
+    Info (332098): From: u0|modular_adc_0|control_internal|adc_inst|adcblock_instance|primitive_instance|clkin_from_pll_c0  to: adc:u0|adc_modular_adc_0:modular_adc_0|altera_modular_adc_control:control_internal|fiftyfivenm_adcblock_top_wrapper:adc_inst|fiftyfivenm_adcblock_primitive_wrapper:adcblock_instance|eoc
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info (223000): Starting Vectorless Power Activity Estimation
+Info (223001): Completed Vectorless Power Activity Estimation
+Info (218000): Using Advanced I/O Power to simulate I/O buffers with the specified board trace model
+Info (334003): Started post-fitting delay annotation
+Info (334004): Delay annotation completed successfully
+Info (215049): Average toggle rate for this design is 17.495 millions of transitions / sec
+Info (215031): Total thermal power estimate for the design is 306.57 mW
+Info: Quartus Prime Power Analyzer was successful. 0 errors, 3 warnings
+    Info: Peak virtual memory: 4933 megabytes
+    Info: Processing ended: Sun Oct 27 13:52:38 2024
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
+
+

@@ -7,16 +7,21 @@ module cnn1d_tb();
     
     localparam CLK_PERIOD = 10;
     localparam DATA_WIDTH = 32;
-    localparam CONV_WEIGHTS_INIT_FILE = "../weights/conv1d_weights_8I24F.hex";
-    localparam CONV_BIASES_INIT_FILE = "../weights/conv1d_biases_8I24F.hex";
-    localparam NUM_FILTERS = 8;
+    localparam CONV_WEIGHTS_INIT_FILE = "../weights/two_filters_conv1d_weights_8I24F.hex";
+    localparam CONV_BIASES_INIT_FILE = "../weights/two_filters_conv1d_biases_8I24F.hex";
+    localparam NUM_FILTERS = 2;
     localparam FILTER_SIZE = 5;
     localparam PIPE_WIDTH = 4;
     localparam FRACTION = 24; // position of the decimal point from the right 
     localparam POOL_SIZE = 256;
-    localparam NEURON_WEIGHTS_INIT_FILE = "../weights/fc_weights_8I24F.hex";
-    localparam NEURON_BIASES_INIT_FILE = "../weights/fc_biases_8I24F.hex";
+    localparam NEURON_WEIGHTS_INIT_FILE = "../weights/two_filters_fc_weights_8I24F.hex";
+    localparam NEURON_BIASES_INIT_FILE = "../weights/two_filters_fc_biases_8I24F.hex";
     localparam NUM_NEURONS = 2;
+    localparam SUBSAMPLE_FACTOR = 1;
+    localparam ADC_REF = 2500;
+    localparam SCALE_FACTOR = 32'h000aaaab;
+    localparam BIAS = 32'hfffffb1e;
+
 
 
     logic clk;
@@ -31,7 +36,7 @@ module cnn1d_tb();
     initial clk = 1'b0;
     always #(CLK_PERIOD/2) clk = ~clk;
 
-    cnn1d #(
+    m08_cnn1d #(
         .DATA_WIDTH (DATA_WIDTH),
         .CONV_WEIGHTS_INIT_FILE (CONV_WEIGHTS_INIT_FILE),
         .CONV_BIASES_INIT_FILE (CONV_BIASES_INIT_FILE),
@@ -42,8 +47,12 @@ module cnn1d_tb();
         .POOL_SIZE (POOL_SIZE),
         .NEURON_WEIGHTS_INIT_FILE (NEURON_WEIGHTS_INIT_FILE),
         .NEURON_BIASES_INIT_FILE (NEURON_BIASES_INIT_FILE),
-        .NUM_NEURONS (NUM_NEURONS)
-    ) cnn1d (
+        .NUM_NEURONS (NUM_NEURONS),
+        .SUBSAMPLE_FACTOR (SUBSAMPLE_FACTOR),
+        .ADC_REF (ADC_REF),
+        .SCALE_FACTOR (SCALE_FACTOR),
+        .BIAS (BIAS)
+    ) m08_cnn1d (
         .clk    (clk),
         .rst    (rst),
 
@@ -59,9 +68,11 @@ module cnn1d_tb();
     string line;
     bit valid;
     logic [DATA_WIDTH-1:0] hex;
+    int count;
 
     initial begin
-        fd = $fopen("../samples/new_cutting_tool_samples.hex", "r");
+        count = SUBSAMPLE_FACTOR;
+        fd = $fopen("../samples/adc_worn_cutting_tool_samples.hex", "r");
         cnn_ready_out = 1'b0;
         cnn_valid_in = 1'b0;
         cnn_data_in = {DATA_WIDTH{1'b0}};
@@ -78,7 +89,12 @@ module cnn1d_tb();
             if (cnn_ready_in | ~cnn_valid_in) begin
                 //valid = $urandom_range(1'b0, 1'b1);
                 valid = 1'b1;
-                $fgets(line, fd);
+                if (count < SUBSAMPLE_FACTOR) begin
+                    count++;                    
+                end else begin
+                    count = 0;
+                    $fgets(line, fd);
+                end
                 hex = line.atohex();
                 cnn_data_in <= hex;
                 cnn_valid_in <= valid;

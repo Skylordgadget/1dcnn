@@ -1,0 +1,148 @@
+Assembler report for cnn_vibration_monior_10M08
+Sun Oct 27 13:52:35 2024
+Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Assembler Summary
+  3. Assembler Settings
+  4. Assembler Generated Files
+  5. Assembler Device Options: C:/Users/harry/OneDrive - University of Bath/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/output_files/cnn_vibration_monior_10M08.sof
+  6. Assembler Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2024  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++---------------------------------------------------------------+
+; Assembler Summary                                             ;
++-----------------------+---------------------------------------+
+; Assembler Status      ; Successful - Sun Oct 27 13:52:35 2024 ;
+; Revision Name         ; cnn_vibration_monior_10M08            ;
+; Top-level Entity Name ; cnn_vibration_monitor_10M08           ;
+; Family                ; MAX 10                                ;
+; Device                ; 10M08SAE144I7G                        ;
++-----------------------+---------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------+
+; Assembler Settings                                                                                            ;
++-----------------------------------------------------------------------------+----------------+----------------+
+; Option                                                                      ; Setting        ; Default Value  ;
++-----------------------------------------------------------------------------+----------------+----------------+
+; Use smart compilation                                                       ; Off            ; Off            ;
+; Enable parallel Assembler and Timing Analyzer during compilation            ; On             ; On             ;
+; Enable compact report table                                                 ; Off            ; Off            ;
+; Use configuration device                                                    ; Off            ; On             ;
+; Generate compressed bitstreams                                              ; On             ; On             ;
+; Compression mode                                                            ; Off            ; Off            ;
+; Clock source for configuration device                                       ; Internal       ; Internal       ;
+; Clock frequency of the configuration device                                 ; 10 MHZ         ; 10 MHz         ;
+; Divide clock frequency by                                                   ; 1              ; 1              ;
+; Auto user code                                                              ; On             ; On             ;
+; Configuration device                                                        ; Auto           ; Auto           ;
+; Voltage output format                                                       ; Auto discovery ; Auto discovery ;
+; Configuration device auto user code                                         ; Off            ; Off            ;
+; Generate Tabular Text File (.ttf) For Target Device                         ; Off            ; Off            ;
+; Generate Raw Binary File (.rbf) For Target Device                           ; Off            ; Off            ;
+; Generate Hexadecimal (Intel-Format) Output File (.hexout) for Target Device ; Off            ; Off            ;
+; Hexadecimal Output File start address                                       ; 0              ; 0              ;
+; Hexadecimal Output File count direction                                     ; Up             ; Up             ;
+; Release clears before tri-states                                            ; Off            ; Off            ;
+; Auto-restart configuration after error                                      ; On             ; On             ;
+; Enable OCT_DONE                                                             ; On             ; On             ;
+; Power On Reset scheme                                                       ; Instant ON     ; Instant ON     ;
+; Set IO to weak pull-up prior to usermode                                    ; On             ; On             ;
+; Set SPI IO pins to weak pull-up prior to usermode                           ; On             ; On             ;
+; Verify protect                                                              ; Off            ; Off            ;
+; Generate Serial Vector Format File (.svf) for Target Device                 ; Off            ; Off            ;
+; Generate a JEDEC STAPL Format File (.jam) for Target Device                 ; Off            ; Off            ;
+; Generate a compressed Jam STAPL Byte Code 2.0 File (.jbc) for Target Device ; Off            ; Off            ;
+; Generate a compressed Jam STAPL Byte Code 2.0 File (.jbc) for Target Device ; On             ; On             ;
+; In-System Programming Default Clamp State                                   ; Tri-state      ; Tri-state      ;
++-----------------------------------------------------------------------------+----------------+----------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                                                                                ;
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; File Name                                                                                                                                                ;
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+; C:/Users/harry/OneDrive - University of Bath/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/output_files/cnn_vibration_monior_10M08.sof ;
++----------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: C:/Users/harry/OneDrive - University of Bath/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/output_files/cnn_vibration_monior_10M08.sof ;
++----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                                                                                                           ;
++----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; JTAG usercode  ; 0x0021A9B0                                                                                                                                                        ;
+; Checksum       ; 0x0021A9B0                                                                                                                                                        ;
++----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------+
+; Assembler Messages ;
++--------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Assembler
+    Info: Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+    Info: Processing started: Sun Oct 27 13:52:33 2024
+Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off cnn_vibration_monior_10M08 -c cnn_vibration_monior_10M08
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (332164): Evaluating HDL-embedded SDC commands
+    Info (332165): Entity altera_std_synchronizer
+        Info (332166): set_false_path -to [get_keepers {*altera_std_synchronizer:*|din_s1}]
+Info (332104): Reading SDC File: 'cnn_vibration_monior_10M08.sdc'
+Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
+Warning (332174): Ignored filter at cnn_vibration_monior_10M08.sdc(3): led could not be matched with a port File: C:/Users/harry/OneDrive - University of Bath/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/cnn_vibration_monior_10M08.sdc Line: 3
+Warning (332049): Ignored set_false_path at cnn_vibration_monior_10M08.sdc(3): Argument <to> is an empty collection File: C:/Users/harry/OneDrive - University of Bath/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/cnn_vibration_monior_10M08.sdc Line: 3
+    Info (332050): set_false_path -from {m10_cnn1d:cnn1d|cnn_condition} -to [get_ports {led}] File: C:/Users/harry/OneDrive - University of Bath/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/cnn_vibration_monior_10M08.sdc Line: 3
+Info (332110): Deriving PLL clocks
+    Info (332110): create_generated_clock -source {u0|altpll_0|sd1|pll7|inclk[0]} -divide_by 5 -duty_cycle 50.00 -name {u0|altpll_0|sd1|pll7|clk[0]} {u0|altpll_0|sd1|pll7|clk[0]}
+    Info (332110): create_generated_clock -source {u0|altpll_0|sd1|pll7|inclk[0]} -multiply_by 2 -duty_cycle 50.00 -name {u0|altpll_0|sd1|pll7|clk[1]} {u0|altpll_0|sd1|pll7|clk[1]}
+Info (332104): Reading SDC File: 'c:/users/harry/onedrive - university of bath/vibeai/1dcnn/quartus/cnn_vibration_monitor_example_design_10m08/db/ip/adc/submodules/altera_modular_adc_control.sdc'
+Info (332104): Reading SDC File: 'c:/users/harry/onedrive - university of bath/vibeai/1dcnn/quartus/cnn_vibration_monitor_example_design_10m08/db/ip/adc/submodules/altera_reset_controller.sdc'
+Info (332097): The following timing edges are non-unate.  The Timing Analyzer will assume pos-unate behavior for these edges in the clock network.
+    Info (332098): From: u0|modular_adc_0|control_internal|adc_inst|adcblock_instance|primitive_instance|clkin_from_pll_c0  to: adc:u0|adc_modular_adc_0:modular_adc_0|altera_modular_adc_control:control_internal|fiftyfivenm_adcblock_top_wrapper:adc_inst|fiftyfivenm_adcblock_primitive_wrapper:adcblock_instance|eoc
+Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
+Info (332129): Detected timing requirements -- optimizing circuit to achieve only the specified requirements
+Info (332111): Found 3 clocks
+    Info (332111):   Period   Clock Name
+    Info (332111): ======== ============
+    Info (332111):   20.000        clk50
+    Info (332111):  100.000 u0|altpll_0|sd1|pll7|clk[0]
+    Info (332111):   10.000 u0|altpll_0|sd1|pll7|clk[1]
+Info (223000): Starting Vectorless Power Activity Estimation
+Info (223001): Completed Vectorless Power Activity Estimation
+Info (115031): Writing out detailed assembly data for power analysis
+Info (115030): Assembler is generating device programming files
+Info: Quartus Prime Assembler was successful. 0 errors, 3 warnings
+    Info: Peak virtual memory: 4816 megabytes
+    Info: Processing ended: Sun Oct 27 13:52:35 2024
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:01
+
+

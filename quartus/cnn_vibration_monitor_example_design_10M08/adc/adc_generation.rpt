@@ -1,0 +1,22 @@
+Info: Starting: Create HDL design files for synthesis
+Info: qsys-generate "C:\Users\harry\OneDrive - University of Bath\VibeAI\1dcnn\quartus\cnn_vibration_monitor_example_design_10M08\adc.qsys" --synthesis=VERILOG --output-directory="C:\Users\harry\OneDrive - University of Bath\VibeAI\1dcnn\quartus\cnn_vibration_monitor_example_design_10M08\adc\synthesis" --family="MAX 10" --part=10M08SAE144I7G
+Progress: Loading cnn_vibration_monitor_example_design_10M08/adc.qsys
+Progress: Reading input file
+Progress: Adding altpll_0 [altpll 23.1]
+Progress: Parameterizing module altpll_0
+Progress: Adding clk_0 [clock_source 23.1]
+Progress: Parameterizing module clk_0
+Progress: Adding modular_adc_0 [altera_modular_adc 23.1]
+Progress: Parameterizing module modular_adc_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: adc: Generating adc "adc" for QUARTUS_SYNTH
+Info: altpll_0: "adc" instantiated altpll "altpll_0"
+Info: modular_adc_0: "adc" instantiated altera_modular_adc "modular_adc_0"
+Info: rst_controller: "adc" instantiated altera_reset_controller "rst_controller"
+Info: control_internal: "modular_adc_0" instantiated altera_modular_adc_control "control_internal"
+Info: adc: Done "adc" with 5 modules, 13 files
+Info: qsys-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

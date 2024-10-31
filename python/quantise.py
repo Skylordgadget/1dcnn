@@ -99,7 +99,7 @@ for filename in args.filenames:
         intel_hex.append(int_to_intel_hex(ints,totalbits//4,i))
     intel_hex.append(":00000001FF")
 
-    with open(args.out_filepath + filename + "_{0}I{1}F".format(int_bits, frac_bits) + ".hex", 'w') as file:
+    with open(args.out_filepath[0] + filename + "_{0}I{1}F".format(int_bits, frac_bits) + ".hex", 'w') as file:
         file.writelines(intel_hex)
 
  

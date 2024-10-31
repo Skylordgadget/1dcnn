@@ -46,7 +46,7 @@ def int_to_hex(int_in, nibbles_per_int):
 int_bits = 8
 frac_bits = 24
 totalbits = int_bits + frac_bits
-filename = "worn_cutting_tool_samples"
+filename = "./samples/worn_cutting_tool_samples_x24_1250bias"
 
 lines = []
 with open(filename + ".txt", 'r') as file:

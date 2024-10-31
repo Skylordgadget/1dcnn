@@ -5,7 +5,7 @@ newData = readmatrix('../samples/original/new_cutting_tool_samples.txt');
 samplesPerGroup = 256;
 numChannels = 1;
 filterSize = 5;
-numFilters = 8;
+numFilters = 2;
 
 dataCutOff = min([length(wornData);length(newData)]);
 dataCutOff = dataCutOff - mod(dataCutOff, samplesPerGroup);
@@ -14,10 +14,45 @@ wornData = wornData(1:dataCutOff);
 newData = newData(1:dataCutOff);
 
 figure; 
-subplot(2,1,2); plot(wornData); ca = gca; ylim = ca.YLim; ca.XLim = [1 dataCutOff];
-title('Worn Tool');
-subplot(2,1,1); plot(newData); set(gca, "YLim", ylim, "XLim", [1 dataCutOff]);
-title('New Tool');
+subplot(2,2,1); plot(wornData); ca = gca; ylim = ca.YLim; ca.XLim = [1 dataCutOff];
+title('Worn Tool Time Domain');
+xlabel("Sample")
+ylabel("Amplitude (mV)")
+subplot(2,2,2); plot(newData); set(gca, "YLim", ylim, "XLim", [1 dataCutOff]);
+title('New Tool Time Domain');
+xlabel("Sample")
+ylabel("Amplitude (mV)")
+subplot(2,2,3); plot(wornData); ca = gca; ylim = ca.YLim; ca.XLim = [6800 7000];
+title('Worn Tool Time Domain Exerpt');
+xlabel("Sample")
+ylabel("Amplitude (mV)")
+subplot(2,2,4); plot(newData); set(gca, "YLim", ylim, "XLim", [6800 7000]);
+title('New Tool Time Domain Exerpt');
+xlabel("Sample")
+ylabel("Amplitude (mV)")
+
+figure; 
+wDfft = fft(wornData);
+P2 = abs(wDfft/dataCutOff);
+P1 = P2(1:dataCutOff/2+1);
+P1(2:end-1) = 2*P1(2:end-1);
+f = 2500/dataCutOff*(0:(dataCutOff/2));
+
+subplot(1,2,1); plot(f,P1);
+title('Worn Tool Single-Sided Aplitude Spectrum');
+xlabel("f (Hz)")
+ylabel("|A|")
+
+nDfft = fft(newData);
+P2 = abs(nDfft/dataCutOff);
+P1 = P2(1:dataCutOff/2+1);
+P1(2:end-1) = 2*P1(2:end-1);
+
+subplot(1,2,2); plot(f,P1);
+title('New Tool Single-Sided Aplitude Spectrum');
+xlabel("f (Hz)")
+ylabel("|A|")
+
 
 numGroups = dataCutOff/samplesPerGroup;
 

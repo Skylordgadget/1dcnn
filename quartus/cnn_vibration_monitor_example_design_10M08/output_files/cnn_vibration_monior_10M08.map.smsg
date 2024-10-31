@@ -1,0 +1,2 @@
+Info (10281): Verilog HDL Declaration information at conv1d_layer.sv(93): object "weights" differs only in case from object "WEIGHTS" in the same scope File: C:/Users/harry/OneDrive - University of Bath/VibeAI/1dcnn/src/conv1d_layer.sv Line: 93
+Warning (10273): Verilog HDL warning at altera_modular_adc_control_fsm.v(716): extended using "x" or "z" File: C:/Users/harry/OneDrive - University of Bath/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/db/ip/adc/submodules/altera_modular_adc_control_fsm.v Line: 716
