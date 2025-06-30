@@ -12,25 +12,35 @@ module m08_cnn1d (
     cnn_data_in,
 
     cnn_ready_out,
-    cnn_condition
+    cnn_condition,
+
+    // LOGIC ANALYSER SIGNALS
+
+    v_ready,
+    v_valid,
+
+    r_ready,
+    r_valid,
+
+    cnn_valid
 );
     import cnn1d_pkg::*;
 
     parameter DATA_WIDTH = 32;
     parameter CONV_WEIGHTS_INIT_FILE = "";
     parameter CONV_BIASES_INIT_FILE = "";
-    parameter NUM_FILTERS = 8;
+    parameter NUM_FILTERS = 2;
     parameter FILTER_SIZE = 5;
     parameter PIPE_WIDTH = 4;
-    parameter FRACTION = 24; // position of the decimal point from the right 
+    parameter FRACTION = 16; // position of the decimal point from the right 
     parameter POOL_SIZE = 256;
     parameter NEURON_WEIGHTS_INIT_FILE = "";
     parameter NEURON_BIASES_INIT_FILE = "";
     parameter NUM_NEURONS = 2;
-    parameter SUBSAMPLE_FACTOR = 40000;
+    parameter SUBSAMPLE_FACTOR = 400;
     parameter ADC_REF = 2500;
-    parameter SCALE_FACTOR = 32'h000aaaab;
-    parameter BIAS = 32'hfffffb1e;
+    parameter SCALE_FACTOR = 32'h00000400;
+    parameter BIAS = 0;
 
     localparam NUM_INPUTS = NUM_FILTERS;
     localparam NUM_POOLS = NUM_INPUTS;
@@ -64,6 +74,12 @@ module m08_cnn1d (
     output logic cnn_condition;
     input logic cnn_ready_out;
 
+    output logic v_ready;
+    output logic v_valid;
+    output logic r_ready;
+    output logic r_valid;
+    output logic cnn_valid;
+
     logic [0:NUM_NEURONS-1] cnn_valid_out;
     logic [DATA_WIDTH-1:0]  cnn_data_out [0:NUM_NEURONS-1];
 
@@ -95,6 +111,14 @@ module m08_cnn1d (
 
     condition_t tool_condition;
     // synthesis translate_on
+
+    assign v_ready = voltage_ready_out;
+    assign v_valid = voltage_valid_out;
+
+    assign r_ready = relu_layer_ready_out;
+    assign r_valid = relu_layer_valid_out;
+
+    assign cnn_valid = cnn_valid_out;
 
     subsample #(
         .DATA_WIDTH             (ADC_WIDTH), 

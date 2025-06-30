@@ -7,20 +7,23 @@ module m10_cnn1d_tb();
     
     localparam CLK_PERIOD = 10;
     localparam DATA_WIDTH = 32;
-    localparam CONV_WEIGHTS_INIT_FILE = "../weights/conv1d_weights_8I24F.hex";
-    localparam CONV_BIASES_INIT_FILE = "../weights/conv1d_biases_8I24F.hex";
-    localparam NUM_FILTERS = 8;
-    localparam FILTER_SIZE = 5;
+    localparam FRACTION = 16; // position of the decimal point from the right 
     localparam PIPE_WIDTH = 4;
-    localparam FRACTION = 24; // position of the decimal point from the right 
-    localparam POOL_SIZE = 256;
-    localparam NEURON_WEIGHTS_INIT_FILE = "../weights/fc_weights_8I24F.hex";
-    localparam NEURON_BIASES_INIT_FILE = "../weights/fc_biases_8I24F.hex";
-    localparam NUM_NEURONS = 2;
+  
     localparam SUBSAMPLE_FACTOR = 400;
     localparam ADC_REF = 2500;
-    localparam SCALE_FACTOR = 32'h000aaaab;
-    localparam BIAS = 32'hfffffb1e;
+    localparam BIAS = 0;
+    localparam SCALE_FACTOR = 32'h00000400;
+    
+    localparam CONV_BIASES_INIT_FILE = "../weights/conv1d_biases_16I16F.hex";
+    localparam CONV_WEIGHTS_INIT_FILE = "../weights/conv1d_weights_16I16F.hex";
+    localparam NUM_FILTERS = 2;
+    localparam FILTER_SIZE = 5;
+    
+    localparam POOL_SIZE = 256;
+    localparam NEURON_BIASES_INIT_FILE = "../weights/fc_biases_16I16F.hex";
+    localparam NEURON_WEIGHTS_INIT_FILE = "../weights/fc_weights_16I16F.hex";
+    localparam NUM_NEURONS = 2;
 
     logic clk;
     logic rst;
@@ -34,7 +37,7 @@ module m10_cnn1d_tb();
     initial clk = 1'b0;
     always #(CLK_PERIOD/2) clk = ~clk;
 
-    m10_cnn1d #(
+    m08_cnn1d #(
         .DATA_WIDTH (DATA_WIDTH),
         .CONV_WEIGHTS_INIT_FILE (CONV_WEIGHTS_INIT_FILE),
         .CONV_BIASES_INIT_FILE (CONV_BIASES_INIT_FILE),
@@ -63,6 +66,7 @@ module m10_cnn1d_tb();
     );
 
     int fd;
+    int fd_wave;
     string line;
     bit valid;
     logic [DATA_WIDTH-1:0] hex;
@@ -70,7 +74,9 @@ module m10_cnn1d_tb();
 
     initial begin
         count = 0;
-        fd = $fopen("../samples/wornDataLerp.hex", "r");
+        fd = $fopen("../../top/new_mr_lerp_x64.hex", "r");
+        fd_wave = $fopen("scnn_sim_wave_new.csv", "w");
+        $fwrite(fd_wave, "time_ns,voltage_ready_out,voltage_valid_out,voltage_data_out,relu_layer_ready_out,relu_layer_valid_out,cnn_ready_out,cnn_valid_out\n");
         cnn_ready_out = 1'b0;
         cnn_valid_in = 1'b0;
         cnn_data_in = {ADC_WIDTH{1'b0}};
@@ -81,7 +87,15 @@ module m10_cnn1d_tb();
 
         while (!$feof(fd)) begin
             #(CLK_PERIOD);
-
+            $fwrite(fd_wave, "%0t,%d,%d,%f,%d,%d,%d,%d,%d\n",$time, cnn1d.voltage_ready_out,
+                                                                    cnn1d.voltage_valid_out,
+                                                                    cnn1d.voltage_data_out / $itor(2**FRACTION),
+                                                                    cnn1d.relu_layer_ready_out,
+                                                                    cnn1d.relu_layer_valid_out,
+                                                                    cnn_ready_out,
+                                                                    cnn1d.cnn_valid_out,
+                                                                    cnn1d.tool_condition);
+                                                                               
             //cnn_ready_out <= $urandom_range(1'b0, 1'b1);
             cnn_ready_out <= 1'b1;
             // if (count < 1) begin
@@ -101,6 +115,7 @@ module m10_cnn1d_tb();
 
         end
         $fclose(fd);
+        $fclose(fd_wave);
         $stop;
     end
 

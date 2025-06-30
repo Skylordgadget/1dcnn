@@ -1,0 +1,16 @@
+Partition Merge Status : Successful - Fri May  2 21:22:17 2025
+Quartus Prime Version : 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+Revision Name : cnn_vibration_monior_10M08
+Top-level Entity Name : cnn_vibration_monitor_10M08
+Family : MAX 10
+Total logic elements : 4,946
+    Total combinational functions : 2,224
+    Dedicated logic registers : 4,051
+Total registers : 4051
+Total pins : 12
+Total virtual pins : 0
+Total memory bits : 193,088
+Embedded Multiplier 9-bit elements : 46
+Total PLLs : 1
+UFM blocks : 0
+ADC blocks : 1

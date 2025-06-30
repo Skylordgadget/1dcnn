@@ -51,7 +51,7 @@ module relu (
             // if the sign bit of the data is low it's positive, so send the data as-is
             if (relu_ready_in) begin
                 relu_valid_out <= relu_valid_in;
-                relu_data_out <= relu_data_in[DATA_WIDTH-1] ? 12'd0 : relu_data_in; 
+                relu_data_out <= relu_data_in[DATA_WIDTH-1] ? {DATA_WIDTH{1'b0}} : relu_data_in; 
             end
         end
     end

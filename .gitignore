@@ -4,3 +4,4 @@ test/modelsim/*
 test/weights/*.ver
 samples/*Lerp*
 test/samples/*Lerp*
+*trainedNet.mat

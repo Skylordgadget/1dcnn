@@ -143,19 +143,19 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : 70        :        :                   :      
 VCCA5                        : 71        : power  :                   : 3.0V/3.3V :           :                
 VCC_ONE                      : 72        : power  :                   : 3.0V/3.3V :           :                
 VCC_ONE                      : 73        : power  :                   : 3.0V/3.3V :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 74        :        :                   :         : 5         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 75        :        :                   :         : 5         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 76        :        :                   :         : 5         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 77        :        :                   :         : 5         :                
+arduino_io[0]                : 74        : output : 2.5 V             :         : 5         : Y              
+arduino_io[1]                : 75        : output : 2.5 V             :         : 5         : Y              
+arduino_io[2]                : 76        : output : 2.5 V             :         : 5         : Y              
+arduino_io[3]                : 77        : output : 2.5 V             :         : 5         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 78        :        :                   :         : 5         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 79        :        :                   :         : 5         :                
+arduino_io[4]                : 79        : output : 2.5 V             :         : 5         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 80        :        :                   :         : 5         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 81        :        :                   :         : 5         :                
+arduino_io[5]                : 81        : output : 2.5 V             :         : 5         : Y              
 VCCIO5                       : 82        : power  :                   : 2.5V    : 5         :                
 GND                          : 83        : gnd    :                   :         :           :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 84        :        :                   :         : 5         :                
+arduino_io[6]                : 84        : output : 2.5 V             :         : 5         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 85        :        :                   :         : 5         :                
-RESERVED_INPUT_WITH_WEAK_PULLUP : 86        :        :                   :         : 5         :                
+arduino_io[7]                : 86        : output : 2.5 V             :         : 5         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : 87        :        :                   :         : 5         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 88        :        :                   :         : 6         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : 89        :        :                   :         : 6         :                

@@ -9,7 +9,9 @@
 
 module cnn_vibration_monitor_10M08 (
     clk50,
-    led
+    led,
+
+    arduino_io
 );
 
     import cnn1d_pkg::*;
@@ -18,7 +20,7 @@ module cnn_vibration_monitor_10M08 (
 
     // general parameters
     localparam DATA_WIDTH   = 32;
-    localparam FRACTION     = 24; // position of the decimal point from the right 
+    localparam FRACTION     = 16; // position of the decimal point from the right 
     localparam PIPE_WIDTH   = 4;
 
     // subsampler parameter
@@ -47,12 +49,12 @@ module cnn_vibration_monitor_10M08 (
     */
 
     localparam ADC_REF      = 2500; 
-    localparam BIAS         = 32'hfffffb1e;
-    localparam SCALE_FACTOR = 32'h000aaaab; 
+    localparam BIAS         = 0;
+    localparam SCALE_FACTOR = 32'h0000400;
 
     // convolution layer parameters
-    localparam CONV_BIASES_INIT_FILE    = "./../../test/weights/two_filters_conv1d_biases_8I24F.hex";
-    localparam CONV_WEIGHTS_INIT_FILE   = "./../../test/weights/two_filters_conv1d_weights_8I24F.hex";
+    localparam CONV_BIASES_INIT_FILE    = "./../../test/weights/conv1d_biases_16I16F.hex";
+    localparam CONV_WEIGHTS_INIT_FILE   = "./../../test/weights/conv1d_weights_16I16F.hex";
     localparam NUM_FILTERS              = 2;
     localparam FILTER_SIZE              = 5;
 
@@ -60,8 +62,8 @@ module cnn_vibration_monitor_10M08 (
     localparam POOL_SIZE    = 256;
 
     // fully connected layer parameters
-    localparam NEURON_BIASES_INIT_FILE  = "./../../test/weights/two_filters_fc_biases_8I24F.hex";
-    localparam NEURON_WEIGHTS_INIT_FILE = "./../../test/weights/two_filters_fc_weights_8I24F.hex";
+    localparam NEURON_BIASES_INIT_FILE  = "./../../test/weights/fc_biases_16I16F.hex";
+    localparam NEURON_WEIGHTS_INIT_FILE = "./../../test/weights/fc_weights_16I16F.hex";
     localparam NUM_NEURONS              = 2;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -70,6 +72,8 @@ module cnn_vibration_monitor_10M08 (
 
     input logic                             clk50;
     output logic [2:0]                      led;
+
+    output logic [7:0]                      arduino_io;
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -177,8 +181,23 @@ module cnn_vibration_monitor_10M08 (
         .cnn_data_in                (cnn_data_in),
 
         .cnn_ready_out              (cnn_ready_out),
-        .cnn_condition              (cnn_condition)
+        .cnn_condition              (cnn_condition),
+
+        .v_ready (v_ready),
+        .v_valid (v_valid),
+        .r_ready (r_ready),
+        .r_valid (r_valid),
+        .cnn_valid (cnn_valid)
     );
+
+    assign arduino_io[0] = clk;
+    assign arduino_io[1] = v_ready;
+    assign arduino_io[2] = v_valid;
+    assign arduino_io[3] = r_ready;
+    assign arduino_io[4] = r_valid;
+    assign arduino_io[5] = cnn_ready_out;
+    assign arduino_io[6] = cnn_valid;
+    assign arduino_io[7] = cnn_condition;
 
 ////////////////////////////////////////////////////////////////////////////////
 

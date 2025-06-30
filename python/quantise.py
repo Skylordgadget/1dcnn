@@ -66,8 +66,8 @@ def int_to_intel_hex(ints, nibbles_per_int, iteration):
 
 
 parser = argparse.ArgumentParser(description="Quantises floating-point data from a .csv to signed fixed point two's compliment in Intel HEX format.")
-parser.add_argument('--int_bits', type=int, nargs=1, default=8, help='integer bits')
-parser.add_argument('--frac_bits', type=int, nargs=1, default=24, help='fractional bits')
+parser.add_argument('--int_bits', type=int, nargs=1, default=16, help='integer bits')
+parser.add_argument('--frac_bits', type=int, nargs=1, default=16, help='fractional bits')
 parser.add_argument('--in_filepath', metavar='I', type=str, nargs=1, default="../weights/latest/", help='input file path')
 parser.add_argument('--out_filepath', metavar='O', type=str, nargs=1, default="../test/weights/", help='output file path')
 parser.add_argument('--filenames', metavar='F', type=str, nargs='+', default=["conv1d_biases", "conv1d_weights", "fc_biases", "fc_weights"], help='file names to be converted')

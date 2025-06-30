@@ -1,6 +1,92 @@
-clear; clf;
-wornData = readmatrix('../samples/original/worn_cutting_tool_samples.txt');
-newData = readmatrix('../samples/original/new_cutting_tool_samples.txt');
+%% Load Files
+clc; clf; close all; clear;
+
+% set the directory path
+new_dir_path = '..\samples\recordings\New\';
+worn_dir_path = '..\samples\recordings\Worn\';
+
+% get a list of all the files in the directory
+new_files = readdir(new_dir_path,'txt');
+worn_files = readdir(worn_dir_path,'txt');
+
+% load the contents of all the files into MATLAB (this takes some time)
+new_recordings = loadrecordings(new_files);
+worn_recordings = loadrecordings(worn_files); 
+
+% get the resultant bending moment in the x and y direction using the
+% Euclidian theorem
+new_mr = euclidian(new_recordings);
+
+time = new_recordings{1}(525:745,5);
+
+figure;
+subplot(2,2,1);
+plot(time,new_recordings{1}(525:745,3),LineWidth=1.5,Color="blue");
+title("'New' tool bending moment on the X-plane over time");
+xlabel("Time (s)");
+ylabel("Bending moment X (Nm)");
+set(gca,"YLim",[-15,15])
+set(gca,"XLim",[303.909,304.002])
+subplot(2,2,2);
+plot(time,new_recordings{1}(525:745,4),LineWidth=1.5,Color="red");
+title("'New' tool bending moment on the Y-plane over time");
+xlabel("Time (s)");
+ylabel("Bending moment Y (Nm)");
+set(gca,"YLim",[-15,15])
+set(gca,"XLim",[303.909,304.002])
+subplot(2,2,[3,4]);
+plot(time,new_mr{1}(525:745),LineWidth=1.5,Color="magenta");
+title("'New' tool bending moment magnitude over time");
+xlabel("Time (s)");
+ylabel("Bending moment magnitude (Nm)");
+set(gca,"YLim",[0,15])
+set(gca,"XLim",[303.909,304.002])
+
+figure;
+plot(time,new_mr{1}(525:745),LineWidth=1.5);
+title("'New' tool bending moment magnitude over time");
+xlabel("Time (s)");
+ylabel("Bending moment magnitude (Nm)");
+set(gca,"YLim",[0,15])
+set(gca,"XLim",[303.94,304.002])
+hold on;
+xline(303.9680,'r--',LineWidth=1.5)
+xline(303.9704,'r--',LineWidth=1.5)
+hold off
+
+% TODO trim recordings to remove startup noise
+new_mr_train = [];
+% figure;
+for i=1:ceil(length(new_mr)) 
+    % subplot(ceil(length(new_mr)*percent_train),1,i);
+    % plot(new_mr{i});
+    % hold on;
+    % xline(ceil(length(new_mr{i})*percent_samples),'LineWidth',3,'Color',"red");
+    % hold off;
+    new_mr_train = [new_mr_train ; new_mr{i}(1:ceil(length(new_mr{i})))];
+end
+
+worn_mr = euclidian(worn_recordings);
+
+worn_mr_test = [];
+for i=1:ceil(length(worn_mr))
+    worn_mr_test = [worn_mr_test ; worn_mr{i}(:)];
+end
+
+disp('done loading')
+
+%% Plot Recordings
+
+
+
+%% Train CNN
+clf; close(findall(groot, "Type", "figure"));
+
+% wornData = readmatrix('../samples/original/worn_cutting_tool_samples.txt');
+% newData = readmatrix('../samples/original/new_cutting_tool_samples.txt');
+
+wornData = worn_mr_test;
+newData = new_mr_train;
 
 samplesPerGroup = 256;
 numChannels = 1;
@@ -120,8 +206,20 @@ save trainedNet;
 scores = minibatchpredict(trainedNet,XTest,SequencePaddingDirection="left");
 YTest = scores2label(scores, classNames);
 
-acc = mean(YTest == TTest)
+%accuracy = mean(YTest == TTest)
 
+%% Analyse
+
+TP = sum(TTest == "New" & YTest == "New")
+FP = sum(TTest ~= "New"& YTest == "New")
+FN = sum(TTest == "New"& YTest ~= "New")
+TN = sum(TTest ~= "New" & YTest ~= "New")
+
+
+accuracy  = (TP + TN) / (TP + TN + FP + FN)
+precision = TP / (TP + FP)
+recall    = TP / (TP + FN)
+f1_score  = 2 * (precision * recall) / (precision + recall)
 figure;
 confusionchart(TTest,YTest)
 

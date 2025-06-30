@@ -1,0 +1,492 @@
+Partition Merge report for cnn_vibration_monior_10M08
+Fri May  2 21:22:17 2025
+Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Partition Merge Summary
+  3. Partition Merge Netlist Types Used
+  4. Connections to In-System Debugging Instance "auto_signaltap_0"
+  5. Partition Merge Partition Statistics
+  6. Partition Merge Partition Pin Processing
+  7. Partition Merge Resource Usage Summary
+  8. Partition Merge RAM Summary
+  9. Partition Merge DSP Block Usage Summary
+ 10. Partition Merge Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2024  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++-------------------------------------------------------------------------------------+
+; Partition Merge Summary                                                             ;
++------------------------------------+------------------------------------------------+
+; Partition Merge Status             ; Successful - Fri May  2 21:22:17 2025          ;
+; Quartus Prime Version              ; 23.1std.1 Build 993 05/14/2024 SC Lite Edition ;
+; Revision Name                      ; cnn_vibration_monior_10M08                     ;
+; Top-level Entity Name              ; cnn_vibration_monitor_10M08                    ;
+; Family                             ; MAX 10                                         ;
+; Total logic elements               ; 4,946                                          ;
+;     Total combinational functions  ; 2,224                                          ;
+;     Dedicated logic registers      ; 4,051                                          ;
+; Total registers                    ; 4051                                           ;
+; Total pins                         ; 12                                             ;
+; Total virtual pins                 ; 0                                              ;
+; Total memory bits                  ; 193,088                                        ;
+; Embedded Multiplier 9-bit elements ; 46                                             ;
+; Total PLLs                         ; 1                                              ;
+; UFM blocks                         ; 0                                              ;
+; ADC blocks                         ; 1                                              ;
++------------------------------------+------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Partition Merge Netlist Types Used                                                                                            ;
++--------------------------------+----------------+-------------------+------------------------+--------------------------------+
+; Partition Name                 ; Partition Type ; Netlist Type Used ; Netlist Type Requested ; Partition Contents             ;
++--------------------------------+----------------+-------------------+------------------------+--------------------------------+
+; Top                            ; User-created   ; Source File       ; Source File            ;                                ;
+; sld_hub:auto_hub               ; Auto-generated ; Post-Synthesis    ; Post-Synthesis         ; sld_hub:auto_hub               ;
+; sld_signaltap:auto_signaltap_0 ; Auto-generated ; Post-Synthesis    ; Post-Synthesis         ; sld_signaltap:auto_signaltap_0 ;
+; hard_block:auto_generated_inst ; Auto-generated ; Source File       ; Source File            ; hard_block:auto_generated_inst ;
++--------------------------------+----------------+-------------------+------------------------+--------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Connections to In-System Debugging Instance "auto_signaltap_0"                                                                                                                                                                                                                            ;
++------------------------------------------------------------------------------------------------+--------------+-----------+--------------------------------+-------------------+------------------------------------------------------------------------------------------------+---------+
+; Name                                                                                           ; Type         ; Status    ; Partition Name                 ; Netlist Type Used ; Actual Connection                                                                              ; Details ;
++------------------------------------------------------------------------------------------------+--------------+-----------+--------------------------------+-------------------+------------------------------------------------------------------------------------------------+---------+
+; adc:u0|adc_altpll_0:altpll_0|adc_altpll_0_altpll_6b92:sd1|wire_pll7_clk[1]                     ; post-fitting ; connected ; Top                            ; post-synthesis    ; adc:u0|adc_altpll_0:altpll_0|adc_altpll_0_altpll_6b92:sd1|wire_pll7_clk[1]                     ; N/A     ;
+; auto_signaltap_0|gnd                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                            ; N/A     ;
+; auto_signaltap_0|gnd                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                            ; N/A     ;
+; auto_signaltap_0|gnd                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                            ; N/A     ;
+; auto_signaltap_0|gnd                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                            ; N/A     ;
+; auto_signaltap_0|gnd                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                            ; N/A     ;
+; auto_signaltap_0|gnd                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                            ; N/A     ;
+; auto_signaltap_0|gnd                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                            ; N/A     ;
+; auto_signaltap_0|gnd                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                            ; N/A     ;
+; auto_signaltap_0|gnd                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                            ; N/A     ;
+; auto_signaltap_0|gnd                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                            ; N/A     ;
+; auto_signaltap_0|gnd                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                            ; N/A     ;
+; auto_signaltap_0|gnd                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                            ; N/A     ;
+; auto_signaltap_0|gnd                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                            ; N/A     ;
+; auto_signaltap_0|gnd                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~GND                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; auto_signaltap_0|vcc                                                                           ; post-fitting ; connected ; sld_signaltap:auto_signaltap_0 ; post-synthesis    ; sld_signaltap:auto_signaltap_0|~VCC                                                            ; N/A     ;
+; m08_cnn1d:cnn1d|adc2v:adc2v|valid_pipe[8]                                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|adc2v:adc2v|valid_pipe[8]                                                      ; N/A     ;
+; m08_cnn1d:cnn1d|adc2v:adc2v|valid_pipe[8]                                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|adc2v:adc2v|valid_pipe[8]                                                      ; N/A     ;
+; m08_cnn1d:cnn1d|adc2v:adc2v|valid_pipe[8]                                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|adc2v:adc2v|valid_pipe[8]                                                      ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][0]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][0]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][0]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][0]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][0]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][0]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][10] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][10] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][10] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][10] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][10] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][10] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][11] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][11] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][11] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][11] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][11] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][11] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][12] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][12] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][12] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][12] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][12] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][12] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][13] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][13] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][13] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][13] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][13] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][13] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][14] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][14] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][14] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][14] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][14] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][14] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][15] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][15] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][15] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][15] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][15] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][15] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][16] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][16] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][16] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][16] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][16] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][16] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][17] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][17] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][17] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][17] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][17] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][17] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][18] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][18] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][18] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][18] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][18] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][18] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][19] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][19] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][19] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][19] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][19] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][19] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][1]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][1]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][1]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][1]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][1]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][1]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][20] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][20] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][20] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][20] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][20] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][20] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][21] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][21] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][21] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][21] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][21] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][21] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][22] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][22] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][22] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][22] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][22] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][22] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][23] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][23] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][23] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][23] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][23] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][23] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][24] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][24] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][24] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][24] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][24] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][24] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][25] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][25] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][25] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][25] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][25] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][25] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][26] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][26] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][26] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][26] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][26] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][26] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][27] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][27] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][27] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][27] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][27] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][27] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][28] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][28] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][28] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][28] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][28] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][28] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][29] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][29] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][29] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][29] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][29] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][29] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][2]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][2]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][2]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][2]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][2]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][2]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][30] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][30] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][30] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][30] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][30] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][30] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][31] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][31] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][31] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][31] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][31] ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][31] ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][3]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][3]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][3]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][3]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][3]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][3]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][4]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][4]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][4]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][4]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][4]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][4]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][5]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][5]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][5]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][5]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][5]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][5]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][6]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][6]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][6]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][6]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][6]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][6]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][7]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][7]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][7]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][7]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][7]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][7]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][8]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][8]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][8]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][8]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][8]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][8]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][9]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][9]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][9]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][9]  ; N/A     ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][9]  ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|conv1d:CONVOLUTION_1D[0].conv1d|conv1d_kernel[0][9]  ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[0]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[0]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[0]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[0]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[0]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[0]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[10]                                     ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[10]                                     ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[10]                                     ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[10]                                     ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[10]                                     ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[10]                                     ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[11]                                     ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[11]                                     ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[11]                                     ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[11]                                     ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[11]                                     ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[11]                                     ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[1]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[1]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[1]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[1]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[1]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[1]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[2]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[2]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[2]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[2]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[2]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[2]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[3]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[3]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[3]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[3]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[3]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[3]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[4]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[4]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[4]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[4]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[4]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[4]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[5]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[5]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[5]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[5]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[5]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[5]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[6]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[6]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[6]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[6]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[6]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[6]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[7]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[7]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[7]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[7]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[7]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[7]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[8]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[8]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[8]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[8]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[8]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[8]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[9]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[9]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[9]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[9]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[9]                                      ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_data_out[9]                                      ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_valid_out                                        ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_valid_out                                        ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_valid_out                                        ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_valid_out                                        ; N/A     ;
+; m08_cnn1d:cnn1d|subsample:subsample|subsample_valid_out                                        ; post-fitting ; connected ; Top                            ; post-synthesis    ; m08_cnn1d:cnn1d|subsample:subsample|subsample_valid_out                                        ; N/A     ;
++------------------------------------------------------------------------------------------------+--------------+-----------+--------------------------------+-------------------+------------------------------------------------------------------------------------------------+---------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Partition Merge Partition Statistics                                                                                                     ;
++---------------------------------------------+-------+------------------+--------------------------------+--------------------------------+
+; Statistic                                   ; Top   ; sld_hub:auto_hub ; sld_signaltap:auto_signaltap_0 ; hard_block:auto_generated_inst ;
++---------------------------------------------+-------+------------------+--------------------------------+--------------------------------+
+; Estimated Total logic elements              ; 3092  ; 153              ; 1701                           ; 0                              ;
+;                                             ;       ;                  ;                                ;                                ;
+; Total combinational functions               ; 1337  ; 127              ; 760                            ; 0                              ;
+; Logic element usage by number of LUT inputs ;       ;                  ;                                ;                                ;
+;     -- 4 input functions                    ; 334   ; 52               ; 508                            ; 0                              ;
+;     -- 3 input functions                    ; 875   ; 39               ; 120                            ; 0                              ;
+;     -- <=2 input functions                  ; 128   ; 36               ; 132                            ; 0                              ;
+;                                             ;       ;                  ;                                ;                                ;
+; Logic elements by mode                      ;       ;                  ;                                ;                                ;
+;     -- normal mode                          ; 560   ; 119              ; 683                            ; 0                              ;
+;     -- arithmetic mode                      ; 777   ; 8                ; 77                             ; 0                              ;
+;                                             ;       ;                  ;                                ;                                ;
+; Total registers                             ; 2651  ; 90               ; 1310                           ; 0                              ;
+;     -- Dedicated logic registers            ; 2651  ; 90               ; 1310                           ; 0                              ;
+;     -- I/O registers                        ; 0     ; 0                ; 0                              ; 0                              ;
+;                                             ;       ;                  ;                                ;                                ;
+; Virtual pins                                ; 0     ; 0                ; 0                              ; 0                              ;
+; I/O pins                                    ; 12    ; 0                ; 0                              ; 0                              ;
+; Embedded Multiplier 9-bit elements          ; 46    ; 0                ; 0                              ; 0                              ;
+; Total memory bits                           ; 576   ; 0                ; 192512                         ; 0                              ;
+; Total RAM block bits                        ; 0     ; 0                ; 0                              ; 0                              ;
+; JTAG                                        ; 1     ; 0                ; 0                              ; 0                              ;
+; PLL                                         ; 0     ; 0                ; 0                              ; 1                              ;
+; Analog-to-Digital Converter                 ; 1     ; 0                ; 0                              ; 0                              ;
+;                                             ;       ;                  ;                                ;                                ;
+; Connections                                 ;       ;                  ;                                ;                                ;
+;     -- Input Connections                    ; 3023  ; 133              ; 2316                           ; 1                              ;
+;     -- Registered Input Connections         ; 2995  ; 101              ; 1478                           ; 0                              ;
+;     -- Output Connections                   ; 1086  ; 373              ; 34                             ; 3980                           ;
+;     -- Registered Output Connections        ; 230   ; 373              ; 0                              ; 0                              ;
+;                                             ;       ;                  ;                                ;                                ;
+; Internal Connections                        ;       ;                  ;                                ;                                ;
+;     -- Total Connections                    ; 16580 ; 1058             ; 11439                          ; 3982                           ;
+;     -- Registered Connections               ; 10220 ; 827              ; 8137                           ; 0                              ;
+;                                             ;       ;                  ;                                ;                                ;
+; External Connections                        ;       ;                  ;                                ;                                ;
+;     -- Top                                  ; 0     ; 122              ; 964                            ; 3023                           ;
+;     -- sld_hub:auto_hub                     ; 122   ; 20               ; 364                            ; 0                              ;
+;     -- sld_signaltap:auto_signaltap_0       ; 964   ; 364              ; 64                             ; 958                            ;
+;     -- hard_block:auto_generated_inst       ; 3023  ; 0                ; 958                            ; 0                              ;
+;                                             ;       ;                  ;                                ;                                ;
+; Partition Interface                         ;       ;                  ;                                ;                                ;
+;     -- Input Ports                          ; 4     ; 45               ; 207                            ; 1                              ;
+;     -- Output Ports                         ; 12    ; 62               ; 107                            ; 3                              ;
+;     -- Bidir Ports                          ; 0     ; 0                ; 0                              ; 0                              ;
+;                                             ;       ;                  ;                                ;                                ;
+; Registered Ports                            ;       ;                  ;                                ;                                ;
+;     -- Registered Input Ports               ; 0     ; 4                ; 144                            ; 0                              ;
+;     -- Registered Output Ports              ; 0     ; 29               ; 93                             ; 0                              ;
+;                                             ;       ;                  ;                                ;                                ;
+; Port Connectivity                           ;       ;                  ;                                ;                                ;
+;     -- Input Ports driven by GND            ; 0     ; 0                ; 14                             ; 0                              ;
+;     -- Output Ports driven by GND           ; 0     ; 28               ; 2                              ; 0                              ;
+;     -- Input Ports driven by VCC            ; 0     ; 0                ; 18                             ; 0                              ;
+;     -- Output Ports driven by VCC           ; 0     ; 0                ; 1                              ; 0                              ;
+;     -- Input Ports with no Source           ; 0     ; 25               ; 4                              ; 0                              ;
+;     -- Output Ports with no Source          ; 0     ; 0                ; 0                              ; 0                              ;
+;     -- Input Ports with no Fanout           ; 0     ; 30               ; 18                             ; 0                              ;
+;     -- Output Ports with no Fanout          ; 0     ; 29               ; 95                             ; 0                              ;
++---------------------------------------------+-------+------------------+--------------------------------+--------------------------------+
+Note: Resource usage numbers presented for Partitions containing post-synthesis logic are estimates.  For Partitions containing post-fit logic, resource usage numbers are accurate based on previous placement information.  Actual Fitter results may vary depending on current Fitter Preservation Level assignments.
+
+
++----------------------------------------------------------------------------------------+
+; Partition Merge Partition Pin Processing                                               ;
++-----------------------------------+-----------+---------------+----------+-------------+
+; Name                              ; Partition ; Type          ; Location ; Status      ;
++-----------------------------------+-----------+---------------+----------+-------------+
+; altera_reserved_tck               ; Top       ; Input Port    ; n/a      ;             ;
+;     -- altera_reserved_tck        ; Top       ; Input Pad     ; Unplaced ; Synthesized ;
+;     -- altera_reserved_tck~input  ; Top       ; Input Buffer  ; Unplaced ; Synthesized ;
+;                                   ;           ;               ;          ;             ;
+; altera_reserved_tdi               ; Top       ; Input Port    ; n/a      ;             ;
+;     -- altera_reserved_tdi        ; Top       ; Input Pad     ; Unplaced ; Synthesized ;
+;     -- altera_reserved_tdi~input  ; Top       ; Input Buffer  ; Unplaced ; Synthesized ;
+;                                   ;           ;               ;          ;             ;
+; altera_reserved_tdo               ; Top       ; Output Port   ; n/a      ;             ;
+;     -- altera_reserved_tdo        ; Top       ; Output Pad    ; Unplaced ; Synthesized ;
+;     -- altera_reserved_tdo~output ; Top       ; Output Buffer ; Unplaced ; Synthesized ;
+;                                   ;           ;               ;          ;             ;
+; altera_reserved_tms               ; Top       ; Input Port    ; n/a      ;             ;
+;     -- altera_reserved_tms        ; Top       ; Input Pad     ; Unplaced ; Synthesized ;
+;     -- altera_reserved_tms~input  ; Top       ; Input Buffer  ; Unplaced ; Synthesized ;
+;                                   ;           ;               ;          ;             ;
+; arduino_io[0]                     ; Top       ; Output Port   ; n/a      ;             ;
+;     -- arduino_io[0]              ; Top       ; Output Pad    ; Unplaced ; Synthesized ;
+;     -- arduino_io[0]~output       ; Top       ; Output Buffer ; Unplaced ; Synthesized ;
+;                                   ;           ;               ;          ;             ;
+; arduino_io[1]                     ; Top       ; Output Port   ; n/a      ;             ;
+;     -- arduino_io[1]              ; Top       ; Output Pad    ; Unplaced ; Synthesized ;
+;     -- arduino_io[1]~output       ; Top       ; Output Buffer ; Unplaced ; Synthesized ;
+;                                   ;           ;               ;          ;             ;
+; arduino_io[2]                     ; Top       ; Output Port   ; n/a      ;             ;
+;     -- arduino_io[2]              ; Top       ; Output Pad    ; Unplaced ; Synthesized ;
+;     -- arduino_io[2]~output       ; Top       ; Output Buffer ; Unplaced ; Synthesized ;
+;                                   ;           ;               ;          ;             ;
+; arduino_io[3]                     ; Top       ; Output Port   ; n/a      ;             ;
+;     -- arduino_io[3]              ; Top       ; Output Pad    ; Unplaced ; Synthesized ;
+;     -- arduino_io[3]~output       ; Top       ; Output Buffer ; Unplaced ; Synthesized ;
+;                                   ;           ;               ;          ;             ;
+; arduino_io[4]                     ; Top       ; Output Port   ; n/a      ;             ;
+;     -- arduino_io[4]              ; Top       ; Output Pad    ; Unplaced ; Synthesized ;
+;     -- arduino_io[4]~output       ; Top       ; Output Buffer ; Unplaced ; Synthesized ;
+;                                   ;           ;               ;          ;             ;
+; arduino_io[5]                     ; Top       ; Output Port   ; n/a      ;             ;
+;     -- arduino_io[5]              ; Top       ; Output Pad    ; Unplaced ; Synthesized ;
+;     -- arduino_io[5]~output       ; Top       ; Output Buffer ; Unplaced ; Synthesized ;
+;                                   ;           ;               ;          ;             ;
+; arduino_io[6]                     ; Top       ; Output Port   ; n/a      ;             ;
+;     -- arduino_io[6]              ; Top       ; Output Pad    ; Unplaced ; Synthesized ;
+;     -- arduino_io[6]~output       ; Top       ; Output Buffer ; Unplaced ; Synthesized ;
+;                                   ;           ;               ;          ;             ;
+; arduino_io[7]                     ; Top       ; Output Port   ; n/a      ;             ;
+;     -- arduino_io[7]              ; Top       ; Output Pad    ; Unplaced ; Synthesized ;
+;     -- arduino_io[7]~output       ; Top       ; Output Buffer ; Unplaced ; Synthesized ;
+;                                   ;           ;               ;          ;             ;
+; clk50                             ; Top       ; Input Port    ; n/a      ;             ;
+;     -- clk50                      ; Top       ; Input Pad     ; Unplaced ; Synthesized ;
+;     -- clk50~input                ; Top       ; Input Buffer  ; Unplaced ; Synthesized ;
+;                                   ;           ;               ;          ;             ;
+; led[0]                            ; Top       ; Output Port   ; n/a      ;             ;
+;     -- led[0]                     ; Top       ; Output Pad    ; Unplaced ; Synthesized ;
+;     -- led[0]~output              ; Top       ; Output Buffer ; Unplaced ; Synthesized ;
+;                                   ;           ;               ;          ;             ;
+; led[1]                            ; Top       ; Output Port   ; n/a      ;             ;
+;     -- led[1]                     ; Top       ; Output Pad    ; Unplaced ; Synthesized ;
+;     -- led[1]~output              ; Top       ; Output Buffer ; Unplaced ; Synthesized ;
+;                                   ;           ;               ;          ;             ;
+; led[2]                            ; Top       ; Output Port   ; n/a      ;             ;
+;     -- led[2]                     ; Top       ; Output Pad    ; Unplaced ; Synthesized ;
+;     -- led[2]~output              ; Top       ; Output Buffer ; Unplaced ; Synthesized ;
+;                                   ;           ;               ;          ;             ;
++-----------------------------------+-----------+---------------+----------+-------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Partition Merge Resource Usage Summary                                                                                   ;
++---------------------------------------------+----------------------------------------------------------------------------+
+; Resource                                    ; Usage                                                                      ;
++---------------------------------------------+----------------------------------------------------------------------------+
+; Estimated Total logic elements              ; 4,946                                                                      ;
+;                                             ;                                                                            ;
+; Total combinational functions               ; 2224                                                                       ;
+; Logic element usage by number of LUT inputs ;                                                                            ;
+;     -- 4 input functions                    ; 894                                                                        ;
+;     -- 3 input functions                    ; 1034                                                                       ;
+;     -- <=2 input functions                  ; 296                                                                        ;
+;                                             ;                                                                            ;
+; Logic elements by mode                      ;                                                                            ;
+;     -- normal mode                          ; 1362                                                                       ;
+;     -- arithmetic mode                      ; 862                                                                        ;
+;                                             ;                                                                            ;
+; Total registers                             ; 4051                                                                       ;
+;     -- Dedicated logic registers            ; 4051                                                                       ;
+;     -- I/O registers                        ; 0                                                                          ;
+;                                             ;                                                                            ;
+; I/O pins                                    ; 12                                                                         ;
+; Total memory bits                           ; 193088                                                                     ;
+;                                             ;                                                                            ;
+; Embedded Multiplier 9-bit elements          ; 46                                                                         ;
+;                                             ;                                                                            ;
+; Total PLLs                                  ; 1                                                                          ;
+;     -- PLLs                                 ; 1                                                                          ;
+;                                             ;                                                                            ;
+; Maximum fan-out node                        ; adc:u0|adc_altpll_0:altpll_0|adc_altpll_0_altpll_6b92:sd1|wire_pll7_clk[0] ;
+; Maximum fan-out                             ; 3980                                                                       ;
+; Total fan-out                               ; 26702                                                                      ;
+; Average fan-out                             ; 3.89                                                                       ;
++---------------------------------------------+----------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Partition Merge RAM Summary                                                                                                                                                                                                                                                                                                                                                                                  ;
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------+------------------------------------------------+
+; Name                                                                                                                                                                                                                                                         ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size   ; MIF                                            ;
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------+------------------------------------------------+
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|sp_ram:conv1d_biases|altsyncram:altsyncram_component|altsyncram_s2k1:auto_generated|ALTSYNCRAM                                                                                                                     ; AUTO ; Single Port      ; 2            ; 32           ; --           ; --           ; 64     ; ./../../test/weights/conv1d_biases_16I16F.hex  ;
+; m08_cnn1d:cnn1d|conv1d_layer:conv1d_layer|sp_ram:conv1d_weights|altsyncram:altsyncram_component|altsyncram_i8k1:auto_generated|ALTSYNCRAM                                                                                                                    ; AUTO ; Single Port      ; 2            ; 160          ; --           ; --           ; 320    ; ./../../test/weights/conv1d_weights_16I16F.hex ;
+; m08_cnn1d:cnn1d|neuron_layer:neuron_layer|sp_ram:neuron_biases|altsyncram:altsyncram_component|altsyncram_umj1:auto_generated|ALTSYNCRAM                                                                                                                     ; AUTO ; Single Port      ; 1            ; 64           ; --           ; --           ; 64     ; ./../../test/weights/fc_biases_16I16F.hex      ;
+; m08_cnn1d:cnn1d|neuron_layer:neuron_layer|sp_ram:neuron_weights|altsyncram:altsyncram_component|altsyncram_3rj1:auto_generated|ALTSYNCRAM                                                                                                                    ; AUTO ; Single Port      ; 2            ; 64           ; --           ; --           ; 128    ; ./../../test/weights/fc_weights_16I16F.hex     ;
+; sld_signaltap:auto_signaltap_0|sld_signaltap_impl:sld_signaltap_body|sld_signaltap_implb:sld_signaltap_body|altsyncram:\stp_non_zero_ram_gen:stp_buffer_ram|altsyncram_ai14:auto_generated|altsyncram:ram_block1a0|altsyncram_2cv3:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 4096         ; 47           ; 4096         ; 47           ; 192512 ; None                                           ;
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------+------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Partition Merge DSP Block Usage Summary             ;
++---------------------------------------+-------------+
+; Statistic                             ; Number Used ;
++---------------------------------------+-------------+
+; Simple Multipliers (9-bit)            ; 0           ;
+; Simple Multipliers (18-bit)           ; 23          ;
+; Embedded Multiplier Blocks            ; --          ;
+; Embedded Multiplier 9-bit elements    ; 46          ;
+; Signed Embedded Multipliers           ; 5           ;
+; Unsigned Embedded Multipliers         ; 6           ;
+; Mixed Sign Embedded Multipliers       ; 12          ;
+; Variable Sign Embedded Multipliers    ; 0           ;
+; Dedicated Input Shift Register Chains ; 0           ;
++---------------------------------------+-------------+
+Note: number of Embedded Multiplier Blocks used is only available after a successful fit.
+
+
++--------------------------+
+; Partition Merge Messages ;
++--------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Partition Merge
+    Info: Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
+    Info: Processing started: Fri May  2 21:22:15 2025
+Info: Command: quartus_cdb --read_settings_files=off --write_settings_files=off cnn_vibration_monior_10M08 -c cnn_vibration_monior_10M08 --merge=on
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (35007): Using synthesis netlist for partition "Top"
+Info (35007): Using synthesis netlist for partition "sld_hub:auto_hub"
+Info (35007): Using synthesis netlist for partition "sld_signaltap:auto_signaltap_0"
+Info (35024): Successfully connected in-system debug instance "auto_signaltap_0" to all 171 required data inputs, trigger inputs, acquisition clocks, and dynamic pins
+Info (35002): Resolved and merged 3 partition(s)
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
+Critical Warning (138067): Current license file does not support incremental compilation. The Quartus Prime software removes all the user-specified design partitions in the design automatically.
+Info (21057): Implemented 5743 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 4 input pins
+    Info (21059): Implemented 12 output pins
+    Info (21061): Implemented 5170 logic cells
+    Info (21064): Implemented 508 RAM segments
+    Info (21065): Implemented 1 PLLs
+    Info (21062): Implemented 46 DSP elements
+Info: Quartus Prime Partition Merge was successful. 0 errors, 2 warnings
+    Info: Peak virtual memory: 4730 megabytes
+    Info: Processing ended: Fri May  2 21:22:18 2025
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:02
+
+
