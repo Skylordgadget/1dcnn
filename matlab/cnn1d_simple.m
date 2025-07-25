@@ -1,229 +1,175 @@
 %% Load Files
 clc; clf; close all; clear;
 
-% set the directory path
-new_dir_path = '..\samples\recordings\New\';
-worn_dir_path = '..\samples\recordings\Worn\';
+% set the path
+recordings_path = '..\samples\recordings\piezo\trimmed\';
 
 % get a list of all the files in the directory
-new_files = readdir(new_dir_path,'txt');
-worn_files = readdir(worn_dir_path,'txt');
+files = readdir(recordings_path,'txt');
+files = natsortfiles(files);
 
 % load the contents of all the files into MATLAB (this takes some time)
-new_recordings = loadrecordings(new_files);
-worn_recordings = loadrecordings(worn_files); 
+recordings = loadrecordings(files);
 
-% get the resultant bending moment in the x and y direction using the
-% Euclidian theorem
-new_mr = euclidian(new_recordings);
+% variables
+no_channels = 1;                    % number of channels
+no_recordings = length(recordings); % number of recordings
+worn_from = 14;                     % worn data starts from this recording
 
-time = new_recordings{1}(525:745,5);
+recordings_diff = {};
 
-figure;
-subplot(2,2,1);
-plot(time,new_recordings{1}(525:745,3),LineWidth=1.5,Color="blue");
-title("'New' tool bending moment on the X-plane over time");
-xlabel("Time (s)");
-ylabel("Bending moment X (Nm)");
-set(gca,"YLim",[-15,15])
-set(gca,"XLim",[303.909,304.002])
-subplot(2,2,2);
-plot(time,new_recordings{1}(525:745,4),LineWidth=1.5,Color="red");
-title("'New' tool bending moment on the Y-plane over time");
-xlabel("Time (s)");
-ylabel("Bending moment Y (Nm)");
-set(gca,"YLim",[-15,15])
-set(gca,"XLim",[303.909,304.002])
-subplot(2,2,[3,4]);
-plot(time,new_mr{1}(525:745),LineWidth=1.5,Color="magenta");
-title("'New' tool bending moment magnitude over time");
-xlabel("Time (s)");
-ylabel("Bending moment magnitude (Nm)");
-set(gca,"YLim",[0,15])
-set(gca,"XLim",[303.909,304.002])
-
-figure;
-plot(time,new_mr{1}(525:745),LineWidth=1.5);
-title("'New' tool bending moment magnitude over time");
-xlabel("Time (s)");
-ylabel("Bending moment magnitude (Nm)");
-set(gca,"YLim",[0,15])
-set(gca,"XLim",[303.94,304.002])
-hold on;
-xline(303.9680,'r--',LineWidth=1.5)
-xline(303.9704,'r--',LineWidth=1.5)
-hold off
-
-% TODO trim recordings to remove startup noise
-new_mr_train = [];
-% figure;
-for i=1:ceil(length(new_mr)) 
-    % subplot(ceil(length(new_mr)*percent_train),1,i);
-    % plot(new_mr{i});
-    % hold on;
-    % xline(ceil(length(new_mr{i})*percent_samples),'LineWidth',3,'Color',"red");
-    % hold off;
-    new_mr_train = [new_mr_train ; new_mr{i}(1:ceil(length(new_mr{i})))];
+for i=1:no_recordings
+    recordings_diff{i}(:,1) = recordings{i}(:,2) - recordings{i}(:,4);
+    %recordings_diff{i}(:,2) = recordings{i}(:,3) - recordings{i}(:,5);
 end
 
-worn_mr = euclidian(worn_recordings);
 
-worn_mr_test = [];
-for i=1:ceil(length(worn_mr))
-    worn_mr_test = [worn_mr_test ; worn_mr{i}(:)];
+
+% adjustable stride
+stride = 64; % you can change to 2, 4, 8, etc if memory is tight
+
+%% Plot
+
+figure();
+for i=1:no_recordings
+    for j=1:no_channels
+        subplot(no_channels, no_recordings, ((j-1)*no_recordings)+i);
+        plot(recordings_diff{i}(:,j));
+        ylim([-2500 2000]);
+    end
 end
 
-disp('done loading')
+%% Create windows
+windowSize = 512;
 
-%% Plot Recordings
+% collect windowed data and labels
+X = {};
+Y = strings(0);   % initialize empty string array
 
+for i = 1:no_recordings
+    rec = recordings_diff{i};  % all channels
+    label = "New";
+    if i >= worn_from
+        label = "Worn";
+    end
 
+    % how many windows can we get
+    numWindows = floor( (size(rec,1) - windowSize)/stride ) + 1;
 
-%% Train CNN
-clf; close(findall(groot, "Type", "figure"));
+    for w = 1:numWindows
+        startIdx = (w-1)*stride + 1;
+        endIdx = startIdx + windowSize - 1;
+        window = rec(startIdx:endIdx, :); % window of size [256 x 4]
+        X{end+1} = window;               % store as [4 x 256] for sequence
+        Y(end+1) = label;                 % store label
+    end
+end
 
-% wornData = readmatrix('../samples/original/worn_cutting_tool_samples.txt');
-% newData = readmatrix('../samples/original/new_cutting_tool_samples.txt');
+Y = categorical(Y(:));  % force column
 
-wornData = worn_mr_test;
-newData = new_mr_train;
+numObservations = numel(Y);
+idx = randperm(numObservations);
 
-samplesPerGroup = 256;
-numChannels = 1;
+% shuffle once
+X = X(idx);
+Y = Y(idx);
+
+% partition
+nTrain = floor(0.8 * numObservations);
+nVal   = floor(0.1 * numObservations);
+nTest  = numObservations - nTrain - nVal;
+
+idxTrain = 1:nTrain;
+idxValidation = nTrain+1 : nTrain+nVal;
+idxTest = nTrain+nVal+1 : numObservations;
+
+XTrain = X(idxTrain);
+TTrain = Y(idxTrain);
+
+XValidation = X(idxValidation);
+TValidation = Y(idxValidation);
+
+XTest = X(idxTest);
+TTest = Y(idxTest);
+
+% sanity check
+disp("Observations check:")
+disp([length(XTrain) length(TTrain)])
+disp([length(XValidation) length(TValidation)])
+disp([length(XTest) length(TTest)])
+
+%% Define CNN
+
 filterSize = 5;
-numFilters = 2;
-
-dataCutOff = min([length(wornData);length(newData)]);
-dataCutOff = dataCutOff - mod(dataCutOff, samplesPerGroup);
-
-wornData = wornData(1:dataCutOff);
-newData = newData(1:dataCutOff);
-
-figure; 
-subplot(2,2,1); plot(wornData); ca = gca; ylim = ca.YLim; ca.XLim = [1 dataCutOff];
-title('Worn Tool Time Domain');
-xlabel("Sample")
-ylabel("Amplitude (mV)")
-subplot(2,2,2); plot(newData); set(gca, "YLim", ylim, "XLim", [1 dataCutOff]);
-title('New Tool Time Domain');
-xlabel("Sample")
-ylabel("Amplitude (mV)")
-subplot(2,2,3); plot(wornData); ca = gca; ylim = ca.YLim; ca.XLim = [6800 7000];
-title('Worn Tool Time Domain Exerpt');
-xlabel("Sample")
-ylabel("Amplitude (mV)")
-subplot(2,2,4); plot(newData); set(gca, "YLim", ylim, "XLim", [6800 7000]);
-title('New Tool Time Domain Exerpt');
-xlabel("Sample")
-ylabel("Amplitude (mV)")
-
-figure; 
-wDfft = fft(wornData);
-P2 = abs(wDfft/dataCutOff);
-P1 = P2(1:dataCutOff/2+1);
-P1(2:end-1) = 2*P1(2:end-1);
-f = 2500/dataCutOff*(0:(dataCutOff/2));
-
-subplot(1,2,1); plot(f,P1);
-title('Worn Tool Single-Sided Aplitude Spectrum');
-xlabel("f (Hz)")
-ylabel("|A|")
-
-nDfft = fft(newData);
-P2 = abs(nDfft/dataCutOff);
-P1 = P2(1:dataCutOff/2+1);
-P1(2:end-1) = 2*P1(2:end-1);
-
-subplot(1,2,2); plot(f,P1);
-title('New Tool Single-Sided Aplitude Spectrum');
-xlabel("f (Hz)")
-ylabel("|A|")
-
-
-numGroups = dataCutOff/samplesPerGroup;
-
-newData = reshape(newData,[samplesPerGroup,numGroups]);
-wornData = reshape(wornData,[samplesPerGroup,numGroups]);
-
-numObservations = numGroups/numChannels;
-
-if (floor(numObservations)~=numObservations)
-    error("numObservations (calculated: %f) must be an integer!", numObservations);
-end
-
-data = populateData(samplesPerGroup,numChannels,numGroups,newData);
-data = [data;populateData(samplesPerGroup,numChannels,numGroups,wornData)];
-
-labels = ones(numObservations,1);
-labels = string([labels;zeros(numObservations,1)]);
-labels(labels=="0") = "Worn";
-labels(labels=="1") = "New";
-labels = categorical(labels);
-
-numObservations = numObservations*2;
-[idxTrain,idxValidation,idxTest] = trainingPartitions(numObservations, [0.8 0.1 0.1]);
-XTrain = data(idxTrain);
-TTrain = labels(idxTrain);
-
-XValidation = data(idxValidation);
-TValidation = labels(idxValidation);
-
-XTest = data(idxTest);
-TTest = labels(idxTest);
-
-classNames = categories(TTrain);
-numClasses = numel(classNames);
+numFilters = 2; % increased filters for better representation
+numClasses = numel(categories(Y));
 
 layers = [ ...
-    sequenceInputLayer(numChannels)
-    convolution1dLayer(filterSize,numFilters,Padding="causal")
+    sequenceInputLayer(no_channels)
+    convolution1dLayer(4,8,Padding="causal")
     reluLayer
-    %layerNormalizationLayer
-    % convolution1dLayer(filterSize,2*numFilters,Padding="causal")
-    % reluLayer
-    %layerNormalizationLayer
     globalAveragePooling1dLayer
+    fullyConnectedLayer(8)
+    reluLayer
     fullyConnectedLayer(numClasses)
     softmaxLayer];
 
 options = trainingOptions("adam", ...
-    MaxEpochs=60, ...
-    InitialLearnRate=0.01, ...
+    MaxEpochs=200, ...
+    InitialLearnRate=0.001, ...
     SequencePaddingDirection="left", ...
     ValidationData={XValidation,TValidation}, ...
     Plots="training-progress", ...
     Metrics="accuracy", ...
-    Verbose=false);
+    Verbose=false, ...
+    ExecutionEnvironment="gpu");
 
 net = dlnetwork(layers);
 
-%figure;
-%plot(net)
-
 trainedNet = trainnet(XTrain,TTrain,net,"crossentropy",options);
+
 save trainedNet;
 
+%% Evaluate
+
+load trainedNet.mat
+
 scores = minibatchpredict(trainedNet,XTest,SequencePaddingDirection="left");
-YTest = scores2label(scores, classNames);
+YTest = scores2label(scores, categories(Y));
 
-%accuracy = mean(YTest == TTest)
+TP = sum(TTest == "New" & YTest == "New");
+FP = sum(TTest ~= "New" & YTest == "New");
+FN = sum(TTest == "New" & YTest ~= "New");
+TN = sum(TTest ~= "New" & YTest ~= "New");
 
-%% Analyse
+accuracy  = (TP + TN) / (TP + TN + FP + FN);
+precision = TP / (TP + FP);
+recall    = TP / (TP + FN);
+f1_score  = 2 * (precision * recall) / (precision + recall);
 
-TP = sum(TTest == "New" & YTest == "New")
-FP = sum(TTest ~= "New"& YTest == "New")
-FN = sum(TTest == "New"& YTest ~= "New")
-TN = sum(TTest ~= "New" & YTest ~= "New")
+disp("Accuracy: " + accuracy)
+disp("Precision: " + precision)
+disp("Recall: " + recall)
+disp("F1 Score: " + f1_score)
 
-
-accuracy  = (TP + TN) / (TP + TN + FP + FN)
-precision = TP / (TP + FP)
-recall    = TP / (TP + FN)
-f1_score  = 2 * (precision * recall) / (precision + recall)
 figure;
 confusionchart(TTest,YTest)
 
-csvwrite("../weights/latest/conv1d_weights.csv", trainedNet.Learnables.Value{1,1})
-csvwrite("../weights/latest/conv1d_biases.csv", trainedNet.Learnables.Value{2,1})
-csvwrite("../weights/latest/fc_weights.csv", trainedNet.Learnables.Value{3,1})
-csvwrite("../weights/latest/fc_biases.csv", trainedNet.Learnables.Value{4,1})
+%% Save weights
+
+csvwrite("../weights/latest/conv1d_1_weights.csv", trainedNet.Learnables.Value{1,1})
+csvwrite("../weights/latest/conv1d_1_biases.csv", trainedNet.Learnables.Value{2,1})
+
+fc_parameters_1 = trainedNet.Learnables.Value{3,1};
+fc_parameters_1 = [fc_parameters_1, trainedNet.Learnables.Value{4,1}]';
+fc_parameters_1 = reshape(fc_parameters_1, [], 1);
+
+fc_parameters_2 = trainedNet.Learnables.Value{5,1};
+fc_parameters_2 = [fc_parameters_2, trainedNet.Learnables.Value{6,1}]';
+fc_parameters_2 = reshape(fc_parameters_2, [], 1);
+
+csvwrite("../weights/latest/fc_parameters_1.csv", fc_parameters_1);
+csvwrite("../weights/latest/fc_parameters_2.csv", fc_parameters_2);
+
+csvwrite("../weights/latest/fc_3_weights.csv", trainedNet.Learnables.Value{7,1})
+csvwrite("../weights/latest/fc_3_biases.csv", trainedNet.Learnables.Value{8,1})

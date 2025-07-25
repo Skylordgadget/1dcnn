@@ -1,5 +1,5 @@
 Flow report for cnn_vibration_monior_10M08
-Tue May  6 09:31:47 2025
+Tue Jul 22 23:34:34 2025
 Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
 
 
@@ -41,21 +41,21 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------+
 ; Flow Summary                                                                        ;
 +------------------------------------+------------------------------------------------+
-; Flow Status                        ; Successful - Tue May  6 09:31:47 2025          ;
+; Flow Status                        ; Flow Failed - Tue Jul 22 23:34:34 2025         ;
 ; Quartus Prime Version              ; 23.1std.1 Build 993 05/14/2024 SC Lite Edition ;
 ; Revision Name                      ; cnn_vibration_monior_10M08                     ;
 ; Top-level Entity Name              ; cnn_vibration_monitor_10M08                    ;
 ; Family                             ; MAX 10                                         ;
 ; Device                             ; 10M08SAE144I7G                                 ;
 ; Timing Models                      ; Final                                          ;
-; Total logic elements               ; 2,751 / 8,064 ( 34 % )                         ;
-;     Total combinational functions  ; 1,337 / 8,064 ( 17 % )                         ;
-;     Dedicated logic registers      ; 2,651 / 8,064 ( 33 % )                         ;
-; Total registers                    ; 2651                                           ;
+; Total logic elements               ; 25,832 / 8,064 ( 320 % )                       ;
+;     Total combinational functions  ; 1,210 / 8,064 ( 15 % )                         ;
+;     Dedicated logic registers      ; 25,302 / 8,064 ( 314 % )                       ;
+; Total registers                    ; 25302                                          ;
 ; Total pins                         ; 12 / 101 ( 12 % )                              ;
 ; Total virtual pins                 ; 0                                              ;
-; Total memory bits                  ; 576 / 387,072 ( < 1 % )                        ;
-; Embedded Multiplier 9-bit elements ; 46 / 48 ( 96 % )                               ;
+; Total memory bits                  ; 3,600 / 387,072 ( < 1 % )                      ;
+; Embedded Multiplier 9-bit elements ; 24 / 48 ( 50 % )                               ;
 ; Total PLLs                         ; 1 / 1 ( 100 % )                                ;
 ; UFM blocks                         ; 0 / 1 ( 0 % )                                  ;
 ; ADC blocks                         ; 1 / 1 ( 100 % )                                ;
@@ -67,7 +67,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+----------------------------+
 ; Option            ; Setting                    ;
 +-------------------+----------------------------+
-; Start date & time ; 05/06/2025 09:29:58        ;
+; Start date & time ; 07/22/2025 23:33:46        ;
 ; Main task         ; Compilation                ;
 ; Revision Name     ; cnn_vibration_monior_10M08 ;
 +-------------------+----------------------------+
@@ -78,7 +78,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+----------------------------+-----------------------------+-----------------------------------+
 ; Assignment Name                     ; Value                                  ; Default Value              ; Entity Name                 ; Section Id                        ;
 +-------------------------------------+----------------------------------------+----------------------------+-----------------------------+-----------------------------------+
-; COMPILER_SIGNATURE_ID               ; 1097834998868.174652019824416          ; --                         ; --                          ; --                                ;
+; COMPILER_SIGNATURE_ID               ; 1098433145546.175322362633100          ; --                         ; --                          ; --                                ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --                         ; --                          ; eda_board_design_timing           ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --                         ; --                          ; eda_board_design_boundary_scan    ;
 ; EDA_GENERATE_FUNCTIONAL_NETLIST     ; Off                                    ; --                         ; --                          ; eda_board_design_signal_integrity ;
@@ -114,13 +114,9 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:41     ; 1.0                     ; 4926 MB             ; 00:01:04                           ;
-; Fitter               ; 00:00:46     ; 1.5                     ; 6047 MB             ; 00:01:27                           ;
-; Assembler            ; 00:00:02     ; 1.0                     ; 4846 MB             ; 00:00:02                           ;
-; Power Analyzer       ; 00:00:03     ; 2.3                     ; 4936 MB             ; 00:00:07                           ;
-; Timing Analyzer      ; 00:00:04     ; 2.4                     ; 4925 MB             ; 00:00:07                           ;
-; EDA Netlist Writer   ; 00:00:01     ; 1.0                     ; 4688 MB             ; 00:00:01                           ;
-; Total                ; 00:01:37     ; --                      ; --                  ; 00:02:48                           ;
+; Analysis & Synthesis ; 00:00:32     ; 1.0                     ; 5036 MB             ; 00:00:44                           ;
+; Fitter               ; 00:00:14     ; 1.0                     ; 5779 MB             ; 00:00:14                           ;
+; Total                ; 00:00:46     ; --                      ; --                  ; 00:00:58                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -129,12 +125,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+------------------+------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; harry_laptop     ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; harry_laptop     ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler            ; harry_laptop     ; Windows 10 ; 10.0       ; x86_64         ;
-; Power Analyzer       ; harry_laptop     ; Windows 10 ; 10.0       ; x86_64         ;
-; Timing Analyzer      ; harry_laptop     ; Windows 10 ; 10.0       ; x86_64         ;
-; EDA Netlist Writer   ; harry_laptop     ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Synthesis ; Harry-Main       ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; Harry-Main       ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 
@@ -143,10 +135,6 @@ https://fpgasoftware.intel.com/eula.
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off cnn_vibration_monior_10M08 -c cnn_vibration_monior_10M08
 quartus_fit --read_settings_files=off --write_settings_files=off cnn_vibration_monior_10M08 -c cnn_vibration_monior_10M08
-quartus_asm --read_settings_files=off --write_settings_files=off cnn_vibration_monior_10M08 -c cnn_vibration_monior_10M08
-quartus_pow --read_settings_files=off --write_settings_files=off cnn_vibration_monior_10M08 -c cnn_vibration_monior_10M08
-quartus_sta cnn_vibration_monior_10M08 -c cnn_vibration_monior_10M08
-quartus_eda --read_settings_files=off --write_settings_files=off cnn_vibration_monior_10M08 -c cnn_vibration_monior_10M08
 
 
 

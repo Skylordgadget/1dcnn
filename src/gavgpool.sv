@@ -58,7 +58,7 @@ module gavgpool (
     logic [ACCUMULATOR_WIDTH-1:0]   accum_data_out, accum_data_out_shift;
 
     // accumulator
-    accum #(
+    accum_single_sample #(
         .DATA_WIDTH         (DATA_WIDTH), 
         .POOL_SIZE          (POOL_SIZE)
     ) accumulator (

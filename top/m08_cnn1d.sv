@@ -12,35 +12,27 @@ module m08_cnn1d (
     cnn_data_in,
 
     cnn_ready_out,
-    cnn_condition,
-
-    // LOGIC ANALYSER SIGNALS
-
-    v_ready,
-    v_valid,
-
-    r_ready,
-    r_valid,
-
-    cnn_valid
+    cnn_valid_out,
+    cnn_condition
 );
     import cnn1d_pkg::*;
 
-    parameter DATA_WIDTH = 32;
+    parameter DATA_WIDTH = 24;
     parameter CONV_WEIGHTS_INIT_FILE = "";
     parameter CONV_BIASES_INIT_FILE = "";
     parameter NUM_FILTERS = 2;
     parameter FILTER_SIZE = 5;
     parameter PIPE_WIDTH = 4;
-    parameter FRACTION = 16; // position of the decimal point from the right 
+    parameter FRACTION = 12; // position of the decimal point from the right 
     parameter POOL_SIZE = 256;
-    parameter NEURON_WEIGHTS_INIT_FILE = "";
-    parameter NEURON_BIASES_INIT_FILE = "";
-    parameter NUM_NEURONS = 2;
-    parameter SUBSAMPLE_FACTOR = 400;
-    parameter ADC_REF = 2500;
-    parameter SCALE_FACTOR = 32'h00000400;
-    parameter BIAS = 0;
+    parameter SUBSAMPLE_FACTOR = 250;
+
+    parameter FC_1_INPUTS   = 129;
+    parameter FC_1_NEURONS  = 8;
+    parameter FC_1_PARAMS   = "";
+    parameter FC_2_INPUTS   = 8;
+    parameter FC_2_NEURONS  = 4;
+    parameter FC_2_PARAMS   = "";
 
     localparam NUM_INPUTS = NUM_FILTERS;
     localparam NUM_POOLS = NUM_INPUTS;
@@ -69,19 +61,15 @@ module m08_cnn1d (
 
     output logic cnn_ready_in;
     input logic cnn_valid_in;
-    input logic [ADC_WIDTH-1:0] cnn_data_in;
+    input logic [ADC_WIDTH-1:0] cnn_data_in [0:1];
 
-    output logic cnn_condition;
     input logic cnn_ready_out;
+    output logic cnn_valid_out;
+    output logic cnn_condition;
 
-    output logic v_ready;
-    output logic v_valid;
-    output logic r_ready;
-    output logic r_valid;
-    output logic cnn_valid;
-
-    logic [0:NUM_NEURONS-1] cnn_valid_out;
-    logic [DATA_WIDTH-1:0]  cnn_data_out [0:NUM_NEURONS-1];
+    logic                   conv1d_layer_ready_in;
+    logic                   conv1d_layer_valid_in;
+    logic [DATA_WIDTH-1:0]  conv1d_layer_data_in;
 
     logic                   conv1d_layer_ready_out;
     logic [NUM_FILTERS-1:0] conv1d_layer_valid_out;
@@ -95,13 +83,27 @@ module m08_cnn1d (
     logic [NUM_POOLS-1:0]   gavgpool_layer_valid_out;
     logic [DATA_WIDTH-1:0]  gavgpool_layer_data_out [0:NUM_POOLS-1];
 
-    logic                   subsample_ready_out;
-    logic                   subsample_valid_out;
-    logic [ADC_WIDTH-1:0]   subsample_data_out; 
+    logic                   p2s_ready_out;
+    logic                   p2s_valid_out;
+    logic [DATA_WIDTH-1:0]  p2s_serial_out;
 
-    logic                   voltage_ready_out;
-    logic                   voltage_valid_out;
-    logic [DATA_WIDTH-1:0]  voltage_data_out;
+    logic                   fc_1_ready_out;
+    logic                   fc_1_valid_out;
+    logic [DATA_WIDTH-1:0]  fc_1_data_out;    
+
+    logic                   fc_2_ready_out;
+    logic                   fc_2_valid_out;
+    logic [DATA_WIDTH-1:0]  fc_2_data_out;    
+
+    logic                   s2p_ready_out;
+    logic                   s2p_valid_out;
+    logic [DATA_WIDTH-1:0]  s2p_parallel_out [0:FC_2_NEURONS-1];
+
+    logic                   subsample_ch1_ready_in, subsample_ch3_ready_in;
+    logic                   subsample_ch1_ready_out, subsample_ch3_ready_out;
+    logic                   subsample_ch1_valid_out, subsample_ch3_valid_out;
+    logic [ADC_WIDTH-1:0]   subsample_ch1_data_out, subsample_ch3_data_out; 
+    logic [ADC_WIDTH-1:0]   ch1_ch3_diff;
 
     // synthesis translate_off
     typedef enum {
@@ -111,50 +113,46 @@ module m08_cnn1d (
 
     condition_t tool_condition;
     // synthesis translate_on
-
-    assign v_ready = voltage_ready_out;
-    assign v_valid = voltage_valid_out;
-
-    assign r_ready = relu_layer_ready_out;
-    assign r_valid = relu_layer_valid_out;
-
-    assign cnn_valid = cnn_valid_out;
+	 
+    assign cnn_ready_in = subsample_ch1_ready_in & subsample_ch3_ready_in;
 
     subsample #(
         .DATA_WIDTH             (ADC_WIDTH), 
         .SUBSAMPLE_FACTOR       (SUBSAMPLE_FACTOR)
-    ) subsample (
+    ) subsample_ch1 (
         .clk                    (clk),
         .rst                    (rst),
 
-        .subsample_ready_in     (cnn_ready_in),
+        .subsample_ready_in     (subsample_ch1_ready_in),
         .subsample_valid_in     (cnn_valid_in),
-        .subsample_data_in      (cnn_data_in),
+        .subsample_data_in      (cnn_data_in[0]),
 
-        .subsample_ready_out    (subsample_ready_out),
-        .subsample_valid_out    (subsample_valid_out),
-        .subsample_data_out     (subsample_data_out)
+        .subsample_ready_out    (subsample_ch1_ready_out),
+        .subsample_valid_out    (subsample_ch1_valid_out),
+        .subsample_data_out     (subsample_ch1_data_out)
     );    
 
-    adc2v #(
-        .DATA_WIDTH             (DATA_WIDTH),
-        .FRACTION               (FRACTION),
-        .PIPE_WIDTH             (PIPE_WIDTH),
-        .ADC_REF                (ADC_REF),
-        .SCALE_FACTOR           (SCALE_FACTOR),
-        .BIAS                   (BIAS)
-    ) adc2v (
+    subsample #(
+        .DATA_WIDTH             (ADC_WIDTH), 
+        .SUBSAMPLE_FACTOR       (SUBSAMPLE_FACTOR)
+    ) subsample_ch3 (
         .clk                    (clk),
         .rst                    (rst),
 
-        .adc_ready_in           (subsample_ready_out),
-        .adc_valid_in           (subsample_valid_out),
-        .adc_data_in            (subsample_data_out),
+        .subsample_ready_in     (subsample_ch3_ready_in),
+        .subsample_valid_in     (cnn_valid_in),
+        .subsample_data_in      (cnn_data_in[1]),
 
-        .voltage_ready_out      (voltage_ready_out),
-        .voltage_valid_out      (voltage_valid_out),
-        .voltage_data_out       (voltage_data_out)
-    );
+        .subsample_ready_out    (subsample_ch3_ready_out),
+        .subsample_valid_out    (subsample_ch3_valid_out),
+        .subsample_data_out     (subsample_ch3_data_out)
+    );   
+
+    assign subsample_ch1_ready_out = conv1d_layer_ready_in;
+    assign subsample_ch3_ready_out = conv1d_layer_ready_in;
+    assign conv1d_layer_valid_in = subsample_ch1_valid_out & subsample_ch3_valid_out;
+    assign ch1_ch3_diff = subsample_ch1_data_out - subsample_ch3_data_out;
+    assign conv1d_layer_data_in = {ch1_ch3_diff, {FRACTION{1'b0}}};
 
     conv1d_layer #(
         .DATA_WIDTH             (DATA_WIDTH),
@@ -168,9 +166,9 @@ module m08_cnn1d (
         .clk                    (clk),
         .rst                    (rst),
 
-        .conv1d_layer_ready_in  (voltage_ready_out),
-        .conv1d_layer_valid_in  (voltage_valid_out),
-        .conv1d_layer_data_in   (voltage_data_out),
+        .conv1d_layer_ready_in  (conv1d_layer_ready_in),
+        .conv1d_layer_valid_in  (conv1d_layer_valid_in),
+        .conv1d_layer_data_in   (conv1d_layer_data_in),
 
         .conv1d_layer_ready_out (conv1d_layer_ready_out),
         .conv1d_layer_valid_out (conv1d_layer_valid_out),
@@ -212,33 +210,88 @@ module m08_cnn1d (
         .gavgpool_layer_data_out    (gavgpool_layer_data_out)
     );
 
-    neuron_layer #(
-        .DATA_WIDTH             (DATA_WIDTH),
-        .WEIGHTS_INIT_FILE      (NEURON_WEIGHTS_INIT_FILE),
-        .BIASES_INIT_FILE       (NEURON_BIASES_INIT_FILE),
-        .NUM_NEURONS            (NUM_NEURONS),
-        .NEURON_INPUTS          (NEURON_INPUTS),
-        .PIPE_WIDTH             (PIPE_WIDTH),
-        .FRACTION               (FRACTION)
-    ) neuron_layer (
-        .clk                    (clk),
-        .rst                    (rst),
+    p2s #(
+        .DATA_WIDTH     (DATA_WIDTH),
+        .NUM_ELEMENTS   (NUM_POOLS)
+    ) p2s (
+        .clk    (clk),
+        .rst    (rst),
+        
+        .p2s_ready_in       (gavgpool_layer_ready_out),
+        .p2s_valid_in       (&gavgpool_layer_valid_out),
+        .p2s_parallel_in    (gavgpool_layer_data_out),
 
-        .neuron_layer_ready_in  (gavgpool_layer_ready_out),
-        .neuron_layer_valid_in  (gavgpool_layer_valid_out),
-        .neuron_layer_data_in   (gavgpool_layer_data_out),
-
-        .neuron_layer_ready_out (cnn_ready_out),
-        .neuron_layer_valid_out (cnn_valid_out),
-        .neuron_layer_data_out  (cnn_data_out)
+        .p2s_ready_out      (p2s_ready_out),
+        .p2s_valid_out      (p2s_valid_out),
+        .p2s_serial_out     (p2s_serial_out)
     );
+
+    nrn_layer #(
+        .DATA_WIDTH         (DATA_WIDTH),
+        .PARAMS_INIT_FILE   (FC_1_PARAMS),
+        .NUM_NEURONS        (FC_1_NEURONS),
+        .NEURON_INPUTS      (FC_1_INPUTS),
+        .PIPE_WIDTH         (PIPE_WIDTH),
+        .FRACTION           (FRACTION)
+    ) fc_1 (
+        .clk    (clk),
+        .rst    (rst),
+
+        .nrn_layer_ready_in   (p2s_ready_out),
+        .nrn_layer_valid_in   (p2s_valid_out),
+        .nrn_layer_data_in    (p2s_serial_out),
+
+        .nrn_layer_ready_out  (fc_1_ready_out),
+        .nrn_layer_valid_out  (fc_1_valid_out),
+        .nrn_layer_data_out   (fc_1_data_out)
+    );
+
+    nrn_layer #(
+        .DATA_WIDTH         (DATA_WIDTH),
+        .PARAMS_INIT_FILE   (FC_2_PARAMS),
+        .NUM_NEURONS        (FC_2_NEURONS),
+        .NEURON_INPUTS      (FC_2_INPUTS),
+        .PIPE_WIDTH         (PIPE_WIDTH),
+        .FRACTION           (FRACTION)
+    ) fc_2 (
+        .clk    (clk),
+        .rst    (rst),
+
+        .nrn_layer_ready_in   (fc_1_ready_out),
+        .nrn_layer_valid_in   (fc_1_valid_out),
+        .nrn_layer_data_in    (fc_1_data_out),
+
+        .nrn_layer_ready_out  (fc_2_ready_out),
+        .nrn_layer_valid_out  (fc_2_valid_out),
+        .nrn_layer_data_out   (fc_2_data_out)
+    );
+
+    s2p #(
+        .DATA_WIDTH         (DATA_WIDTH),
+        .NUM_ELEMENTS       (FC_2_NEURONS)
+    ) s2p (
+        .clk    (clk),
+        .rst    (rst),
+
+        .s2p_ready_in       (fc_2_ready_out),
+        .s2p_valid_in       (fc_2_valid_out),
+        .s2p_serial_in      (fc_2_data_out),
+
+        .s2p_ready_out      (s2p_ready_out),
+        .s2p_valid_out      (s2p_valid_out),
+        .s2p_parallel_out   (s2p_parallel_out)
+    );
+
+    assign s2p_ready_out = cnn_ready_out;
 
     always_ff @(posedge clk) begin
         if (rst) begin
             cnn_condition <= 1'b0;
+            cnn_valid_out <= 1'b0;
         end else begin
-            if (cnn_valid_out && cnn_ready_out) begin
-                cnn_condition <= signed'(cnn_data_out[0]) < signed'(cnn_data_out[1]);
+            cnn_valid_out <= s2p_valid_out;
+            if (s2p_valid_out && s2p_ready_out) begin
+                cnn_condition <= signed'(s2p_parallel_out[0]) < signed'(s2p_parallel_out[1]);
             end
         end
     end
