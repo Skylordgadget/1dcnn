@@ -1,12 +1,12 @@
-Analysis & Synthesis Status : Successful - Tue Jul 22 23:34:19 2025
+Analysis & Synthesis Status : Successful - Wed Jul 23 15:58:17 2025
 Quartus Prime Version : 23.1std.1 Build 993 05/14/2024 SC Lite Edition
 Revision Name : cnn_vibration_monior_10M08
 Top-level Entity Name : cnn_vibration_monitor_10M08
 Family : MAX 10
-Total logic elements : 25,831
-    Total combinational functions : 1,209
-    Dedicated logic registers : 25,302
-Total registers : 25302
+Total logic elements : 2,228
+    Total combinational functions : 1,161
+    Dedicated logic registers : 1,758
+Total registers : 1758
 Total pins : 12
 Total virtual pins : 0
 Total memory bits : 3,600

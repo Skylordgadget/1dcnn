@@ -1,16 +1,16 @@
-Analysis & Synthesis Status : Successful - Mon Oct 14 11:30:06 2024
+Analysis & Synthesis Status : Successful - Fri Jul 25 21:06:53 2025
 Quartus Prime Version : 23.1std.1 Build 993 05/14/2024 SC Lite Edition
 Revision Name : cnn_vibration_monitor_10M50
 Top-level Entity Name : cnn_vibration_monitor_10M50
 Family : MAX 10
-Total logic elements : 9,524
-    Total combinational functions : 4,343
-    Dedicated logic registers : 7,809
-Total registers : 7809
-Total pins : 10
+Total logic elements : 26,156
+    Total combinational functions : 1,318
+    Dedicated logic registers : 25,510
+Total registers : 25510
+Total pins : 12
 Total virtual pins : 0
-Total memory bits : 444,480
-Embedded Multiplier 9-bit elements : 94
+Total memory bits : 2,448
+Embedded Multiplier 9-bit elements : 24
 Total PLLs : 1
 UFM blocks : 0
 ADC blocks : 1

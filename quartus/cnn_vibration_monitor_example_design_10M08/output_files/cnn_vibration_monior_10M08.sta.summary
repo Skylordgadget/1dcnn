@@ -3,19 +3,19 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 100C Model Setup 'u0|altpll_0|sd1|pll7|clk[1]'
-Slack : 3.437
+Slack : 1.997
 TNS   : 0.000
 
 Type  : Slow 1200mV 100C Model Hold 'u0|altpll_0|sd1|pll7|clk[1]'
-Slack : 0.346
+Slack : 0.272
 TNS   : 0.000
 
 Type  : Slow 1200mV 100C Model Recovery 'u0|altpll_0|sd1|pll7|clk[1]'
-Slack : 7.066
+Slack : 6.708
 TNS   : 0.000
 
 Type  : Slow 1200mV 100C Model Removal 'u0|altpll_0|sd1|pll7|clk[1]'
-Slack : 1.044
+Slack : 0.951
 TNS   : 0.000
 
 Type  : Slow 1200mV 100C Model Minimum Pulse Width 'u0|altpll_0|sd1|pll7|clk[1]'
@@ -31,19 +31,19 @@ Slack : 44.574
 TNS   : 0.000
 
 Type  : Slow 1200mV -40C Model Setup 'u0|altpll_0|sd1|pll7|clk[1]'
-Slack : 4.282
+Slack : 2.930
 TNS   : 0.000
 
 Type  : Slow 1200mV -40C Model Hold 'u0|altpll_0|sd1|pll7|clk[1]'
-Slack : 0.296
+Slack : 0.266
 TNS   : 0.000
 
 Type  : Slow 1200mV -40C Model Recovery 'u0|altpll_0|sd1|pll7|clk[1]'
-Slack : 7.331
+Slack : 6.997
 TNS   : 0.000
 
 Type  : Slow 1200mV -40C Model Removal 'u0|altpll_0|sd1|pll7|clk[1]'
-Slack : 0.939
+Slack : 0.819
 TNS   : 0.000
 
 Type  : Slow 1200mV -40C Model Minimum Pulse Width 'u0|altpll_0|sd1|pll7|clk[1]'
@@ -59,19 +59,19 @@ Slack : 44.633
 TNS   : 0.000
 
 Type  : Fast 1200mV -40C Model Setup 'u0|altpll_0|sd1|pll7|clk[1]'
-Slack : 7.240
+Slack : 6.675
 TNS   : 0.000
 
 Type  : Fast 1200mV -40C Model Hold 'u0|altpll_0|sd1|pll7|clk[1]'
-Slack : 0.144
+Slack : 0.105
 TNS   : 0.000
 
 Type  : Fast 1200mV -40C Model Recovery 'u0|altpll_0|sd1|pll7|clk[1]'
-Slack : 8.608
+Slack : 8.436
 TNS   : 0.000
 
 Type  : Fast 1200mV -40C Model Removal 'u0|altpll_0|sd1|pll7|clk[1]'
-Slack : 0.438
+Slack : 0.392
 TNS   : 0.000
 
 Type  : Fast 1200mV -40C Model Minimum Pulse Width 'u0|altpll_0|sd1|pll7|clk[1]'

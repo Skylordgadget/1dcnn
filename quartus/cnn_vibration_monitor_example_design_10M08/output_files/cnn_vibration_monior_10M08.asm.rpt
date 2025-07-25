@@ -1,5 +1,5 @@
 Assembler report for cnn_vibration_monior_10M08
-Tue May  6 09:31:34 2025
+Wed Jul 23 15:58:29 2025
 Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
 
 
@@ -10,7 +10,7 @@ Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/Users/harry/OneDrive - University of Bath/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/output_files/cnn_vibration_monior_10M08.sof
+  5. Assembler Device Options: E:/UoB/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/output_files/cnn_vibration_monior_10M08.sof
   6. Assembler Messages
 
 
@@ -38,7 +38,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Tue May  6 09:31:34 2025 ;
+; Assembler Status      ; Successful - Wed Jul 23 15:58:29 2025 ;
 ; Revision Name         ; cnn_vibration_monior_10M08            ;
 ; Top-level Entity Name ; cnn_vibration_monitor_10M08           ;
 ; Family                ; MAX 10                                ;
@@ -84,23 +84,23 @@ https://fpgasoftware.intel.com/eula.
 +-----------------------------------------------------------------------------+----------------+----------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Assembler Generated Files                                                                                                                                ;
-+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; File Name                                                                                                                                                ;
-+----------------------------------------------------------------------------------------------------------------------------------------------------------+
-; C:/Users/harry/OneDrive - University of Bath/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/output_files/cnn_vibration_monior_10M08.sof ;
-+----------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------+
+; Assembler Generated Files                                                                                          ;
++--------------------------------------------------------------------------------------------------------------------+
+; File Name                                                                                                          ;
++--------------------------------------------------------------------------------------------------------------------+
+; E:/UoB/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/output_files/cnn_vibration_monior_10M08.sof ;
++--------------------------------------------------------------------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/Users/harry/OneDrive - University of Bath/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/output_files/cnn_vibration_monior_10M08.sof ;
-+----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Option         ; Setting                                                                                                                                                           ;
-+----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; JTAG usercode  ; 0x0020246C                                                                                                                                                        ;
-; Checksum       ; 0x0020246C                                                                                                                                                        ;
-+----------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Assembler Device Options: E:/UoB/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/output_files/cnn_vibration_monior_10M08.sof ;
++----------------+-----------------------------------------------------------------------------------------------------------------------------+
+; Option         ; Setting                                                                                                                     ;
++----------------+-----------------------------------------------------------------------------------------------------------------------------+
+; JTAG usercode  ; 0x0019DD87                                                                                                                  ;
+; Checksum       ; 0x0019DD87                                                                                                                  ;
++----------------+-----------------------------------------------------------------------------------------------------------------------------+
 
 
 +--------------------+
@@ -109,7 +109,7 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
-    Info: Processing started: Tue May  6 09:31:32 2025
+    Info: Processing started: Wed Jul 23 15:58:28 2025
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off cnn_vibration_monior_10M08 -c cnn_vibration_monior_10M08
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (332164): Evaluating HDL-embedded SDC commands
@@ -117,14 +117,14 @@ Info (332164): Evaluating HDL-embedded SDC commands
         Info (332166): set_false_path -to [get_keepers {*altera_std_synchronizer:*|din_s1}]
 Info (332104): Reading SDC File: 'cnn_vibration_monior_10M08.sdc'
 Info (332151): Clock uncertainty is not calculated until you update the timing netlist.
-Warning (332174): Ignored filter at cnn_vibration_monior_10M08.sdc(3): led could not be matched with a port File: C:/Users/harry/OneDrive - University of Bath/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/cnn_vibration_monior_10M08.sdc Line: 3
-Warning (332049): Ignored set_false_path at cnn_vibration_monior_10M08.sdc(3): Argument <to> is an empty collection File: C:/Users/harry/OneDrive - University of Bath/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/cnn_vibration_monior_10M08.sdc Line: 3
-    Info (332050): set_false_path -from {m10_cnn1d:cnn1d|cnn_condition} -to [get_ports {led}] File: C:/Users/harry/OneDrive - University of Bath/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/cnn_vibration_monior_10M08.sdc Line: 3
+Warning (332174): Ignored filter at cnn_vibration_monior_10M08.sdc(3): led could not be matched with a port File: E:/UoB/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/cnn_vibration_monior_10M08.sdc Line: 3
+Warning (332049): Ignored set_false_path at cnn_vibration_monior_10M08.sdc(3): Argument <to> is an empty collection File: E:/UoB/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/cnn_vibration_monior_10M08.sdc Line: 3
+    Info (332050): set_false_path -from {m10_cnn1d:cnn1d|cnn_condition} -to [get_ports {led}] File: E:/UoB/VibeAI/1dcnn/quartus/cnn_vibration_monitor_example_design_10M08/cnn_vibration_monior_10M08.sdc Line: 3
 Info (332110): Deriving PLL clocks
     Info (332110): create_generated_clock -source {u0|altpll_0|sd1|pll7|inclk[0]} -divide_by 5 -duty_cycle 50.00 -name {u0|altpll_0|sd1|pll7|clk[0]} {u0|altpll_0|sd1|pll7|clk[0]}
     Info (332110): create_generated_clock -source {u0|altpll_0|sd1|pll7|inclk[0]} -multiply_by 2 -duty_cycle 50.00 -name {u0|altpll_0|sd1|pll7|clk[1]} {u0|altpll_0|sd1|pll7|clk[1]}
-Info (332104): Reading SDC File: 'c:/users/harry/onedrive - university of bath/vibeai/1dcnn/quartus/cnn_vibration_monitor_example_design_10m08/db/ip/adc/submodules/altera_modular_adc_control.sdc'
-Info (332104): Reading SDC File: 'c:/users/harry/onedrive - university of bath/vibeai/1dcnn/quartus/cnn_vibration_monitor_example_design_10m08/db/ip/adc/submodules/altera_reset_controller.sdc'
+Info (332104): Reading SDC File: 'e:/uob/vibeai/1dcnn/quartus/cnn_vibration_monitor_example_design_10m08/db/ip/adc/submodules/altera_modular_adc_control.sdc'
+Info (332104): Reading SDC File: 'e:/uob/vibeai/1dcnn/quartus/cnn_vibration_monitor_example_design_10m08/db/ip/adc/submodules/altera_reset_controller.sdc'
 Info (332097): The following timing edges are non-unate.  The Timing Analyzer will assume pos-unate behavior for these edges in the clock network.
     Info (332098): From: u0|modular_adc_0|control_internal|adc_inst|adcblock_instance|primitive_instance|clkin_from_pll_c0  to: adc:u0|adc_modular_adc_0:modular_adc_0|altera_modular_adc_control:control_internal|fiftyfivenm_adcblock_top_wrapper:adc_inst|fiftyfivenm_adcblock_primitive_wrapper:adcblock_instance|eoc
 Info (332123): Deriving Clock Uncertainty. Please refer to report_sdc in the Timing Analyzer to see clock uncertainties.
@@ -140,9 +140,9 @@ Info (223001): Completed Vectorless Power Activity Estimation
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 3 warnings
-    Info: Peak virtual memory: 4846 megabytes
-    Info: Processing ended: Tue May  6 09:31:35 2025
-    Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:02
+    Info: Peak virtual memory: 4805 megabytes
+    Info: Processing ended: Wed Jul 23 15:58:29 2025
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
 
 

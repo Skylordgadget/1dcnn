@@ -1,5 +1,5 @@
 Info: Starting: Create HDL design files for synthesis
-Info: qsys-generate "C:\Users\harry\OneDrive - University of Bath\VibeAI\1dcnn\quartus\cnn_vibration_monitor_example_design_10M50\adc.qsys" --synthesis=VERILOG --output-directory="C:\Users\harry\OneDrive - University of Bath\VibeAI\1dcnn\quartus\cnn_vibration_monitor_example_design_10M50\adc\synthesis" --family="MAX 10" --part=10M50DAF484C6GES
+Info: qsys-generate E:\UoB\VibeAI\1dcnn\quartus\cnn_vibration_monitor_example_design_10M50\adc.qsys --synthesis=VERILOG --output-directory=E:\UoB\VibeAI\1dcnn\quartus\cnn_vibration_monitor_example_design_10M50\adc\synthesis --family="MAX 10" --part=10M50DAF484C6GES
 Progress: Loading cnn_vibration_monitor_example_design_10M50/adc.qsys
 Progress: Reading input file
 Progress: Adding altpll_0 [altpll 23.1]

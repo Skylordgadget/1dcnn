@@ -75,9 +75,12 @@ parser.add_argument('--filenames', metavar='F', type=str, nargs='+', default=["c
 args = parser.parse_args()
 int_bits = args.int_bits
 frac_bits = args.frac_bits
+in_filepath = args.in_filepath
+out_filepath = args.out_filepath
+filenames = args.filenames
 
-for filename in args.filenames:
-    with open(args.in_filepath + filename + ".csv", newline='') as file:
+for filename in filenames:
+    with open(in_filepath + filename + ".csv", newline='') as file:
         reader = csv.reader(file)
         res = list(map(tuple, reader))
 
@@ -99,7 +102,7 @@ for filename in args.filenames:
         intel_hex.append(int_to_intel_hex(ints,totalbits//4,i))
     intel_hex.append(":00000001FF")
 
-    with open(args.out_filepath[0] + filename + "_{0}I{1}F".format(int_bits, frac_bits) + ".hex", 'w') as file:
+    with open(out_filepath + filename + "_{0}I{1}F".format(int_bits, frac_bits) + ".hex", 'w') as file:
         file.writelines(intel_hex)
 
  

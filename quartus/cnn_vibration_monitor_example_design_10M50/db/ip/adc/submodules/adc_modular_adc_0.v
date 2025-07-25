@@ -51,7 +51,7 @@ module adc_modular_adc_0 #(
 		.refsel                          (0),
 		.device_partname_fivechar_prefix ("10M50"),
 		.is_this_first_or_second_adc     (1),
-		.analog_input_pin_mask           (1),
+		.analog_input_pin_mask           (3),
 		.dual_adc_mode                   (0),
 		.enable_usr_sim                  (0),
 		.reference_voltage_sim           (49648),
