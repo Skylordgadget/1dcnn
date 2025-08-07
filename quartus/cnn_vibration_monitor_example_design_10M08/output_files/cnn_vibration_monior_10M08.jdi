@@ -1,6 +1,6 @@
 <sld_project_info>
   <project>
-    <hash md5_digest_80b="f6d2d66604f3611c7a14"/>
+    <hash md5_digest_80b="5815559e10e836f2ea45"/>
   </project>
   <file_info>
     <file device="10M08SAE144I7G" path="cnn_vibration_monior_10M08.sof" usercode="0xFFFFFFFF"/>
@@ -8,7 +8,7 @@
   <sld_infos>
     <sld_info hpath="adc:u0" name="u0">
       <assignment_values>
-        <assignment_value text="QSYS_NAME adc HAS_SOPCINFO 1 GENERATION_ID 1753282690"/>
+        <assignment_value text="QSYS_NAME adc HAS_SOPCINFO 1 GENERATION_ID 1754573716"/>
       </assignment_values>
       <parameters/>
     </sld_info>

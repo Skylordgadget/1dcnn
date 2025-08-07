@@ -1,5 +1,5 @@
 Analysis & Synthesis report for cnn_vibration_monior_10M08
-Wed Jul 23 15:58:17 2025
+Thu Aug  7 14:35:22 2025
 Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
 
 
@@ -150,7 +150,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                        ;
 +------------------------------------+------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Jul 23 15:58:17 2025          ;
+; Analysis & Synthesis Status        ; Successful - Thu Aug  7 14:35:22 2025          ;
 ; Quartus Prime Version              ; 23.1std.1 Build 993 05/14/2024 SC Lite Edition ;
 ; Revision Name                      ; cnn_vibration_monior_10M08                     ;
 ; Top-level Entity Name              ; cnn_vibration_monitor_10M08                    ;
@@ -3585,24 +3585,24 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
-    Info: Processing started: Wed Jul 23 15:58:02 2025
+    Info: Processing started: Thu Aug  7 14:35:09 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off cnn_vibration_monior_10M08 -c cnn_vibration_monior_10M08
 Info (16303): Aggressive Power optimization mode selected -- dynamic power will be prioritized at the potential cost of reduced timing performance and increased compilation time
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20032): Parallel compilation is enabled and will use up to 8 processors
 Info (12248): Elaborating Platform Designer system entity "adc.qsys"
-Info (12250): 2025.07.23.15:58:08 Progress: Loading cnn_vibration_monitor_example_design_10M08/adc.qsys
-Info (12250): 2025.07.23.15:58:08 Progress: Reading input file
-Info (12250): 2025.07.23.15:58:08 Progress: Adding altpll_0 [altpll 23.1]
-Info (12250): 2025.07.23.15:58:08 Progress: Parameterizing module altpll_0
-Info (12250): 2025.07.23.15:58:08 Progress: Adding clk_0 [clock_source 23.1]
-Info (12250): 2025.07.23.15:58:08 Progress: Parameterizing module clk_0
-Info (12250): 2025.07.23.15:58:08 Progress: Adding modular_adc_0 [altera_modular_adc 23.1]
-Info (12250): 2025.07.23.15:58:09 Progress: Parameterizing module modular_adc_0
-Info (12250): 2025.07.23.15:58:09 Progress: Building connections
-Info (12250): 2025.07.23.15:58:09 Progress: Parameterizing connections
-Info (12250): 2025.07.23.15:58:09 Progress: Validating
-Info (12250): 2025.07.23.15:58:09 Progress: Done reading input file
+Info (12250): 2025.08.07.14:35:14 Progress: Loading cnn_vibration_monitor_example_design_10M08/adc.qsys
+Info (12250): 2025.08.07.14:35:15 Progress: Reading input file
+Info (12250): 2025.08.07.14:35:15 Progress: Adding altpll_0 [altpll 23.1]
+Info (12250): 2025.08.07.14:35:15 Progress: Parameterizing module altpll_0
+Info (12250): 2025.08.07.14:35:15 Progress: Adding clk_0 [clock_source 23.1]
+Info (12250): 2025.08.07.14:35:15 Progress: Parameterizing module clk_0
+Info (12250): 2025.08.07.14:35:15 Progress: Adding modular_adc_0 [altera_modular_adc 23.1]
+Info (12250): 2025.08.07.14:35:15 Progress: Parameterizing module modular_adc_0
+Info (12250): 2025.08.07.14:35:15 Progress: Building connections
+Info (12250): 2025.08.07.14:35:15 Progress: Parameterizing connections
+Info (12250): 2025.08.07.14:35:15 Progress: Validating
+Info (12250): 2025.08.07.14:35:16 Progress: Done reading input file
 Info (12250): Adc: Generating adc "adc" for QUARTUS_SYNTH
 Info (12250): Altpll_0: "adc" instantiated altpll "altpll_0"
 Info (12250): Modular_adc_0: "adc" instantiated altera_modular_adc "modular_adc_0"
@@ -3914,10 +3914,10 @@ Info (21057): Implemented 2674 device resources after synthesis - the final reso
     Info (21065): Implemented 1 PLLs
     Info (21062): Implemented 24 DSP elements
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 20 warnings
-    Info: Peak virtual memory: 4881 megabytes
-    Info: Processing ended: Wed Jul 23 15:58:17 2025
-    Info: Elapsed time: 00:00:15
-    Info: Total CPU time (on all processors): 00:00:28
+    Info: Peak virtual memory: 4887 megabytes
+    Info: Processing ended: Thu Aug  7 14:35:22 2025
+    Info: Elapsed time: 00:00:13
+    Info: Total CPU time (on all processors): 00:00:26
 
 
 +------------------------------------------+

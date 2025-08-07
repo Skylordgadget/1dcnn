@@ -1,5 +1,5 @@
 Timing Analyzer report for cnn_vibration_monior_10M08
-Wed Jul 23 15:58:33 2025
+Thu Aug  7 14:35:36 2025
 Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
 
 
@@ -93,15 +93,15 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 24          ;
 ; Maximum allowed            ; 8           ;
 ;                            ;             ;
-; Average used               ; 1.82        ;
+; Average used               ; 1.80        ;
 ; Maximum used               ; 8           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;  13.6%      ;
-;     Processor 3            ;  11.9%      ;
-;     Processor 4            ;  11.6%      ;
-;     Processors 5-8         ;  11.3%      ;
+;     Processor 2            ;  13.0%      ;
+;     Processor 3            ;  11.6%      ;
+;     Processor 4            ;  11.4%      ;
+;     Processors 5-8         ;  11.0%      ;
 +----------------------------+-------------+
 
 
@@ -110,9 +110,9 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------------------------------------------------+--------+--------------------------+
 ; SDC File Path                                                                                                              ; Status ; Read at                  ;
 +----------------------------------------------------------------------------------------------------------------------------+--------+--------------------------+
-; cnn_vibration_monior_10M08.sdc                                                                                             ; OK     ; Wed Jul 23 15:58:32 2025 ;
-; e:/uob/vibeai/1dcnn/quartus/cnn_vibration_monitor_example_design_10m08/db/ip/adc/submodules/altera_modular_adc_control.sdc ; OK     ; Wed Jul 23 15:58:32 2025 ;
-; e:/uob/vibeai/1dcnn/quartus/cnn_vibration_monitor_example_design_10m08/db/ip/adc/submodules/altera_reset_controller.sdc    ; OK     ; Wed Jul 23 15:58:32 2025 ;
+; cnn_vibration_monior_10M08.sdc                                                                                             ; OK     ; Thu Aug  7 14:35:35 2025 ;
+; e:/uob/vibeai/1dcnn/quartus/cnn_vibration_monitor_example_design_10m08/db/ip/adc/submodules/altera_modular_adc_control.sdc ; OK     ; Thu Aug  7 14:35:35 2025 ;
+; e:/uob/vibeai/1dcnn/quartus/cnn_vibration_monitor_example_design_10m08/db/ip/adc/submodules/altera_reset_controller.sdc    ; OK     ; Thu Aug  7 14:35:35 2025 ;
 +----------------------------------------------------------------------------------------------------------------------------+--------+--------------------------+
 
 
@@ -577,7 +577,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
-    Info: Processing started: Wed Jul 23 15:58:32 2025
+    Info: Processing started: Thu Aug  7 14:35:34 2025
 Info: Command: quartus_sta cnn_vibration_monior_10M08 -c cnn_vibration_monior_10M08
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -722,8 +722,8 @@ Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 3 warnings
     Info: Peak virtual memory: 4850 megabytes
-    Info: Processing ended: Wed Jul 23 15:58:33 2025
-    Info: Elapsed time: 00:00:01
+    Info: Processing ended: Thu Aug  7 14:35:36 2025
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 
 

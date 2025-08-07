@@ -1,5 +1,5 @@
 Power Analyzer report for cnn_vibration_monior_10M08
-Wed Jul 23 15:58:31 2025
+Thu Aug  7 14:35:34 2025
 Quartus Prime Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
 
 
@@ -52,19 +52,19 @@ https://fpgasoftware.intel.com/eula.
 ; Number detected on machine ; 24          ;
 ; Maximum allowed            ; 8           ;
 ;                            ;             ;
-; Average used               ; 1.75        ;
+; Average used               ; 1.83        ;
 ; Maximum used               ; 8           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-8         ;  10.8%      ;
+;     Processors 2-8         ;  11.9%      ;
 +----------------------------+-------------+
 
 
 +-------------------------------------------------------------------------------------------+
 ; Power Analyzer Summary                                                                    ;
 +----------------------------------------+--------------------------------------------------+
-; Power Analyzer Status                  ; Successful - Wed Jul 23 15:58:31 2025            ;
+; Power Analyzer Status                  ; Successful - Thu Aug  7 14:35:33 2025            ;
 ; Quartus Prime Version                  ; 23.1std.1 Build 993 05/14/2024 SC Lite Edition   ;
 ; Revision Name                          ; cnn_vibration_monior_10M08                       ;
 ; Top-level Entity Name                  ; cnn_vibration_monitor_10M08                      ;
@@ -340,7 +340,7 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Power Analyzer
     Info: Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition
-    Info: Processing started: Wed Jul 23 15:58:29 2025
+    Info: Processing started: Thu Aug  7 14:35:32 2025
 Info: Command: quartus_pow --read_settings_files=off --write_settings_files=off cnn_vibration_monior_10M08 -c cnn_vibration_monior_10M08
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (21077): Low junction temperature is -40 degrees C
@@ -369,8 +369,8 @@ Info (334004): Delay annotation completed successfully
 Info (215049): Average toggle rate for this design is 15.296 millions of transitions / sec
 Info (215031): Total thermal power estimate for the design is 256.83 mW
 Info: Quartus Prime Power Analyzer was successful. 0 errors, 3 warnings
-    Info: Peak virtual memory: 4912 megabytes
-    Info: Processing ended: Wed Jul 23 15:58:31 2025
+    Info: Peak virtual memory: 4898 megabytes
+    Info: Processing ended: Thu Aug  7 14:35:34 2025
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 

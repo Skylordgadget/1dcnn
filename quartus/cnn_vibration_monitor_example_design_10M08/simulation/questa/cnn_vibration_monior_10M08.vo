@@ -17,7 +17,7 @@
 // PROGRAM "Quartus Prime"
 // VERSION "Version 23.1std.1 Build 993 05/14/2024 SC Lite Edition"
 
-// DATE "07/23/2025 15:58:34"
+// DATE "08/07/2025 14:35:37"
 
 // 
 // Device: Altera 10M08SAE144I7G Package EQFP144
@@ -15146,7 +15146,7 @@ defparam \cnn1d|fc_2|nrn_ram|altsyncram_component|auto_generated|ram_block1a0 .p
 defparam \cnn1d|fc_2|nrn_ram|altsyncram_component|auto_generated|ram_block1a0 .port_b_address_width = 5;
 defparam \cnn1d|fc_2|nrn_ram|altsyncram_component|auto_generated|ram_block1a0 .port_b_data_width = 18;
 defparam \cnn1d|fc_2|nrn_ram|altsyncram_component|auto_generated|ram_block1a0 .ram_block_type = "M9K";
-defparam \cnn1d|fc_2|nrn_ram|altsyncram_component|auto_generated|ram_block1a0 .mem_init0 = 576'h00000000000000000000000000000000000000000000000000000000000000000010002E000E8003D000C8000300000000A00000003C000D80039000300010000A80000000180000;
+defparam \cnn1d|fc_2|nrn_ram|altsyncram_component|auto_generated|ram_block1a0 .mem_init0 = 576'h000000000000000000000000000000000000000000000000000000000000000000300030000000039000000000000000000000A800340004000000001C000000000000000000002E;
 // synopsys translate_on
 
 // Location: M9K_X26_Y6_N0
@@ -15200,7 +15200,7 @@ defparam \cnn1d|fc_2|nrn_ram|altsyncram_component|auto_generated|ram_block1a6 .p
 defparam \cnn1d|fc_2|nrn_ram|altsyncram_component|auto_generated|ram_block1a6 .port_b_address_width = 5;
 defparam \cnn1d|fc_2|nrn_ram|altsyncram_component|auto_generated|ram_block1a6 .port_b_data_width = 18;
 defparam \cnn1d|fc_2|nrn_ram|altsyncram_component|auto_generated|ram_block1a6 .ram_block_type = "M9K";
-defparam \cnn1d|fc_2|nrn_ram|altsyncram_component|auto_generated|ram_block1a6 .mem_init0 = 576'h000000000000000000000000000000000000000000000000000000000000000FFEF40092FFEF8003DFFE24000400003FFFA000000042FFE5C0040FFE8C00760004800000004C0000;
+defparam \cnn1d|fc_2|nrn_ram|altsyncram_component|auto_generated|ram_block1a6 .mem_init0 = 576'h00000000000000000000000000000000000000000000000000000000000000000040002100003FFDD000000000000000000FFF03FFEFFFF780000000880000000000000000000041;
 // synopsys translate_on
 
 // Location: LCCOMB_X25_Y8_N14
@@ -15361,7 +15361,7 @@ defparam \cnn1d|fc_1|nrn_ram|altsyncram_component|auto_generated|ram_block1a0 .p
 defparam \cnn1d|fc_1|nrn_ram|altsyncram_component|auto_generated|ram_block1a0 .port_b_data_width = 18;
 defparam \cnn1d|fc_1|nrn_ram|altsyncram_component|auto_generated|ram_block1a0 .ram_block_type = "M9K";
 defparam \cnn1d|fc_1|nrn_ram|altsyncram_component|auto_generated|ram_block1a0 .mem_init1 = 256'h0000000000000000000000000000000000000000000000000000000000000000;
-defparam \cnn1d|fc_1|nrn_ram|altsyncram_component|auto_generated|ram_block1a0 .mem_init0 = 2048'h000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004400100003C00360002C002A0006C001500074002B0008800210002C001A000540033000D800340001C003B000740010000AC001E000CC00200005C000F000280014000A0000C0003800380009400010003800250005C0016000F40002000140015000DC00210000000000000000000000000000000000000001000050005C003800068002F0000C0007000FC0000000000000000000000000000000000000000;
+defparam \cnn1d|fc_1|nrn_ram|altsyncram_component|auto_generated|ram_block1a0 .mem_init0 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000F000210007C0000000000000000EC002A000B40000000000000000000000000000010000000000000000000000000018000B40036;
 // synopsys translate_on
 
 // Location: M9K_X26_Y8_N0
@@ -15416,7 +15416,7 @@ defparam \cnn1d|fc_1|nrn_ram|altsyncram_component|auto_generated|ram_block1a6 .p
 defparam \cnn1d|fc_1|nrn_ram|altsyncram_component|auto_generated|ram_block1a6 .port_b_data_width = 18;
 defparam \cnn1d|fc_1|nrn_ram|altsyncram_component|auto_generated|ram_block1a6 .ram_block_type = "M9K";
 defparam \cnn1d|fc_1|nrn_ram|altsyncram_component|auto_generated|ram_block1a6 .mem_init1 = 256'h0000000000000000000000000000000000000000000000000000000000000000;
-defparam \cnn1d|fc_1|nrn_ram|altsyncram_component|auto_generated|ram_block1a6 .mem_init0 = 2048'h0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000087FFDBFFF4000230002C000D0012FFFF7FFFA3FFA2FFFDBFFF70002C0001FFF040026FFFB8000DFFF500009000B7FFDAFFF3BFFEF00013FFF60009C005B000C0000AFFF90000B0001FFFA1FFFE7FFFB000080023FFF53FFF500000000A00038000200063FFFE0000000000000000000000000000000000000006C002AFFFE80000FFFE7FFDE000100008FFF840000000000000000000000000000000000000000;
+defparam \cnn1d|fc_1|nrn_ram|altsyncram_component|auto_generated|ram_block1a6 .mem_init0 = 2048'h00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFE680026FFF0C0000000000000FFBEC0015FFFB8000000000000000000000000003FFFE000000000000000000000000029000C3FFA5;
 // synopsys translate_on
 
 // Location: LCCOMB_X25_Y12_N20
@@ -15501,7 +15501,7 @@ defparam \cnn1d|conv1d_layer|conv1d_biases|altsyncram_component|auto_generated|r
 defparam \cnn1d|conv1d_layer|conv1d_biases|altsyncram_component|auto_generated|ram_block1a5 .port_b_address_width = 1;
 defparam \cnn1d|conv1d_layer|conv1d_biases|altsyncram_component|auto_generated|ram_block1a5 .port_b_data_width = 18;
 defparam \cnn1d|conv1d_layer|conv1d_biases|altsyncram_component|auto_generated|ram_block1a5 .ram_block_type = "M9K";
-defparam \cnn1d|conv1d_layer|conv1d_biases|altsyncram_component|auto_generated|ram_block1a5 .mem_init0 = 36'h0026BFF2B;
+defparam \cnn1d|conv1d_layer|conv1d_biases|altsyncram_component|auto_generated|ram_block1a5 .mem_init0 = 36'hFFE4BFCC9;
 // synopsys translate_on
 
 // Location: LCCOMB_X22_Y14_N30
@@ -15825,7 +15825,7 @@ defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a10 .port_b_address_width = 1;
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a10 .port_b_data_width = 18;
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a10 .ram_block_type = "M9K";
-defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a10 .mem_init0 = 36'h0E7FC1710;
+defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a10 .mem_init0 = 36'h0086C03D1;
 // synopsys translate_on
 
 // Location: FF_X24_Y16_N1
@@ -16080,7 +16080,7 @@ defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a14 .port_b_address_width = 1;
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a14 .port_b_data_width = 18;
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a14 .ram_block_type = "M9K";
-defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a14 .mem_init0 = 36'h0F0FC03C0;
+defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a14 .mem_init0 = 36'h0001C0038;
 // synopsys translate_on
 
 // Location: LCCOMB_X25_Y16_N6
@@ -16718,7 +16718,7 @@ defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a17 .port_b_address_width = 1;
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a17 .port_b_data_width = 18;
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a17 .ram_block_type = "M9K";
-defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a17 .mem_init0 = 36'h1E3FC0700;
+defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a17 .mem_init0 = 36'h0003C00F0;
 // synopsys translate_on
 
 // Location: FF_X27_Y17_N25
@@ -24555,7 +24555,7 @@ defparam \cnn1d|conv1d_layer|conv1d_biases|altsyncram_component|auto_generated|r
 defparam \cnn1d|conv1d_layer|conv1d_biases|altsyncram_component|auto_generated|ram_block1a0 .port_b_address_width = 1;
 defparam \cnn1d|conv1d_layer|conv1d_biases|altsyncram_component|auto_generated|ram_block1a0 .port_b_data_width = 18;
 defparam \cnn1d|conv1d_layer|conv1d_biases|altsyncram_component|auto_generated|ram_block1a0 .ram_block_type = "M9K";
-defparam \cnn1d|conv1d_layer|conv1d_biases|altsyncram_component|auto_generated|ram_block1a0 .mem_init0 = 36'h3402CB1E5;
+defparam \cnn1d|conv1d_layer|conv1d_biases|altsyncram_component|auto_generated|ram_block1a0 .mem_init0 = 36'h06EC801AD;
 // synopsys translate_on
 
 // Location: FF_X25_Y13_N23
@@ -25030,7 +25030,7 @@ defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a3 .port_b_address_width = 1;
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a3 .port_b_data_width = 18;
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a3 .ram_block_type = "M9K";
-defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a3 .mem_init0 = 36'h046CC01B8;
+defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a3 .mem_init0 = 36'h013840192;
 // synopsys translate_on
 
 // Location: FF_X27_Y13_N11
@@ -25761,7 +25761,7 @@ defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a6 .port_b_address_width = 1;
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a6 .port_b_data_width = 18;
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a6 .ram_block_type = "M9K";
-defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a6 .mem_init0 = 36'h0A42C0A34;
+defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a6 .mem_init0 = 36'h01A4403BE;
 // synopsys translate_on
 
 // Location: FF_X25_Y15_N27
@@ -29253,7 +29253,7 @@ defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a21 .port_b_address_width = 1;
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a21 .port_b_data_width = 18;
 defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a21 .ram_block_type = "M9K";
-defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a21 .mem_init0 = 36'h0E1FC0780;
+defparam \cnn1d|conv1d_layer|conv1d_weights|altsyncram_component|auto_generated|ram_block1a21 .mem_init0 = 36'h0001C0078;
 // synopsys translate_on
 
 // Location: FF_X27_Y14_N11
